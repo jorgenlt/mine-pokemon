@@ -1,0 +1,12 @@
+body {
+    margin: 0px;
+    background-color: $light-gray;
+    font-family: 'Roboto Mono', monospace;
+}
+
+main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
