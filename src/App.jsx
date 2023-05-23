@@ -126,7 +126,7 @@ function App() {
             <form className="search--form" action="">
                 <DebounceInput 
                     className="search--input" 
-                    placeholder="👉 Finn Pokemon i listen under eller søk her." 
+                    placeholder="🐞 Finn Pokemon i listen under eller søk her." 
                     minLength={1}
                     debounceTimeout={500}
                     value={query}

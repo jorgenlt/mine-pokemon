@@ -439,3 +439,90 @@
     }
 }
 
+.myPokemons {
+    margin: 40px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.myPokemons--cards {
+    width: 60vw;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    transform: scale(0.8);
+}
+
+@media only screen and (max-width: 700px) {
+    .myPokemons {
+        margin: 0;
+
+        h2 {
+            margin-bottom: 0;
+        }
+    }
+
+    .myPokemons--cards {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .cards {
+        width: 100%;
+        margin: 0;
+        gap: 10px;
+    }
+
+    .card {
+        width: 40vw;
+        height: calc(40vw * 1.6);
+    }
+
+    .card--header {
+        i {
+            font-size: 14px;
+        }
+    }
+
+    .card--title {
+        h1 {
+            font-size: 14px;
+        }
+    }
+
+    .card--hp {
+        font-size: 14px;
+    }
+
+    .card--image {
+        height: 80px;
+        padding: 0;
+    }
+
+    .card--abilities {
+        h3 {
+            font-size: 12px;
+        }
+
+        li {
+            font-size: 10px;
+        }
+    }
+
+    .card--type {
+        .icon {
+            width: 30px;
+            height: 30px;
+        }
+    }
+
+    .card--btn {
+        i {
+            font-size: 16px;
+        }
+    }
+}
