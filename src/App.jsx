@@ -12,7 +12,9 @@ function App() {
   const [allPokemons, setAllPokemons] = useState([]);
   const [query, setQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-  const [myPokemons, setMyPokemons] = useState([]);
+  const [myPokemons, setMyPokemons] = useState(
+    JSON.parse(localStorage.getItem("myPokemons")) || []
+  );
 
   // Animate On Scroll
   useEffect(() => {
@@ -20,18 +22,11 @@ function App() {
   }, 
   []);
 
-  // Load myPokemons from local storage
-  useEffect(() => {
-    const savedPokemons = localStorage.getItem('myPokemons');
-    if (savedPokemons) {
-      setMyPokemons(JSON.parse(savedPokemons));
-    }
-  }, []);
-
   // Save myPokemons to localStorage when it changes
   useEffect(() => {
-    localStorage.setItem('myPokemons', JSON.stringify(myPokemons));
-  }, [myPokemons]);
+    localStorage.setItem("myPokemons", JSON.stringify(myPokemons))
+  }, [myPokemons])
+
 
   // API call
   useEffect(() => {
@@ -65,8 +60,6 @@ function App() {
     } else {
       setMyPokemons(prevPokemons => [...prevPokemons, pokemon])
     }
-
-    console.log(myPokemons);
   }
 
   const removePokemon = pokemon => {
