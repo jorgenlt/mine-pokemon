@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react'
 import './styles/app.scss'
 // import Search from './components/Search'
+import Card from './components/Card'
 import Banner from './components/Banner'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 function App() {
   const [allPokemon, setAllPokemon] = useState([]);
@@ -9,8 +12,14 @@ function App() {
   const [searchResults, setSearchresults] = useState([]);
   const [myPokemon, setMyPokemon] = useState([]);
 
+  // Animate On Scroll
   useEffect(() => {
-    const limit = 50;
+    AOS.init();
+  }, 
+  []);
+
+  useEffect(() => {
+    const limit = 40;
     const url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}`
 
     fetch(url)
@@ -33,48 +42,48 @@ function App() {
     setSearchresults(search);
   }, [query]);
 
-  const PokemonData = props => {
-    const [pokemonData, setPokemonData] = useState();
+  // const PokemonData = props => {
+  //   const [pokemonData, setPokemonData] = useState();
 
-    useEffect(() => {
-      fetch(props.url)
-        .then(response => response.json())
-        .then(data => {
-          // console.log(data);
-          setPokemonData(data)
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    }, [props.url])
+  //   useEffect(() => {
+  //     fetch(props.url)
+  //       .then(response => response.json())
+  //       .then(data => {
+  //         // console.log(data);
+  //         setPokemonData(data)
+  //       })
+  //       .catch(error => {
+  //         console.log(error);
+  //       });
+  //   }, [props.url])
 
-    if (!pokemonData) {
-      return <li>Loading...</li>;
-    }
+  //   if (!pokemonData) {
+  //     return <li>Loading...</li>;
+  //   }
 
-    const image = pokemonData.sprites?.other?.["official-artwork"]?.["front_default"];
-    const hp = pokemonData.stats?.[0].base_stat;
+  //   const image = pokemonData.sprites?.other?.["official-artwork"]?.["front_default"];
+  //   const hp = pokemonData.stats?.[0].base_stat;
     
-    const ability1 = pokemonData.abilities?.[0].ability?.name;
-    let ability2 = false;
-    if (pokemonData.abilities?.[1]) {
-      ability2 = pokemonData.abilities?.[1].ability?.name;
-      // console.log(ability2);
-    }
+  //   const ability1 = pokemonData.abilities?.[0].ability?.name;
+  //   let ability2 = false;
+  //   if (pokemonData.abilities?.[1]) {
+  //     ability2 = pokemonData.abilities?.[1].ability?.name;
+  //     // console.log(ability2);
+  //   }
 
-    return (
-      <>
-        <img src={image} width={150}></img>
-        <ul>
-          <li>{hp}</li>
-          <li>{ability1}</li>
-          {ability2 && <li>{ability2}</li>}
-          <li></li>
-          <li></li>
-        </ul>
-      </>
-    )
-  }
+  //   return (
+  //     <>
+  //       <img src={image} width={150}></img>
+  //       <ul>
+  //         <li>{hp}</li>
+  //         <li>{ability1}</li>
+  //         {ability2 && <li>{ability2}</li>}
+  //         <li></li>
+  //         <li></li>
+  //       </ul>
+  //     </>
+  //   )
+  // }
 
   // const addPokemon = pokemon => {
   //   setMyPokemon([
@@ -84,21 +93,27 @@ function App() {
   //   console.log(myPokemon);
   // }
 
+  const addPokemon = pokemon => {
+    if (myPokemon.includes(pokemon)) {
+      console.log('Pokemon already exists.')
+    } else {
+      setMyPokemon([...myPokemon, pokemon])
+    }
+  }
+
+  const removePokemon = pokemon => {
+    setMyPokemon(prev => prev.filter(item => item !== pokemon))
+  }
+
   const cardElements = (pokemon) => {
-    
     return (
       pokemon.map(pokemon => {
         return (
-          <div className="card" key={pokemon.name}>
-            <h1 className="name">{`${pokemon.name.charAt(0).toUpperCase()}${pokemon.name.slice(1)}`}</h1>
-            <PokemonData url={pokemon.url} />
-            <button
-              // onClick={() => addPokemon(pokemon)}
-              onClick={() => myPokemon.includes(pokemon) ? console.log('Pokemon already exists.') : setMyPokemon([...myPokemon, pokemon])}
-            >
-              Legg til i liste
-            </button>
-          </div>
+          <Card 
+            key={pokemon.name}
+            pokemon={pokemon}
+            addPokemon={addPokemon}
+          />
         )
       })
     )
@@ -113,11 +128,15 @@ function App() {
       return (
         myListedPokemon.map(pokemon => {
           return (
-            <div className="card" key={pokemon.name}>
-              <h1 className="name">{`${pokemon.name.charAt(0).toUpperCase()}${pokemon.name.slice(1)}`}</h1>
-              <PokemonData url={pokemon.url} />
+            <div>
+              <Card 
+                key={pokemon.name}
+                pokemon={pokemon}
+                removePokemon={removePokemon}
+              />
+
               <button
-                onClick={() => setMyPokemon(prev => prev.filter(item => item !== pokemon))}
+                onClick={() => removePokemon(pokemon)}
               >
                 Fjern
               </button>
