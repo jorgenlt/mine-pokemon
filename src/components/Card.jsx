@@ -1,4 +1,5 @@
 import { useState, useEffect} from 'react'
+import { typeData } from '../helperFunctions'
 
 export default function Card(props) {
     // console.log(props.pokemon.url);
@@ -11,17 +12,12 @@ export default function Card(props) {
         .then(response => response.json())
         .then(data => {
           setPokemonData(data)
+        //   console.log(data.types[0].type.name);
         })
         .catch(error => {
           console.log(error);
         });
     }, [])
-    
-    if (pokemonData) {
-        pokemonData.abilities.forEach((element) => console.log(element.ability.name))
-        
-        // console.log(pokemonData.abilities);
-    }
 
     // if (!pokemonData) {
     //   return <li>Loading...</li>;
@@ -30,11 +26,36 @@ export default function Card(props) {
     let image;
     let hp;
     let abilities;
+    let type;
+    let backgroundColor;
+    let icon;
 
     if (pokemonData) {
-        image = pokemonData.sprites.other['official-artwork']["front_default"];
+        image = pokemonData.sprites.other['dream_world']["front_default"];
         hp = pokemonData.stats[0].base_stat;
         abilities = pokemonData.abilities;
+        type = pokemonData.types[0].type.name;
+        backgroundColor = typeData[type].background;
+        icon = typeData[type].icon;
+
+        // console.log(`type:${type}, color: ${color}`);
+    }
+
+    // edit name
+    const [editNameOpen, setEditNameOpen] = useState(false);
+    const [nameInputValue, setNameInputValue] = useState('');
+
+    const toggleEditName = () => {
+        setEditNameOpen(prev => !prev);
+    }
+
+    const handleNameInputChange = (event) => {
+        setNameInputValue(event.target.value);
+        console.log(nameInputValue);
+    }
+
+    const handleSubmitName = () => {
+        props.editPokemonName(props.pokemon, nameInputValue);
     }
 
     return (
@@ -45,26 +66,50 @@ export default function Card(props) {
             data-aos-offset="100"
             data-aos-delay="50"
             data-aos-duration="400"
+            style={{background: backgroundColor}}
         >
             <div className='card--header'>
-                <h1 className="card--title">{props.pokemon.name}</h1>
+                <div className="card--title">
+                    <h1>{props.pokemon.name}</h1>
+                    {props.myPokemon && <i onClick={toggleEditName} className="fa-solid fa-pen"></i>}
+                    {editNameOpen && 
+                        <div className='card--edit-name'>
+                            <form>
+                                <input 
+                                    type="text" 
+                                    placeholder='Nytt navn...'
+                                    value={nameInputValue}
+                                    onChange={handleNameInputChange}
+                                />
+                                <button onClick={handleSubmitName} >Lagre</button>
+                            </form>
+                        </div>
+                    }
+                </div>
                 <span className='card--hp'>{hp}</span>
             </div>
             <div className='card--image'>
                 <img src={image}></img>
             </div>
             <div className='card--abilities'>
+                <h3>Ferdigheter</h3>
                 <ul>
                     {abilities && abilities.map(element => <li key={element.ability.name}>{element.ability.name}</li>)}
                 </ul>
             </div>
-
-            <button
-                // onClick={() => addPokemon(pokemon)}
-                onClick={props.addPokemon}
+            <div className='card--type'>
+                <div className={`icon ${type}`}>
+                    <img src={icon} width={100}></img>
+                </div>
+            </div>
+            <div
+                className='card--btn' 
+                onClick={props.myPokemon ? props.removePokemon : props.addPokemon}
             >
-                Legg til i liste
-            </button>
+                    {props.myPokemon ? <i className="fa-solid fa-trash"></i> : <i className="fa-solid fa-plus"></i>}
+
+            </div>
+
         </div>
     )
 }

@@ -30,10 +30,18 @@
 //     }
 // }
 
-.list {
-    width: 60vw;
-    margin: 50px 20px 20px 20px;
+.myPokemons {
+    margin: 40px 0px;
     display: flex;
-    gap: 10px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.myPokemons--cards {
+    width: 60vw;
+    margin: 0;
+    display: flex;
+    gap: 20px;
     flex-wrap: wrap;
+    transform: scale(0.8);
 }

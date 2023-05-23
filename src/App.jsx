@@ -1,16 +1,18 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, lazy, Suspense } from 'react'
 import './styles/app.scss'
 // import Search from './components/Search'
-import Card from './components/Card'
+// import Card from './components/Card'
+const Card = lazy(() => import('./components/Card'));
 import Banner from './components/Banner'
 import AOS from 'aos';
+import { DebounceInput } from 'react-debounce-input';
 import 'aos/dist/aos.css';
 
 function App() {
-  const [allPokemon, setAllPokemon] = useState([]);
+  const [allPokemons, setAllPokemons] = useState([]);
   const [query, setQuery] = useState('');
-  const [searchResults, setSearchresults] = useState([]);
-  const [myPokemon, setMyPokemon] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
+  const [myPokemons, setMyPokemons] = useState([]);
 
   // Animate On Scroll
   useEffect(() => {
@@ -18,16 +20,28 @@ function App() {
   }, 
   []);
 
+  // Load myPokemons from local storage
   useEffect(() => {
-    const limit = 40;
-    const url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}`
+    const savedPokemons = localStorage.getItem('myPokemons');
+    if (savedPokemons) {
+      setMyPokemons(JSON.parse(savedPokemons));
+    }
+  }, []);
+
+  // Save myPokemons to localStorage when it changes
+  useEffect(() => {
+    localStorage.setItem('myPokemons', JSON.stringify(myPokemons));
+  }, [myPokemons]);
+
+  // API call
+  useEffect(() => {
+    const limit = 200;
+    const url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}`;
 
     fetch(url)
       .then(response => response.json())
       .then(data => {
-        // console.log(data);
-        setAllPokemon(data.results);
-        // console.log(data.results[0].name);
+        setAllPokemons(data.results);
       })
       .catch(error => {
         console.log(error);
@@ -35,112 +49,72 @@ function App() {
     }
   ,[])
 
+  //Search filter
   useEffect(() => {
-    const search = allPokemon.filter(pokemon =>
-      pokemon.name.includes(query.toLowerCase())
+    const search = allPokemons.filter(pokemon =>
+      pokemon.name.toLowerCase().includes(query.toLowerCase()) &&
+      !myPokemons.find(pokemonInList => pokemonInList.name === pokemon.name)
     );
-    setSearchresults(search);
-  }, [query]);
+    setSearchResults(search);
+  }, [query, allPokemons, myPokemons]);
 
-  // const PokemonData = props => {
-  //   const [pokemonData, setPokemonData] = useState();
-
-  //   useEffect(() => {
-  //     fetch(props.url)
-  //       .then(response => response.json())
-  //       .then(data => {
-  //         // console.log(data);
-  //         setPokemonData(data)
-  //       })
-  //       .catch(error => {
-  //         console.log(error);
-  //       });
-  //   }, [props.url])
-
-  //   if (!pokemonData) {
-  //     return <li>Loading...</li>;
-  //   }
-
-  //   const image = pokemonData.sprites?.other?.["official-artwork"]?.["front_default"];
-  //   const hp = pokemonData.stats?.[0].base_stat;
-    
-  //   const ability1 = pokemonData.abilities?.[0].ability?.name;
-  //   let ability2 = false;
-  //   if (pokemonData.abilities?.[1]) {
-  //     ability2 = pokemonData.abilities?.[1].ability?.name;
-  //     // console.log(ability2);
-  //   }
-
-  //   return (
-  //     <>
-  //       <img src={image} width={150}></img>
-  //       <ul>
-  //         <li>{hp}</li>
-  //         <li>{ability1}</li>
-  //         {ability2 && <li>{ability2}</li>}
-  //         <li></li>
-  //         <li></li>
-  //       </ul>
-  //     </>
-  //   )
-  // }
-
-  // const addPokemon = pokemon => {
-  //   setMyPokemon([
-  //     ...myPokemon,
-  //     pokemon
-  //   ])
-  //   console.log(myPokemon);
-  // }
 
   const addPokemon = pokemon => {
-    if (myPokemon.includes(pokemon)) {
+    if (myPokemons.includes(pokemon)) {
       console.log('Pokemon already exists.')
     } else {
-      setMyPokemon([...myPokemon, pokemon])
+      setMyPokemons(prevPokemons => [...prevPokemons, pokemon])
     }
+
+    console.log(myPokemons);
   }
 
   const removePokemon = pokemon => {
-    setMyPokemon(prev => prev.filter(item => item !== pokemon))
+    setMyPokemons(prev => prev.filter(item => item !== pokemon))
   }
 
-  const cardElements = (pokemon) => {
+  const editPokemonName = (pokemon, newName) => {
+    setMyPokemons(prev => {
+      const updatedPokemons = [...prev];
+      const index = updatedPokemons.findIndex(p => p.name === pokemon.name);
+      if (index !== -1) {
+        updatedPokemons[index] = { ...updatedPokemons[index], name: newName };
+      }
+      return updatedPokemons;
+    });
+  }
+
+  const cardElements = (pokemons) => {
+    // Excluding pokemons that is already saved
+    const filteredPokemons = pokemons.filter(pokemon => !myPokemons.find(p => p.url === pokemon.url));
+
     return (
-      pokemon.map(pokemon => {
+      filteredPokemons.map(pokemon => {
         return (
-          <Card 
-            key={pokemon.name}
-            pokemon={pokemon}
-            addPokemon={addPokemon}
-          />
+          <Suspense key={pokemon.name} fallback={<div>Loading...</div>}>
+            <Card 
+              pokemon={pokemon}
+              addPokemon={() => addPokemon(pokemon)}
+              myPokemon={false}
+            />
+        </Suspense>
         )
       })
     )
   }
 
-  // const deletePokemon = pokemon => {
-  //   setMyPokemon(prev => prev.filter(item => item !== pokemon));
-  // };
-
-  const listElements = myListedPokemon => {
-    if (myListedPokemon) {
+  const myPokemonsElements = myPokemons => {
+    if (myPokemons) {
       return (
-        myListedPokemon.map(pokemon => {
+        myPokemons.map(pokemon => {
           return (
-            <div>
-              <Card 
-                key={pokemon.name}
-                pokemon={pokemon}
-                removePokemon={removePokemon}
-              />
-
-              <button
-                onClick={() => removePokemon(pokemon)}
-              >
-                Fjern
-              </button>
-            </div>
+            <Card 
+              key={pokemon.name}
+              pokemon={pokemon}
+              removePokemon={() => removePokemon(pokemon)}
+              editPokemonName={editPokemonName}
+              myPokemon={true}
+            />
           )
         })
       )
@@ -157,22 +131,25 @@ function App() {
         <Banner />
         <div className="search--wrapper">
             <form className="search--form" action="">
-                <input 
+                <DebounceInput 
                     className="search--input" 
-                    placeholder="Finn pokemon..." 
+                    placeholder="👉 Finn Pokemon i listen under eller søk her." 
+                    minLength={1}
+                    debounceTimeout={500}
                     value={query}
                     type="text" 
                     onChange={handleOnChange}
                 />
-                <button className="search--btn">Finn pokemon!</button>
             </form>
         </div>
-        <p>myPokemon.length:{myPokemon.length}</p>
-        <div className='list'>
-          {myPokemon && listElements(myPokemon)}
+        <div className='myPokemons'>
+          <h2>Min liste</h2>
+          <div className='myPokemons--cards'>
+            {myPokemons && myPokemonsElements(myPokemons)}
+          </div>
         </div>
         <div className='cards'>
-          {query ? cardElements(searchResults) : cardElements(allPokemon)}
+        {query ? cardElements(searchResults) : cardElements(allPokemons)}
         </div>
       </main>
     </>
