@@ -1,10 +1,12 @@
 import { useState, useEffect} from 'react'
-import { typeData } from '../helperFunctions'
+import { typeData } from './helperFunctions'
 
 export default function Card(props) {
-    // console.log(props.pokemon.url);
-
     const [pokemonData, setPokemonData] = useState();
+    const [editNameOpen, setEditNameOpen] = useState(false);
+    const [nameInputValue, setNameInputValue] = useState('');
+    const [imageLoading, setImageLoading] = useState(true);
+
     const url = props.pokemon.url;
 
     useEffect(() => {
@@ -12,17 +14,13 @@ export default function Card(props) {
         .then(response => response.json())
         .then(data => {
           setPokemonData(data)
-        //   console.log(data.types[0].type.name);
         })
         .catch(error => {
           console.log(error);
         });
     }, [])
 
-    // if (!pokemonData) {
-    //   return <li>Loading...</li>;
-    // }
-
+    // pokemon card data
     let image;
     let hp;
     let abilities;
@@ -37,14 +35,9 @@ export default function Card(props) {
         type = pokemonData.types[0].type.name;
         backgroundColor = typeData[type].background;
         icon = typeData[type].icon;
-
-        // console.log(`type:${type}, color: ${color}`);
     }
 
     // edit name
-    const [editNameOpen, setEditNameOpen] = useState(false);
-    const [nameInputValue, setNameInputValue] = useState('');
-
     const toggleEditName = () => {
         setEditNameOpen(prev => !prev);
     }
@@ -57,6 +50,19 @@ export default function Card(props) {
     const handleSubmitName = () => {
         props.editPokemonName(props.pokemon, nameInputValue);
     }
+
+    // image loading skeleton
+    useEffect(() => {
+    const img = new Image();
+    img.src = image;
+    img.onload = () => {
+        setImageLoading(false);
+    }
+
+    return () => {
+        img.onload = null;
+    };
+    }, [image]);
 
     return (
         <div 
@@ -72,7 +78,8 @@ export default function Card(props) {
                 <div className="card--title">
                     <h1>{props.pokemon.name}</h1>
                     {props.myPokemon && <i onClick={toggleEditName} className="fa-solid fa-pen"></i>}
-                    {editNameOpen && 
+                    {
+                        editNameOpen && 
                         <div className='card--edit-name'>
                             <form>
                                 <input 
@@ -88,18 +95,27 @@ export default function Card(props) {
                 </div>
                 <span className='card--hp'>{hp}</span>
             </div>
-            <div className='card--image'>
-                <img src={image}></img>
+            <div className={`card--image ${imageLoading ? 'loading' : ''}`}>
+            {
+                imageLoading ? (
+                    <div className="skeleton"></div>
+                ) : (
+                    <img src={image} alt="Pokemon"></img>
+                )
+            }
             </div>
-            <div className='card--abilities'>
-                <h3>Ferdigheter</h3>
-                <ul>
-                    {abilities && abilities.map(element => <li key={element.ability.name}>{element.ability.name}</li>)}
-                </ul>
-            </div>
+            {   
+                !imageLoading &&
+                <div className='card--abilities'>
+                    <h3>Ferdigheter</h3>
+                    <ul>
+                        {abilities && abilities.map(element => <li key={element.ability.name}>{element.ability.name}</li>)}
+                    </ul>
+                </div>
+            }
             <div className='card--type'>
                 <div className={`icon ${type}`}>
-                    <img src={icon} width={100}></img>
+                    {!imageLoading && <img src={icon} width={100}></img>}
                 </div>
             </div>
             <div

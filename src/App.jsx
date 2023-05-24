@@ -1,30 +1,29 @@
 import { useEffect, useState, lazy, Suspense } from 'react'
 import './styles/app.scss'
-// import Search from './components/Search'
-// import Card from './components/Card'
-const Card = lazy(() => import('./components/Card'));
+const Card = lazy(() => import('./components/Card'))
 import Banner from './components/Banner'
-import AOS from 'aos';
-import { DebounceInput } from 'react-debounce-input';
-import 'aos/dist/aos.css';
+import AOS from 'aos'
+import { DebounceInput } from 'react-debounce-input'
+import 'aos/dist/aos.css'
 
-function App() {
+export default function App() {
   const [allPokemons, setAllPokemons] = useState([]);
   const [query, setQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [myPokemons, setMyPokemons] = useState(
     JSON.parse(localStorage.getItem("myPokemons")) || []
   );
+  const [showMyCards, setShowMyCards] = useState(true);
 
-  // Animate On Scroll
+  // animate On Scroll
   useEffect(() => {
     AOS.init();
   }, 
-  []);
+  [])
 
-  // Save myPokemons to localStorage when it changes
+  // save myPokemons to localStorage when it changes
   useEffect(() => {
-    localStorage.setItem("myPokemons", JSON.stringify(myPokemons))
+    localStorage.setItem("myPokemons", JSON.stringify(myPokemons));
   }, [myPokemons])
 
 
@@ -44,26 +43,26 @@ function App() {
     }
   ,[])
 
-  //Search filter
+  // search filter
   useEffect(() => {
     const search = allPokemons.filter(pokemon =>
       pokemon.name.toLowerCase().includes(query.toLowerCase()) &&
       !myPokemons.find(pokemonInList => pokemonInList.name === pokemon.name)
     );
     setSearchResults(search);
-  }, [query, allPokemons, myPokemons]);
+  }, [query, allPokemons, myPokemons])
 
 
   const addPokemon = pokemon => {
     if (myPokemons.includes(pokemon)) {
-      console.log('Pokemon already exists.')
+      console.log('Pokemon already exists.');
     } else {
-      setMyPokemons(prevPokemons => [...prevPokemons, pokemon])
+      setMyPokemons(prevPokemons => [...prevPokemons, pokemon]);
     }
   }
 
   const removePokemon = pokemon => {
-    setMyPokemons(prev => prev.filter(item => item !== pokemon))
+    setMyPokemons(prev => prev.filter(item => item !== pokemon));
   }
 
   const editPokemonName = (pokemon, newName) => {
@@ -78,19 +77,22 @@ function App() {
   }
 
   const cardElements = (pokemons) => {
-    // Excluding pokemons that is already saved
+    // excluding pokemons that is already saved
     const filteredPokemons = pokemons.filter(pokemon => !myPokemons.find(p => p.url === pokemon.url));
 
     return (
       filteredPokemons.map(pokemon => {
         return (
-          <Suspense key={pokemon.name} fallback={<div>Loading...</div>}>
+          <Suspense 
+            key={pokemon.name} 
+            fallback={<img src="../public/pikachu.png" className='suspense-loading' alt="pikachu"></img>}
+          >
             <Card 
               pokemon={pokemon}
               addPokemon={() => addPokemon(pokemon)}
               myPokemon={false}
             />
-        </Suspense>
+          </Suspense>
         )
       })
     )
@@ -101,6 +103,10 @@ function App() {
       return (
         myPokemons.map(pokemon => {
           return (
+          <Suspense 
+            key={pokemon.name} 
+            fallback={<img src="../public/pikachu.png" className='suspense-loading' alt="pikachu"></img>}
+          >
             <Card 
               key={pokemon.name}
               pokemon={pokemon}
@@ -108,6 +114,7 @@ function App() {
               editPokemonName={editPokemonName}
               myPokemon={true}
             />
+          </Suspense>
           )
         })
       )
@@ -115,7 +122,7 @@ function App() {
   }
 
   const handleOnChange = (e) => {
-    setQuery(e.target.value)
+    setQuery(e.target.value);
   }
 
   return (
@@ -124,29 +131,40 @@ function App() {
         <Banner />
         <div className="search--wrapper">
             <form className="search--form" action="">
-                <DebounceInput 
-                    className="search--input" 
-                    placeholder="🐞 Finn Pokemon i listen under eller søk her." 
-                    minLength={1}
-                    debounceTimeout={500}
-                    value={query}
-                    type="text" 
-                    onChange={handleOnChange}
-                />
+              <DebounceInput 
+                className="search--input" 
+                placeholder="🐞 Finn Pokemon i listen under eller søk her." 
+                minLength={1}
+                debounceTimeout={500}
+                value={query}
+                type="text" 
+                onChange={handleOnChange}
+              />
             </form>
         </div>
+        <hr />
         <div className='myPokemons'>
-          <h2>Min liste</h2>
-          <div className='myPokemons--cards'>
-            {myPokemons && myPokemonsElements(myPokemons)}
-          </div>
+          <h2>Mine kort</h2>
+          <span className="myPokemons--hide" onClick={() => setShowMyCards(prev => !prev)}>{showMyCards ? 'Skjul kort' : 'Vis kort'}</span>
+          { 
+            showMyCards &&
+            <div className='myPokemons--cards'>
+              {myPokemons && myPokemonsElements(myPokemons)}
+            </div>
+          }
+          {
+            myPokemons.length < 1 &&
+            <div className='myPokemons--no-cards'>
+              <p>Du har ingen lagrede kort.</p>
+              <p>Du kan finne kort i listen under eller ved å søke i søkefeltet.</p>
+            </div>
+          }
         </div>
+        <hr />
         <div className='cards'>
-        {query ? cardElements(searchResults) : cardElements(allPokemons)}
+          {query ? cardElements(searchResults) : cardElements(allPokemons)}
         </div>
       </main>
     </>
   )
 }
-
-export default App
