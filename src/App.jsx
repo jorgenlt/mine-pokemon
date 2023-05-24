@@ -85,7 +85,7 @@ export default function App() {
         return (
           <Suspense 
             key={pokemon.name} 
-            fallback={<img src="../public/pikachu.png" className='suspense-loading' alt="pikachu"></img>}
+            fallback={<img src="/pikachu.png" className='suspense-loading' alt="pikachu"></img>}
           >
             <Card 
               pokemon={pokemon}
