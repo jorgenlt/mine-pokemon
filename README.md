@@ -22,3 +22,5 @@ ___
 Mine Pokemon is developed using React and Vite.js. The application is supported by AOS (Animation On Scroll), react-debounce-input, and SASS.
 
 To handle the large volume of data, lazy loading is implemented, making the loading process more manageable. The search feature utilizes react-debounce-input to introduce delays, preventing lag and unnecessary API calls.
+
+The app is live at [pokemon.jorgenlt.me](https://pokemon.jorgenlt.me).
