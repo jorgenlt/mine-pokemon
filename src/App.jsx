@@ -40,7 +40,7 @@ export default function App() {
       .catch(error => {
         console.log(error);
       });
-    }
+  }
   ,[])
 
   // search filter
@@ -53,17 +53,9 @@ export default function App() {
   }, [query, allPokemons, myPokemons])
 
 
-  const addPokemon = pokemon => {
-    if (myPokemons.includes(pokemon)) {
-      console.log('Pokemon already exists.');
-    } else {
-      setMyPokemons(prevPokemons => [...prevPokemons, pokemon]);
-    }
-  }
+  const addPokemon = pokemon => setMyPokemons(prevPokemons => [...prevPokemons, pokemon]);
 
-  const removePokemon = pokemon => {
-    setMyPokemons(prev => prev.filter(item => item !== pokemon));
-  }
+  const removePokemon = pokemon => setMyPokemons(prev => prev.filter(item => item !== pokemon));
 
   const editPokemonName = (pokemon, newName) => {
     setMyPokemons(prev => {
@@ -76,7 +68,7 @@ export default function App() {
     });
   }
 
-  const cardElements = (pokemons) => {
+  const cardElements = pokemons => {
     // excluding pokemons that is already saved
     const filteredPokemons = pokemons.filter(pokemon => !myPokemons.find(p => p.url === pokemon.url));
 
@@ -105,7 +97,7 @@ export default function App() {
           return (
           <Suspense 
             key={pokemon.name} 
-            fallback={<img src="../public/pikachu.png" className='suspense-loading' alt="pikachu"></img>}
+            fallback={<img src="/pikachu.png" className='suspense-loading' alt="pikachu"></img>}
           >
             <Card 
               key={pokemon.name}

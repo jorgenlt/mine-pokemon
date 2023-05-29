@@ -38,30 +38,20 @@ export default function Card(props) {
     }
 
     // edit name
-    const toggleEditName = () => {
-        setEditNameOpen(prev => !prev);
-    }
-
-    const handleNameInputChange = (event) => {
-        setNameInputValue(event.target.value);
-        console.log(nameInputValue);
-    }
-
-    const handleSubmitName = () => {
-        props.editPokemonName(props.pokemon, nameInputValue);
-    }
+    const toggleEditName = () => setEditNameOpen(prev => !prev);
+    const handleNameInputChange = event => setNameInputValue(event.target.value);
+    const handleSubmitName = () => props.editPokemonName(props.pokemon, nameInputValue);
 
     // image loading skeleton
     useEffect(() => {
-    const img = new Image();
-    img.src = image;
-    img.onload = () => {
-        setImageLoading(false);
-    }
-
-    return () => {
-        img.onload = null;
-    };
+        const img = new Image();
+        img.src = image;
+        img.onload = () => {
+            setImageLoading(false);
+        }
+        return () => {
+            img.onload = null;
+        };
     }, [image]);
 
     return (
