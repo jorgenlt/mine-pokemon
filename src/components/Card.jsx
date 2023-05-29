@@ -1,5 +1,5 @@
 import { useState, useEffect} from 'react'
-import { typeData } from './helperFunctions'
+import { TYPEDATA } from '../utils/constants/TYPEDATA'
 
 export default function Card(props) {
     const [pokemonData, setPokemonData] = useState();
@@ -33,8 +33,8 @@ export default function Card(props) {
         hp = pokemonData.stats[0].base_stat;
         abilities = pokemonData.abilities;
         type = pokemonData.types[0].type.name;
-        backgroundColor = typeData[type].background;
-        icon = typeData[type].icon;
+        backgroundColor = TYPEDATA[type].background;
+        icon = TYPEDATA[type].icon;
     }
 
     // edit name

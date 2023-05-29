@@ -1,4 +1,4 @@
-export const typeData = {
+export const TYPEDATA = {
     normal: {
       background: 'linear-gradient(180deg, hsla(33, 100%, 64%, 1) 0%, hsla(58, 100%, 68%, 1) 100%)',
       icon: 'https://raw.githubusercontent.com/duiker101/pokemon-type-svg-icons/master/icons/normal.svg'
@@ -76,3 +76,4 @@ export const typeData = {
       icon: 'https://raw.githubusercontent.com/duiker101/pokemon-type-svg-icons/master/icons/default.svg'
     }
 };
+
