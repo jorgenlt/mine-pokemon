@@ -6,17 +6,26 @@ export default function Card(props) {
     const [editNameOpen, setEditNameOpen] = useState(false);
     const [nameInputValue, setNameInputValue] = useState('');
     const [imageLoading, setImageLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     const url = props.pokemon.url;
 
+    // API call Pokemon card data
     useEffect(() => {
       fetch(url)
-        .then(response => response.json())
+        .then(response => {
+            if(!response.ok) {
+                throw new Error('Network response failed.')
+            }
+            return response.json()
+        })
         .then(data => {
           setPokemonData(data)
+          setError(null);
         })
         .catch(error => {
-          console.log(error);
+          console.error('Error:', error);
+          setError('An error occured while fetching the Pokemon card data from the API. Please try again later.')
         });
     }, [])
 
@@ -64,6 +73,7 @@ export default function Card(props) {
             data-aos-duration="400"
             style={{background: backgroundColor}}
         >
+            {error && <p className='card--error'>{error}</p>}
             <div className='card--header'>
                 <div className="card--title">
                     <h1>{props.pokemon.name}</h1>

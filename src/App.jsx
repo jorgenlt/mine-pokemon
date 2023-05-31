@@ -14,6 +14,7 @@ export default function App() {
     JSON.parse(localStorage.getItem("myPokemons")) || []
   );
   const [showMyCards, setShowMyCards] = useState(true);
+  const [error, setError] = useState(null);
 
   // animate On Scroll
   useEffect(() => {
@@ -33,12 +34,19 @@ export default function App() {
     const url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}`;
 
     fetch(url)
-      .then(response => response.json())
+      .then(response => {
+        if(!response.ok) {
+          throw new Error('Network response failed.');
+        }
+        return response.json()
+      })
       .then(data => {
         setAllPokemons(data.results);
+        setError(null);
       })
       .catch(error => {
-        console.log(error);
+        console.error('Error:', error);
+        setError('An error occured while fetching pokemons from the API. Please try agian later.');
       });
   }
   ,[])
@@ -134,6 +142,7 @@ export default function App() {
               />
             </form>
         </div>
+        {error && <p>{error}</p>}
         <hr />
         <div className='myPokemons'>
           <h2>Mine kort</h2>
