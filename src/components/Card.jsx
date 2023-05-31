@@ -2,7 +2,7 @@ import { useState, useEffect} from 'react'
 import { TYPEDATA } from '../utils/constants/TYPEDATA'
 
 export default function Card(props) {
-    const [pokemonData, setPokemonData] = useState();
+    const [pokemonData, setPokemonData] = useState(null);
     const [editNameOpen, setEditNameOpen] = useState(false);
     const [nameInputValue, setNameInputValue] = useState('');
     const [imageLoading, setImageLoading] = useState(true);
@@ -115,7 +115,7 @@ export default function Card(props) {
             }
             <div className='card--type'>
                 <div className={`icon ${type}`}>
-                    {!imageLoading && <img src={icon} width={100}></img>}
+                    {!imageLoading && <img src={icon} alt='Pokemon type icon' width={100}></img>}
                 </div>
             </div>
             <div
