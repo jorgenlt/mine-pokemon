@@ -16,7 +16,7 @@ export default function App() {
   const [showMyCards, setShowMyCards] = useState(true);
   const [error, setError] = useState(null);
 
-  // animate On Scroll
+  // aos, animate on scroll
   useEffect(() => {
     AOS.init();
   }, 

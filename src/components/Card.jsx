@@ -123,7 +123,6 @@ export default function Card(props) {
                 onClick={props.myPokemon ? props.removePokemon : props.addPokemon}
             >
                     {props.myPokemon ? <i className="fa-solid fa-trash"></i> : <i className="fa-solid fa-plus"></i>}
-
             </div>
 
         </div>
