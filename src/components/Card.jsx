@@ -2,11 +2,11 @@ import { useState, useEffect} from 'react'
 import { TYPEDATA } from '../utils/constants/TYPEDATA'
 
 export default function Card(props) {
-    const [pokemonData, setPokemonData] = useState(null);
-    const [editNameOpen, setEditNameOpen] = useState(false);
-    const [nameInputValue, setNameInputValue] = useState('');
-    const [imageLoading, setImageLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [pokemonData, setPokemonData] = useState(null); // global state
+    const [editNameOpen, setEditNameOpen] = useState(false); // local state
+    const [nameInputValue, setNameInputValue] = useState(''); // local state
+    const [imageLoading, setImageLoading] = useState(true); // local state
+    const [error, setError] = useState(null); // local state (in api call)
 
     const url = props.pokemon.url;
 

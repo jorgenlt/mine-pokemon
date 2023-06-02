@@ -7,14 +7,14 @@ import { DebounceInput } from 'react-debounce-input'
 import 'aos/dist/aos.css'
 
 export default function App() {
-  const [allPokemons, setAllPokemons] = useState([]);
-  const [query, setQuery] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
+  const [allPokemons, setAllPokemons] = useState([]); // global state
+  const [query, setQuery] = useState(''); // local state
+  const [searchResults, setSearchResults] = useState([]); // local state
   const [myPokemons, setMyPokemons] = useState(
     JSON.parse(localStorage.getItem("myPokemons")) || []
-  );
-  const [showMyCards, setShowMyCards] = useState(true);
-  const [error, setError] = useState(null);
+  ); // global state
+  const [showMyCards, setShowMyCards] = useState(true); // local state
+  const [error, setError] = useState(null); // local state (in api call)
 
   // aos, animate on scroll
   useEffect(() => {
@@ -61,11 +61,12 @@ export default function App() {
   }, [query, allPokemons, myPokemons])
 
 
-  const addPokemon = pokemon => setMyPokemons(prevPokemons => [...prevPokemons, pokemon]);
+  const addPokemon = pokemon => setMyPokemons(prevPokemons => [...prevPokemons, pokemon]); // slice reducer
 
-  const removePokemon = pokemon => setMyPokemons(prev => prev.filter(item => item !== pokemon));
+  const removePokemon = pokemon => setMyPokemons(prev => prev.filter(item => item !== pokemon)); // slice reducer
 
   const editPokemonName = (pokemon, newName) => {
+    // should be a slice reducer
     setMyPokemons(prev => {
       const updatedPokemons = [...prev];
       const index = updatedPokemons.findIndex(p => p.name === pokemon.name);
