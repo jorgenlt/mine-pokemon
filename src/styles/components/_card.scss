@@ -26,6 +26,17 @@
     }
 }
 
+.card--error {
+    margin: 0;
+    width: 70%;
+    font-size: 12px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+}
+
 .card--header {
     box-sizing: border-box;
     width: 100%;

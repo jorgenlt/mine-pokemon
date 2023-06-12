@@ -7,15 +7,16 @@ import { DebounceInput } from 'react-debounce-input'
 import 'aos/dist/aos.css'
 
 export default function App() {
-  const [allPokemons, setAllPokemons] = useState([]);
-  const [query, setQuery] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
+  const [allPokemons, setAllPokemons] = useState([]); // global state
+  const [query, setQuery] = useState(''); // local state
+  const [searchResults, setSearchResults] = useState([]); // local state
   const [myPokemons, setMyPokemons] = useState(
     JSON.parse(localStorage.getItem("myPokemons")) || []
-  );
-  const [showMyCards, setShowMyCards] = useState(true);
+  ); // global state
+  const [showMyCards, setShowMyCards] = useState(true); // local state
+  const [error, setError] = useState(null); // local state (in api call)
 
-  // animate On Scroll
+  // aos, animate on scroll
   useEffect(() => {
     AOS.init();
   }, 
@@ -33,14 +34,21 @@ export default function App() {
     const url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}`;
 
     fetch(url)
-      .then(response => response.json())
+      .then(response => {
+        if(!response.ok) {
+          throw new Error('Network response failed.');
+        }
+        return response.json()
+      })
       .then(data => {
         setAllPokemons(data.results);
+        setError(null);
       })
       .catch(error => {
-        console.log(error);
+        console.error('Error:', error);
+        setError('An error occured while fetching pokemons from the API. Please try agian later.');
       });
-    }
+  }
   ,[])
 
   // search filter
@@ -53,19 +61,12 @@ export default function App() {
   }, [query, allPokemons, myPokemons])
 
 
-  const addPokemon = pokemon => {
-    if (myPokemons.includes(pokemon)) {
-      console.log('Pokemon already exists.');
-    } else {
-      setMyPokemons(prevPokemons => [...prevPokemons, pokemon]);
-    }
-  }
+  const addPokemon = pokemon => setMyPokemons(prevPokemons => [...prevPokemons, pokemon]); // slice reducer
 
-  const removePokemon = pokemon => {
-    setMyPokemons(prev => prev.filter(item => item !== pokemon));
-  }
+  const removePokemon = pokemon => setMyPokemons(prev => prev.filter(item => item !== pokemon)); // slice reducer
 
   const editPokemonName = (pokemon, newName) => {
+    // should be a slice reducer
     setMyPokemons(prev => {
       const updatedPokemons = [...prev];
       const index = updatedPokemons.findIndex(p => p.name === pokemon.name);
@@ -76,7 +77,7 @@ export default function App() {
     });
   }
 
-  const cardElements = (pokemons) => {
+  const cardElements = pokemons => {
     // excluding pokemons that is already saved
     const filteredPokemons = pokemons.filter(pokemon => !myPokemons.find(p => p.url === pokemon.url));
 
@@ -105,7 +106,7 @@ export default function App() {
           return (
           <Suspense 
             key={pokemon.name} 
-            fallback={<img src="../public/pikachu.png" className='suspense-loading' alt="pikachu"></img>}
+            fallback={<img src="/pikachu.png" className='suspense-loading' alt="pikachu"></img>}
           >
             <Card 
               key={pokemon.name}
@@ -142,6 +143,7 @@ export default function App() {
               />
             </form>
         </div>
+        {error && <p>{error}</p>}
         <hr />
         <div className='myPokemons'>
           <h2>Mine kort</h2>

@@ -1,22 +1,31 @@
 import { useState, useEffect} from 'react'
-import { typeData } from './helperFunctions'
+import { TYPEDATA } from '../utils/constants/TYPEDATA'
 
 export default function Card(props) {
-    const [pokemonData, setPokemonData] = useState();
-    const [editNameOpen, setEditNameOpen] = useState(false);
-    const [nameInputValue, setNameInputValue] = useState('');
-    const [imageLoading, setImageLoading] = useState(true);
+    const [pokemonData, setPokemonData] = useState(null); // global state
+    const [editNameOpen, setEditNameOpen] = useState(false); // local state
+    const [nameInputValue, setNameInputValue] = useState(''); // local state
+    const [imageLoading, setImageLoading] = useState(true); // local state
+    const [error, setError] = useState(null); // local state (in api call)
 
     const url = props.pokemon.url;
 
+    // API call Pokemon card data
     useEffect(() => {
       fetch(url)
-        .then(response => response.json())
+        .then(response => {
+            if(!response.ok) {
+                throw new Error('Network response failed.')
+            }
+            return response.json()
+        })
         .then(data => {
           setPokemonData(data)
+          setError(null);
         })
         .catch(error => {
-          console.log(error);
+          console.error('Error:', error);
+          setError('An error occured while fetching the Pokemon card data from the API. Please try again later.')
         });
     }, [])
 
@@ -33,35 +42,25 @@ export default function Card(props) {
         hp = pokemonData.stats[0].base_stat;
         abilities = pokemonData.abilities;
         type = pokemonData.types[0].type.name;
-        backgroundColor = typeData[type].background;
-        icon = typeData[type].icon;
+        backgroundColor = TYPEDATA[type].background;
+        icon = TYPEDATA[type].icon;
     }
 
     // edit name
-    const toggleEditName = () => {
-        setEditNameOpen(prev => !prev);
-    }
-
-    const handleNameInputChange = (event) => {
-        setNameInputValue(event.target.value);
-        console.log(nameInputValue);
-    }
-
-    const handleSubmitName = () => {
-        props.editPokemonName(props.pokemon, nameInputValue);
-    }
+    const toggleEditName = () => setEditNameOpen(prev => !prev);
+    const handleNameInputChange = event => setNameInputValue(event.target.value);
+    const handleSubmitName = () => props.editPokemonName(props.pokemon, nameInputValue);
 
     // image loading skeleton
     useEffect(() => {
-    const img = new Image();
-    img.src = image;
-    img.onload = () => {
-        setImageLoading(false);
-    }
-
-    return () => {
-        img.onload = null;
-    };
+        const img = new Image();
+        img.src = image;
+        img.onload = () => {
+            setImageLoading(false);
+        }
+        return () => {
+            img.onload = null;
+        };
     }, [image]);
 
     return (
@@ -74,6 +73,7 @@ export default function Card(props) {
             data-aos-duration="400"
             style={{background: backgroundColor}}
         >
+            {error && <p className='card--error'>{error}</p>}
             <div className='card--header'>
                 <div className="card--title">
                     <h1>{props.pokemon.name}</h1>
@@ -115,7 +115,7 @@ export default function Card(props) {
             }
             <div className='card--type'>
                 <div className={`icon ${type}`}>
-                    {!imageLoading && <img src={icon} width={100}></img>}
+                    {!imageLoading && <img src={icon} alt='Pokemon type icon' width={100}></img>}
                 </div>
             </div>
             <div
@@ -123,7 +123,6 @@ export default function Card(props) {
                 onClick={props.myPokemon ? props.removePokemon : props.addPokemon}
             >
                     {props.myPokemon ? <i className="fa-solid fa-trash"></i> : <i className="fa-solid fa-plus"></i>}
-
             </div>
 
         </div>
