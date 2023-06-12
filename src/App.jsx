@@ -6,6 +6,8 @@ import AOS from 'aos'
 import { DebounceInput } from 'react-debounce-input'
 import 'aos/dist/aos.css'
 
+import PokemonsList from './features/pokemons/PokemonsList'
+
 export default function App() {
   const [allPokemons, setAllPokemons] = useState([]); // global state
   const [query, setQuery] = useState(''); // local state
@@ -42,6 +44,7 @@ export default function App() {
       })
       .then(data => {
         setAllPokemons(data.results);
+        console.log(data);
         setError(null);
       })
       .catch(error => {
@@ -162,8 +165,13 @@ export default function App() {
             </div>
           }
         </div>
+
         <hr />
-        <div className='cards'>
+          <PokemonsList />
+        <hr />
+
+        <hr />
+        <div className='pokemon-list'>
           {query ? cardElements(searchResults) : cardElements(allPokemons)}
         </div>
       </main>

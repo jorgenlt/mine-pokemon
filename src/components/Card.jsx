@@ -1,5 +1,5 @@
 import { useState, useEffect} from 'react'
-import { TYPEDATA } from '../utils/constants/TYPEDATA'
+import { TYPEDATA } from '../common/utils/constants/TYPEDATA'
 
 export default function Card(props) {
     const [pokemonData, setPokemonData] = useState(null); // global state
