@@ -10,6 +10,8 @@ export default function Card(props) {
 
     const url = props.pokemon.url;
 
+    // Card.jsx does should be split up into components.
+
     // API call Pokemon card data
     useEffect(() => {
       fetch(url)
