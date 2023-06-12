@@ -22,7 +22,7 @@ export default function App() {
   }, 
   [])
 
-  // save myPokemons to localStorage when it changes
+  // save myPokemons to localStorage when it changes. -> save in cached storage
   useEffect(() => {
     localStorage.setItem("myPokemons", JSON.stringify(myPokemons));
   }, [myPokemons])
