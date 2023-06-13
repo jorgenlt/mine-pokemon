@@ -4,7 +4,9 @@ import { TYPEDATA } from '../../common/utils/constants/TYPEDATA'
 const initialState = {
   pokemons: [],
   status: 'idle',
-  error: null
+  error: null,
+  searchQuery: '',
+  filteredPokemons: []
 };
 
 export const fetchPokemons = createAsyncThunk('pokemons/fetchPokemons', async () => {
@@ -34,7 +36,8 @@ export const fetchPokemons = createAsyncThunk('pokemons/fetchPokemons', async ()
       abilities: pokemonData.abilities,
       type: pokemonType,
       backgroundColor: TYPEDATA[pokemonType].background,
-      icon: TYPEDATA[pokemonType].icon
+      icon: TYPEDATA[pokemonType].icon,
+      myPokemon: false
     };
   });
 
@@ -42,10 +45,39 @@ export const fetchPokemons = createAsyncThunk('pokemons/fetchPokemons', async ()
   return pokemons;
 })
 
+const filterPokemons = (pokemons, searchQuery) => {
+  return pokemons.filter(
+    (pokemon) =>
+      pokemon.name.toLowerCase().startsWith(searchQuery.toLowerCase()) &&
+      pokemon.myPokemon === false
+  );
+};
+
 const pokemonsSlice = createSlice({
   name: 'pokemons',
   initialState,
-  reducers: {},
+  reducers: {
+    toggleSavePokemon(state, action) {
+      const name = action.payload.name;
+      console.log(name);
+      const pokemon = state.pokemons.find(pokemon => pokemon.name === name);
+      if (pokemon) {
+        pokemon.myPokemon = !pokemon.myPokemon;
+      }
+    },
+    updateFilteredPokemons(state, action) {
+      state.filteredPokemons = filterPokemons(state.pokemons, action.payload.query);
+    },
+    updatePokemonName(state, action) {
+      const index = state.pokemons.findIndex(pokemon => pokemon.name === action.payload.name);
+      if (index !== -1) {
+        state.pokemons[index] = { 
+          ...state.pokemons[index], 
+          name: action.payload.newName 
+        };
+      }
+    }
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchPokemons.pending, state => {
@@ -62,53 +94,18 @@ const pokemonsSlice = createSlice({
   }
 });
 
+export const { 
+  toggleSavePokemon,
+  updateFilteredPokemons,
+  updatePokemonName 
+} = pokemonsSlice.actions;
 
 export default pokemonsSlice.reducer;
 
-export const selectAllPokemons = state => state.pokemons.pokemons;
+export const selectAllPokemons = state => {
+  return state.pokemons.pokemons.filter(pokemon => pokemon.myPokemon === false)
+};
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import { useGetAllPokemonQuery } from '../api/apiSlice'
-
-// const initialState = {
-//   pokemons: [],
-//   isLoading: false,
-//   error: null
-// };
-
-// const pokemonSlice = createSlice({
-//   name: 'pokemons',
-//   initialState,
-//   reducers: {},
-//   extraReducers: builder => {
-//     builder
-//       .addCase(useGetAllPokemonQuery.pending, state => {
-//         state.isLoading = true;
-//         state.error = null;
-//       })
-//       .addCase(useGetAllPokemonQuery.fulfilled, (state, action) => {
-//         state.isLoading = false;
-//         state.pokemons = action.payload;
-//       })
-//       .addCase(useGetAllPokemonQuery.rejected, (state, action) => {
-//         state.isLoading = false;
-//         state.error = action.error.message;
-//       });
-//   },
-// });
-
-// export default pokemonSlice.reducer;
-
-// // export const selectAllPokemon = state => state.pokemon
+export const selectSavedPokemons = state => {
+  return state.pokemons.pokemons.filter(pokemon => pokemon.myPokemon === true)
+};
