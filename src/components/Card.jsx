@@ -1,5 +1,5 @@
 import { useState, useEffect} from 'react'
-import { TYPEDATA } from '../utils/constants/TYPEDATA'
+import { TYPEDATA } from '../common/utils/constants/TYPEDATA'
 
 export default function Card(props) {
     const [pokemonData, setPokemonData] = useState(null); // global state
@@ -9,6 +9,8 @@ export default function Card(props) {
     const [error, setError] = useState(null); // local state (in api call)
 
     const url = props.pokemon.url;
+
+    // Card.jsx does should be split up into components.
 
     // API call Pokemon card data
     useEffect(() => {

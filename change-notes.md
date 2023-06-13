@@ -1,3 +1,5 @@
 - misleading file named helperFunctions.jsx was changed to a constant TYPEDATA in TYPEDATA.jsx and moved to a new folder components/utils/constants.
 - removed console.log in production code.
 - changed error handleing in the api calls. Errors are now logged to the console as console.error('Error', error) and the user is notified with an error message if the fetching of pokemons or card data failes.
+- implementing react-redux / redux-toolkit
+  - 
