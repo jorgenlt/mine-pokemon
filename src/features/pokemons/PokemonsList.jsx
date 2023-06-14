@@ -8,7 +8,12 @@ export default function PokemonList() {
   const dispatch = useDispatch();
 
   const pokemons = useSelector(selectAllPokemons);
-  const { status, error, filteredPokemons } = useSelector(state => state.pokemons);
+  const { 
+    status, 
+    error, 
+    filteredPokemons, 
+    searchQuery 
+  } = useSelector(state => state.pokemons);
 
   useEffect(() => {
     if (status === 'idle') {
@@ -29,9 +34,13 @@ export default function PokemonList() {
   return (
     <section className="pokemon-list">
       {filteredPokemons.length > 0 ? (
-          filteredPokemons.map(pokemon => <PokemonCard key={pokemon.name} pokemon={pokemon} />)
+        filteredPokemons.map(pokemon => <PokemonCard key={pokemon.name} pokemon={pokemon} />)
       ) : (
-        content
+        searchQuery !== '' ? (
+          <p>Finner ingen Pokemon med det navnet. Prøv å endre søket ditt.</p>
+        ) : (
+          content
+        )
       )}
     </section>
   )

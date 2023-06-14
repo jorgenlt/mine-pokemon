@@ -66,7 +66,9 @@ const pokemonsSlice = createSlice({
       }
     },
     updateFilteredPokemons(state, action) {
-      state.filteredPokemons = filterPokemons(state.pokemons, action.payload.query);
+      const query = action.payload.query
+      state.searchQuery = query;
+      state.filteredPokemons = filterPokemons(state.pokemons, query);
     },
     updatePokemonName(state, action) {
       const index = state.pokemons.findIndex(pokemon => pokemon.name === action.payload.name);
