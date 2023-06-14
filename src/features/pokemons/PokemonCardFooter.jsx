@@ -15,7 +15,7 @@ export default function PokemonCardFooter(props) {
       className='card--btn' 
       onClick={() => dispatch(toggleSavePokemon({ name: props.name}))}
       >
-        {props.myPokemon ? <i className="fa-solid fa-trash"></i> : <i className="fa-solid fa-plus"></i>}
+        <i className={`fa-solid fa-${props.myPokemon ? 'trash' : 'plus'}`}></i>
       </div>
     </footer>
   )

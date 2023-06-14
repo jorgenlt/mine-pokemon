@@ -4,23 +4,22 @@ import PokemonCard from './PokemonCard'
 
 export default function SavedPokemons() {
   const savedPokemons = useSelector(selectSavedPokemons);
-  const pokemonStatus = useSelector(state => state.pokemons.status);
-  const error = useSelector(state => state.pokemons.error)
+  const { status, error} = useSelector(state => state.pokemons);
 
   let content;
 
   if (savedPokemons.length > 0) {
-    if (pokemonStatus === 'loading') {
+    if (status === 'loading') {
       content = <img src="/pikachu.png" className='suspense-loading' alt="pikachu"></img>
-    } else if (pokemonStatus === 'succeeded') {
+    } else if (status === 'succeeded') {
       content = savedPokemons.map(pokemon => <PokemonCard key={pokemon.name} pokemon={pokemon} />)
-    } else if (pokemonStatus === 'failed') {
+    } else if (status === 'failed') {
       content = <div>{error}</div>
     }
   }
 
   return (
-    <section className="pokemon-list">
+    <section className="myPokemons--cards">
       {content}
     </section>
   )

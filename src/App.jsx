@@ -30,15 +30,15 @@ export default function App() {
         <hr />
         <div className='myPokemons'>
           <h2>Mine kort</h2>
-          <span className="myPokemons--hide" onClick={() => setShowMyCards(prev => !prev)}>{showMyCards ? 'Skjul kort' : 'Vis kort'}</span>
-          { 
-            showMyCards &&
-            <div className='myPokemons--cards'>
-              <SavedPokemons />
-            </div>
-          }
+          <span 
+            className="myPokemons--hide" 
+            onClick={() => setShowMyCards(prev => !prev)}
+          >
+            {showMyCards ? 'Skjul kort' : 'Vis kort'}
+          </span>
+          {showMyCards && <SavedPokemons />}
           {
-            savedPokemons.length < 1 &&
+            savedPokemons.length === 0 &&
             <div className='myPokemons--no-cards'>
               <p>Du har ingen lagrede kort.</p>
               <p>Du kan finne kort i listen under eller ved å søke i søkefeltet.</p>

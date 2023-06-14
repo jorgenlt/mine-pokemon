@@ -2,14 +2,14 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { TYPEDATA } from '../../common/utils/constants/TYPEDATA'
 
 const initialState = {
-  pokemons: [],
+  allPokemons: [],
   status: 'idle',
   error: null,
   searchQuery: '',
-  filteredPokemons: []
+  filteredAllPokemons: []
 };
 
-export const fetchPokemons = createAsyncThunk('pokemons/fetchPokemons', async () => {
+export const fetchAllPokemons = createAsyncThunk('pokemons/fetchAllPokemons', async () => {
   const limit = 200;
   const url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}`;
   
@@ -41,12 +41,12 @@ export const fetchPokemons = createAsyncThunk('pokemons/fetchPokemons', async ()
     };
   });
 
-  const pokemons = await Promise.all(pokemonDataPromises);
-  return pokemons;
+  const allPokemons = await Promise.all(pokemonDataPromises);
+  return allPokemons;
 })
 
-const filterPokemons = (pokemons, searchQuery) => {
-  return pokemons.filter(
+const filterAllPokemons = (allPokemons, searchQuery) => {
+  return allPokemons.filter(
     (pokemon) =>
       pokemon.name.toLowerCase().startsWith(searchQuery.toLowerCase()) &&
       pokemon.myPokemon === false
@@ -58,38 +58,38 @@ const pokemonsSlice = createSlice({
   initialState,
   reducers: {
     toggleSavePokemon(state, action) {
-      const name = action.payload.name;
-      console.log(name);
-      const pokemon = state.pokemons.find(pokemon => pokemon.name === name);
+      const { name } = action.payload;
+      const pokemon = state.allPokemons.find(pokemon => pokemon.name === name);
       if (pokemon) {
         pokemon.myPokemon = !pokemon.myPokemon;
       }
     },
-    updateFilteredPokemons(state, action) {
-      const query = action.payload.query
+    updateSearchQuery(state, action) {
+      const { query } = action.payload;
       state.searchQuery = query;
-      state.filteredPokemons = filterPokemons(state.pokemons, query);
+      state.filteredAllPokemons = filterAllPokemons(state.allPokemons, query);
     },
     updatePokemonName(state, action) {
-      const index = state.pokemons.findIndex(pokemon => pokemon.name === action.payload.name);
+      const { name, newName} = action.payload;
+      const index = state.allPokemons.findIndex(pokemon => pokemon.name === name);
       if (index !== -1) {
-        state.pokemons[index] = { 
-          ...state.pokemons[index], 
-          name: action.payload.newName 
+        state.allPokemons[index] = { 
+          ...state.allPokemons[index], 
+          name: newName 
         };
       }
     }
   },
   extraReducers(builder) {
     builder
-      .addCase(fetchPokemons.pending, state => {
+      .addCase(fetchAllPokemons.pending, state => {
         state.status = 'loading';
       })
-      .addCase(fetchPokemons.fulfilled, (state, action) => {
+      .addCase(fetchAllPokemons.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.pokemons = action.payload;
+        state.allPokemons = action.payload;
       })
-      .addCase(fetchPokemons.rejected, (state, action) => {
+      .addCase(fetchAllPokemons.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message; 
       })
@@ -98,16 +98,16 @@ const pokemonsSlice = createSlice({
 
 export const { 
   toggleSavePokemon,
-  updateFilteredPokemons,
+  updateSearchQuery,
   updatePokemonName 
 } = pokemonsSlice.actions;
 
 export default pokemonsSlice.reducer;
 
 export const selectAllPokemons = state => {
-  return state.pokemons.pokemons.filter(pokemon => pokemon.myPokemon === false)
+  return state.pokemons.allPokemons.filter(pokemon => pokemon.myPokemon === false)
 };
 
 export const selectSavedPokemons = state => {
-  return state.pokemons.pokemons.filter(pokemon => pokemon.myPokemon === true)
+  return state.pokemons.allPokemons.filter(pokemon => pokemon.myPokemon === true)
 };
