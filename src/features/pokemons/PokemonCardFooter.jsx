@@ -1,8 +1,14 @@
-import { useDispatch } from 'react-redux'
-import { toggleSavePokemon } from './pokemonsSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { toggleSavePokemon, updateSearchQuery } from './pokemonsSlice'
 
 export default function PokemonCardFooter(props) {
   const dispatch = useDispatch();
+  const query = useSelector(state => state.pokemons.searchQuery);
+
+  const handleOnClick = () => {
+    dispatch(toggleSavePokemon({ id: props.id}));
+    dispatch(updateSearchQuery({ query: query }))
+  }
 
   return (
     <footer>
@@ -13,7 +19,7 @@ export default function PokemonCardFooter(props) {
       </div>
       <div
       className='card--btn' 
-      onClick={() => dispatch(toggleSavePokemon({ name: props.name}))}
+      onClick={handleOnClick}
       >
         <i className={`fa-solid fa-${props.myPokemon ? 'trash' : 'plus'}`}></i>
       </div>

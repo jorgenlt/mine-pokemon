@@ -18,7 +18,7 @@ const persistConfig = {
   key: 'root', // Key under which the state will be stored in the storage
   version: 1,
   storage, // Storage engine, such as localStorage or AsyncStorage
-  whitelist: ['allPokemons', 'status']
+  whitelist: ['allPokemons', 'savedPokemons', 'status']
 };
 
 const persistedReducer = persistReducer(persistConfig, pokemonsReducer);

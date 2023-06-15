@@ -5,7 +5,8 @@ import PokemonCardFooter from './PokemonCardFooter'
 export default function PokemonCard(props) {
 
   const {
-    name, 
+    name,
+    id, 
     image, 
     type, 
     backgroundColor, 
@@ -27,7 +28,7 @@ export default function PokemonCard(props) {
       <PokemonCardHeader name={name} hp={hp} myPokemon={myPokemon} />
       <PokemonCardContent image={image} abilities={abilities} />
       <PokemonCardFooter 
-        name={name} 
+        id={id} 
         type={type} 
         icon={icon}
         myPokemon={myPokemon}

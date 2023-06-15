@@ -2,6 +2,10 @@
 - removed console.log in production code.
 - changed error handleing in the api calls. Errors are now logged to the console as console.error('Error', error) and the user is notified with an error message if the fetching of pokemons or card data failes.
 - implementing react-redux / redux-toolkit
-  - ...
+  - reorganizing folder structure
+  - splitting up components and renaming
+  - fetching api with thunk
 - react-persist to implement storage
   - only pokemons and status are whitelisted
+- performance and normalizing data
+  - 

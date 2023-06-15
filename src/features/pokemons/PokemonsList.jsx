@@ -27,7 +27,7 @@ export default function PokemonList() {
   if (status === 'loading') {
     content = <Loader />
   } else if (status === 'succeeded') {
-      content = allPokemons.map(pokemon => <PokemonCard key={pokemon.name} pokemon={pokemon} />)
+      content = allPokemons.map(pokemon => <PokemonCard key={pokemon.id} pokemon={pokemon} />)
   } else if (status === 'failed') {
     content = <div>{error}</div>
   }
@@ -35,7 +35,7 @@ export default function PokemonList() {
   return (
     <section className="pokemon-list">
       {filteredAllPokemons.length > 0 ? (
-        filteredAllPokemons.map(pokemon => <PokemonCard key={pokemon.name} pokemon={pokemon} />)
+        filteredAllPokemons.map(pokemon => <PokemonCard key={pokemon.id} pokemon={pokemon} />)
       ) : (
         searchQuery !== '' ? (
           <p>Finner ingen Pokemon med det navnet. Prøv å endre søket ditt.</p>

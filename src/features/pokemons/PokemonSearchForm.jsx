@@ -1,16 +1,14 @@
 import { DebounceInput } from 'react-debounce-input'
-import { useDispatch } from 'react-redux'
-import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { updateSearchQuery } from './pokemonsSlice'
 
 export default function PokemonSearchForm() {
-  const [query, setQuery] = useState('');
+  const query = useSelector(state => state.searchQuery);
 
   const dispatch = useDispatch()
 
   const handleOnChange = e => {
-    setQuery(e.target.value);
-    dispatch(updateSearchQuery({ query: e.target.value}));
+    dispatch(updateSearchQuery({ query: e.target.value }))
   }
 
   return (

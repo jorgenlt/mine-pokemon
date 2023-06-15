@@ -1,8 +1,9 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk, createSelector } from '@reduxjs/toolkit'
 import { TYPEDATA } from '../../common/utils/constants/TYPEDATA'
 
 const initialState = {
   allPokemons: [],
+  savedPokemons: [],
   status: 'idle',
   error: null,
   searchQuery: '',
@@ -34,6 +35,7 @@ export const fetchAllPokemons = createAsyncThunk('pokemons/fetchAllPokemons', as
       image: pokemonData.sprites.other['dream_world']["front_default"],
       hp: pokemonData.stats[0].base_stat,
       abilities: pokemonData.abilities,
+      id: pokemonData.id,
       type: pokemonType,
       backgroundColor: TYPEDATA[pokemonType].background,
       icon: TYPEDATA[pokemonType].icon,
@@ -58,10 +60,34 @@ const pokemonsSlice = createSlice({
   initialState,
   reducers: {
     toggleSavePokemon(state, action) {
-      const { name } = action.payload;
-      const pokemon = state.allPokemons.find(pokemon => pokemon.name === name);
-      if (pokemon) {
+      const { id } = action.payload;
+    
+      // Find the pokemon in allPokemons array
+      const pokemonIndex = state.allPokemons.findIndex(pokemon => pokemon.id === id);
+      if (pokemonIndex !== -1) {
+        const pokemon = state.allPokemons[pokemonIndex];
+    
+        // Remove the pokemon from allPokemons array
+        state.allPokemons.splice(pokemonIndex, 1);
+
         pokemon.myPokemon = !pokemon.myPokemon;
+    
+        // Add the pokemon to savedPokemons array
+        state.savedPokemons.push(pokemon);
+      } else {
+        // Find the pokemon in savedPokemons array
+        const savedPokemonIndex = state.savedPokemons.findIndex(pokemon => pokemon.id === id);
+        if (savedPokemonIndex !== -1) {
+          const pokemon = state.savedPokemons[savedPokemonIndex];
+    
+          // Remove the pokemon from savedPokemons array
+          state.savedPokemons.splice(savedPokemonIndex, 1);
+
+          pokemon.myPokemon = !pokemon.myPokemon;
+    
+          // Add the pokemon to allPokemons array
+          state.allPokemons.push(pokemon);
+        }
       }
     },
     updateSearchQuery(state, action) {
@@ -70,15 +96,13 @@ const pokemonsSlice = createSlice({
       state.filteredAllPokemons = filterAllPokemons(state.allPokemons, query);
     },
     updatePokemonName(state, action) {
-      const { name, newName} = action.payload;
-      const index = state.allPokemons.findIndex(pokemon => pokemon.name === name);
-      if (index !== -1) {
-        state.allPokemons[index] = { 
-          ...state.allPokemons[index], 
-          name: newName 
-        };
+      const { name, newName } = action.payload;
+    
+      const savedPokemonIndex = state.savedPokemons.findIndex(pokemon => pokemon.name === name);
+      if (savedPokemonIndex !== -1) {
+        state.savedPokemons[savedPokemonIndex].name = newName;
       }
-    }
+    }      
   },
   extraReducers(builder) {
     builder
@@ -108,6 +132,4 @@ export const selectAllPokemons = state => {
   return state.pokemons.allPokemons.filter(pokemon => pokemon.myPokemon === false)
 };
 
-export const selectSavedPokemons = state => {
-  return state.pokemons.allPokemons.filter(pokemon => pokemon.myPokemon === true)
-};
+

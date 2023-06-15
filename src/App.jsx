@@ -8,13 +8,14 @@ import { useSelector } from 'react-redux'
 import PokemonSearchForm from './features/pokemons/PokemonSearchForm'
 import PokemonsList from './features/pokemons/PokemonsList'
 import SavedPokemons from './features/pokemons/SavedPokemons'
-import { selectSavedPokemons } from './features/pokemons/pokemonsSlice'
+// import { selectSavedPokemons } from './features/pokemons/pokemonsSlice'
 
 export default function App() {
   const [showMyCards, setShowMyCards] = useState(true);
 
-  const savedPokemons = useSelector(selectSavedPokemons);
-
+  // const savedPokemons = useSelector(selectSavedPokemons);
+  const { savedPokemons } = useSelector(state => state.pokemons);
+  
   // aos, animate on scroll
   useEffect(() => {
     AOS.init();
