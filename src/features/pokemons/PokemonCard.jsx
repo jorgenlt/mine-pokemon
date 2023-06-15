@@ -25,7 +25,12 @@ export default function PokemonCard(props) {
       data-aos-duration="400"
       style={{background: backgroundColor}}
     >
-      <PokemonCardHeader name={name} hp={hp} myPokemon={myPokemon} />
+      <PokemonCardHeader 
+        name={name} 
+        id={id}
+        hp={hp} 
+        myPokemon={myPokemon}
+      />
       <PokemonCardContent image={image} abilities={abilities} />
       <PokemonCardFooter 
         id={id} 

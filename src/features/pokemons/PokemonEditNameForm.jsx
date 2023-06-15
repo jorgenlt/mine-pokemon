@@ -11,7 +11,7 @@ export default function PokemonEditNameForm(props) {
   const toggleEditNameForm = () => setEditNameOpen(prev => !prev);
 
   const handleSubmitName = () => {
-    dispatch(updatePokemonName({ name: props.name, newName: newName }))
+    dispatch(updatePokemonName({ id: props.id, newName: newName }))
   }
 
   return (
@@ -21,7 +21,7 @@ export default function PokemonEditNameForm(props) {
         editNameOpen && 
         <div className='card--edit-name'>
           <form>
-            <input 
+            <input
             type="text" 
             placeholder='Nytt navn...'
             value={newName}

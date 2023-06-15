@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, createSelector } from '@reduxjs/toolkit'
 import { TYPEDATA } from '../../common/utils/constants/TYPEDATA'
+import { shuffleArray } from '../../common/utils/helperFunctions/shuffleArray'
 
 const initialState = {
   allPokemons: [],
@@ -86,7 +87,7 @@ const pokemonsSlice = createSlice({
           pokemon.myPokemon = !pokemon.myPokemon;
     
           // Add the pokemon to allPokemons array
-          state.allPokemons.push(pokemon);
+          state.allPokemons.unshift(pokemon);
         }
       }
     },
@@ -96,10 +97,11 @@ const pokemonsSlice = createSlice({
       state.filteredAllPokemons = filterAllPokemons(state.allPokemons, query);
     },
     updatePokemonName(state, action) {
-      const { name, newName } = action.payload;
+      const { newName, id } = action.payload;
     
-      const savedPokemonIndex = state.savedPokemons.findIndex(pokemon => pokemon.name === name);
+      const savedPokemonIndex = state.savedPokemons.findIndex(pokemon => pokemon.id === id);
       if (savedPokemonIndex !== -1) {
+        // state.savedPokemons[savedPokemonIndex].name = newName;
         state.savedPokemons[savedPokemonIndex].name = newName;
       }
     }      
@@ -111,7 +113,10 @@ const pokemonsSlice = createSlice({
       })
       .addCase(fetchAllPokemons.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.allPokemons = action.payload;
+        if(state.allPokemons.length === 0) {
+          state.allPokemons = action.payload;
+          shuffleArray(state.allPokemons);
+        }
       })
       .addCase(fetchAllPokemons.rejected, (state, action) => {
         state.status = 'failed';
