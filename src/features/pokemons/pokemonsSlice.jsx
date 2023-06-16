@@ -4,7 +4,6 @@ import { shuffleArray } from '../../common/utils/helperFunctions/shuffleArray'
 
 const initialState = {
   allPokemons: [],
-  savedPokemons: [],
   status: 'idle',
   error: null,
   searchQuery: '',
@@ -67,28 +66,7 @@ const pokemonsSlice = createSlice({
       const pokemonIndex = state.allPokemons.findIndex(pokemon => pokemon.id === id);
       if (pokemonIndex !== -1) {
         const pokemon = state.allPokemons[pokemonIndex];
-    
-        // Remove the pokemon from allPokemons array
-        state.allPokemons.splice(pokemonIndex, 1);
-
         pokemon.myPokemon = !pokemon.myPokemon;
-    
-        // Add the pokemon to savedPokemons array
-        state.savedPokemons.push(pokemon);
-      } else {
-        // Find the pokemon in savedPokemons array
-        const savedPokemonIndex = state.savedPokemons.findIndex(pokemon => pokemon.id === id);
-        if (savedPokemonIndex !== -1) {
-          const pokemon = state.savedPokemons[savedPokemonIndex];
-    
-          // Remove the pokemon from savedPokemons array
-          state.savedPokemons.splice(savedPokemonIndex, 1);
-
-          pokemon.myPokemon = !pokemon.myPokemon;
-    
-          // Add the pokemon to allPokemons array
-          state.allPokemons.unshift(pokemon);
-        }
       }
     },
     updateSearchQuery(state, action) {
@@ -99,10 +77,10 @@ const pokemonsSlice = createSlice({
     updatePokemonName(state, action) {
       const { newName, id } = action.payload;
     
-      const savedPokemonIndex = state.savedPokemons.findIndex(pokemon => pokemon.id === id);
-      if (savedPokemonIndex !== -1) {
+      const index = state.allPokemons.findIndex(pokemon => pokemon.id === id);
+      if (index !== -1) {
         // state.savedPokemons[savedPokemonIndex].name = newName;
-        state.savedPokemons[savedPokemonIndex].name = newName;
+        state.allPokemons[index].name = newName;
       }
     }      
   },
@@ -137,10 +115,10 @@ const selectPokemonsState = state => state.pokemons;
 
 export const selectAllPokemons = createSelector(
   selectPokemonsState,
-  pokemonsState => pokemonsState.allPokemons
+  pokemonsState => pokemonsState.allPokemons.filter(pokemon => !pokemon.myPokemon)
 );
 
 export const selectSavedPokemons = createSelector(
   selectPokemonsState,
-  pokemonsState => pokemonsState.savedPokemons
+  pokemonState => pokemonState.allPokemons.filter(pokemon => pokemon.myPokemon)
 );
