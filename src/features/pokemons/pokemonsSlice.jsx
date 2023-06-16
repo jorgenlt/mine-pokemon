@@ -1,14 +1,19 @@
-import { createSlice, createAsyncThunk, createSelector } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk, createSelector, createEntityAdapter } from '@reduxjs/toolkit'
 import { TYPEDATA } from '../../common/utils/constants/TYPEDATA'
 import { shuffleArray } from '../../common/utils/helperFunctions/shuffleArray'
 
-const initialState = {
-  allPokemons: [],
+const pokemonsAdapter = createEntityAdapter({
+  selectId: pokemon => pokemon.id,
+});
+
+
+const initialState = pokemonsAdapter.getInitialState({
   status: 'idle',
   error: null,
   searchQuery: '',
   filteredAllPokemons: []
-};
+});
+
 
 export const fetchAllPokemons = createAsyncThunk('pokemons/fetchAllPokemons', async () => {
   const limit = 200;
@@ -61,13 +66,19 @@ const pokemonsSlice = createSlice({
   reducers: {
     toggleSavePokemon(state, action) {
       const { id } = action.payload;
+
+      const pokemon = state.entities[id];
+
+      if(pokemon) {
+        pokemon.myPokemon = !pokemon.myPokemon
+      }
     
       // Find the pokemon in allPokemons array
-      const pokemonIndex = state.allPokemons.findIndex(pokemon => pokemon.id === id);
-      if (pokemonIndex !== -1) {
-        const pokemon = state.allPokemons[pokemonIndex];
-        pokemon.myPokemon = !pokemon.myPokemon;
-      }
+      // const pokemonIndex = state.allPokemons.findIndex(pokemon => pokemon.id === id);
+      // if (pokemonIndex !== -1) {
+      //   const pokemon = state.allPokemons[pokemonIndex];
+      //   pokemon.myPokemon = !pokemon.myPokemon;
+      // }
     },
     updateSearchQuery(state, action) {
       const { query } = action.payload;
@@ -91,10 +102,7 @@ const pokemonsSlice = createSlice({
       })
       .addCase(fetchAllPokemons.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        if(state.allPokemons.length === 0) {
-          state.allPokemons = action.payload;
-          shuffleArray(state.allPokemons);
-        }
+        pokemonsAdapter.upsertMany(state, action.payload);
       })
       .addCase(fetchAllPokemons.rejected, (state, action) => {
         state.status = 'failed';
@@ -111,14 +119,15 @@ export const {
 
 export default pokemonsSlice.reducer;
 
-const selectPokemonsState = state => state.pokemons;
+const pokemonsSelectors = pokemonsAdapter.getSelectors(state => state.pokemons);
 
 export const selectAllPokemons = createSelector(
-  selectPokemonsState,
-  pokemonsState => pokemonsState.allPokemons.filter(pokemon => !pokemon.myPokemon)
+  pokemonsSelectors.selectAll,
+  pokemons => pokemons.filter(pokemon => !pokemon.myPokemon)
 );
 
 export const selectSavedPokemons = createSelector(
-  selectPokemonsState,
-  pokemonState => pokemonState.allPokemons.filter(pokemon => pokemon.myPokemon)
+  pokemonsSelectors.selectAll,
+  pokemons => pokemons.filter(pokemon => pokemon.myPokemon)
 );
+
