@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk, createSelector } from '@reduxjs/toolkit'
 import { TYPEDATA } from '../../common/utils/constants/TYPEDATA'
 import { shuffleArray } from '../../common/utils/helperFunctions/shuffleArray'
 
@@ -133,8 +133,14 @@ export const {
 
 export default pokemonsSlice.reducer;
 
-export const selectAllPokemons = state => {
-  return state.pokemons.allPokemons.filter(pokemon => pokemon.myPokemon === false)
-};
+const selectPokemonsState = state => state.pokemons;
 
+export const selectAllPokemons = createSelector(
+  selectPokemonsState,
+  pokemonsState => pokemonsState.allPokemons
+);
 
+export const selectSavedPokemons = createSelector(
+  selectPokemonsState,
+  pokemonsState => pokemonsState.savedPokemons
+);
