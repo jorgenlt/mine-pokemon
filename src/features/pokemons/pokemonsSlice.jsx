@@ -1,15 +1,18 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk, createSelector, createEntityAdapter } from '@reduxjs/toolkit'
 import { TYPEDATA } from '../../common/utils/constants/TYPEDATA'
-import { shuffleArray } from '../../common/utils/helperFunctions/shuffleArray'
 
-const initialState = {
-  allPokemons: [],
-  savedPokemons: [],
+// normalizing state structure with createEntityAdapter
+const pokemonsAdapter = createEntityAdapter({
+  selectId: pokemon => pokemon.id,
+});
+
+const initialState = pokemonsAdapter.getInitialState({
   status: 'idle',
   error: null,
   searchQuery: '',
   filteredAllPokemons: []
-};
+});
+
 
 export const fetchAllPokemons = createAsyncThunk('pokemons/fetchAllPokemons', async () => {
   const limit = 200;
@@ -45,66 +48,21 @@ export const fetchAllPokemons = createAsyncThunk('pokemons/fetchAllPokemons', as
   });
 
   const allPokemons = await Promise.all(pokemonDataPromises);
+
   return allPokemons;
 })
-
-const filterAllPokemons = (allPokemons, searchQuery) => {
-  return allPokemons.filter(
-    (pokemon) =>
-      pokemon.name.toLowerCase().startsWith(searchQuery.toLowerCase()) &&
-      pokemon.myPokemon === false
-  );
-};
 
 const pokemonsSlice = createSlice({
   name: 'pokemons',
   initialState,
   reducers: {
-    toggleSavePokemon(state, action) {
-      const { id } = action.payload;
-    
-      // Find the pokemon in allPokemons array
-      const pokemonIndex = state.allPokemons.findIndex(pokemon => pokemon.id === id);
-      if (pokemonIndex !== -1) {
-        const pokemon = state.allPokemons[pokemonIndex];
-    
-        // Remove the pokemon from allPokemons array
-        state.allPokemons.splice(pokemonIndex, 1);
-
-        pokemon.myPokemon = !pokemon.myPokemon;
-    
-        // Add the pokemon to savedPokemons array
-        state.savedPokemons.push(pokemon);
-      } else {
-        // Find the pokemon in savedPokemons array
-        const savedPokemonIndex = state.savedPokemons.findIndex(pokemon => pokemon.id === id);
-        if (savedPokemonIndex !== -1) {
-          const pokemon = state.savedPokemons[savedPokemonIndex];
-    
-          // Remove the pokemon from savedPokemons array
-          state.savedPokemons.splice(savedPokemonIndex, 1);
-
-          pokemon.myPokemon = !pokemon.myPokemon;
-    
-          // Add the pokemon to allPokemons array
-          state.allPokemons.unshift(pokemon);
-        }
-      }
-    },
+    toggleSavePokemon: pokemonsAdapter.updateOne,
     updateSearchQuery(state, action) {
       const { query } = action.payload;
       state.searchQuery = query;
-      state.filteredAllPokemons = filterAllPokemons(state.allPokemons, query);
+      state.filteredAllPokemons = filterPokemons(state, query);
     },
-    updatePokemonName(state, action) {
-      const { newName, id } = action.payload;
-    
-      const savedPokemonIndex = state.savedPokemons.findIndex(pokemon => pokemon.id === id);
-      if (savedPokemonIndex !== -1) {
-        // state.savedPokemons[savedPokemonIndex].name = newName;
-        state.savedPokemons[savedPokemonIndex].name = newName;
-      }
-    }      
+    updatePokemonName: pokemonsAdapter.updateOne
   },
   extraReducers(builder) {
     builder
@@ -113,10 +71,7 @@ const pokemonsSlice = createSlice({
       })
       .addCase(fetchAllPokemons.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        if(state.allPokemons.length === 0) {
-          state.allPokemons = action.payload;
-          shuffleArray(state.allPokemons);
-        }
+        pokemonsAdapter.upsertMany(state, action.payload);
       })
       .addCase(fetchAllPokemons.rejected, (state, action) => {
         state.status = 'failed';
@@ -124,6 +79,17 @@ const pokemonsSlice = createSlice({
       })
   }
 });
+
+const filterPokemons = createSelector(
+  state => state.searchQuery,
+  state => pokemonsAdapter.getSelectors().selectAll(state),
+  (query, allPokemons) => {
+    const filteredPokemons = allPokemons.filter(pokemon =>
+        pokemon.name.toLowerCase().startsWith(query.toLowerCase()) && !pokemon.myPokemon
+    );
+    return filteredPokemons;
+  }
+);
 
 export const { 
   toggleSavePokemon,
@@ -133,8 +99,15 @@ export const {
 
 export default pokemonsSlice.reducer;
 
-export const selectAllPokemons = state => {
-  return state.pokemons.allPokemons.filter(pokemon => pokemon.myPokemon === false)
-};
+const pokemonsSelectors = pokemonsAdapter.getSelectors(state => state.pokemons);
 
+export const selectAllPokemons = createSelector(
+  pokemonsSelectors.selectAll,
+  pokemons => pokemons.filter(pokemon => !pokemon.myPokemon)
+);
+
+export const selectSavedPokemons = createSelector(
+  pokemonsSelectors.selectAll,
+  pokemons => pokemons.filter(pokemon => pokemon.myPokemon)
+);
 
