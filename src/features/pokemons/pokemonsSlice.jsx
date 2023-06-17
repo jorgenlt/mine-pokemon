@@ -1,11 +1,10 @@
 import { createSlice, createAsyncThunk, createSelector, createEntityAdapter } from '@reduxjs/toolkit'
 import { TYPEDATA } from '../../common/utils/constants/TYPEDATA'
-import { shuffleArray } from '../../common/utils/helperFunctions/shuffleArray'
 
+// normalizing state structure with createEntityAdapter
 const pokemonsAdapter = createEntityAdapter({
   selectId: pokemon => pokemon.id,
 });
-
 
 const initialState = pokemonsAdapter.getInitialState({
   status: 'idle',
@@ -49,51 +48,21 @@ export const fetchAllPokemons = createAsyncThunk('pokemons/fetchAllPokemons', as
   });
 
   const allPokemons = await Promise.all(pokemonDataPromises);
+
   return allPokemons;
 })
-
-const filterAllPokemons = (allPokemons, searchQuery) => {
-  return allPokemons.filter(
-    (pokemon) =>
-      pokemon.name.toLowerCase().startsWith(searchQuery.toLowerCase()) &&
-      pokemon.myPokemon === false
-  );
-};
 
 const pokemonsSlice = createSlice({
   name: 'pokemons',
   initialState,
   reducers: {
-    toggleSavePokemon(state, action) {
-      const { id } = action.payload;
-
-      const pokemon = state.entities[id];
-
-      if(pokemon) {
-        pokemon.myPokemon = !pokemon.myPokemon
-      }
-    
-      // Find the pokemon in allPokemons array
-      // const pokemonIndex = state.allPokemons.findIndex(pokemon => pokemon.id === id);
-      // if (pokemonIndex !== -1) {
-      //   const pokemon = state.allPokemons[pokemonIndex];
-      //   pokemon.myPokemon = !pokemon.myPokemon;
-      // }
-    },
+    toggleSavePokemon: pokemonsAdapter.updateOne,
     updateSearchQuery(state, action) {
       const { query } = action.payload;
       state.searchQuery = query;
-      state.filteredAllPokemons = filterAllPokemons(state.allPokemons, query);
+      state.filteredAllPokemons = filterPokemons(state, query);
     },
-    updatePokemonName(state, action) {
-      const { newName, id } = action.payload;
-    
-      const index = state.allPokemons.findIndex(pokemon => pokemon.id === id);
-      if (index !== -1) {
-        // state.savedPokemons[savedPokemonIndex].name = newName;
-        state.allPokemons[index].name = newName;
-      }
-    }      
+    updatePokemonName: pokemonsAdapter.updateOne
   },
   extraReducers(builder) {
     builder
@@ -110,6 +79,17 @@ const pokemonsSlice = createSlice({
       })
   }
 });
+
+const filterPokemons = createSelector(
+  state => state.searchQuery,
+  state => pokemonsAdapter.getSelectors().selectAll(state),
+  (query, allPokemons) => {
+    const filteredPokemons = allPokemons.filter(pokemon =>
+        pokemon.name.toLowerCase().startsWith(query.toLowerCase()) && !pokemon.myPokemon
+    );
+    return filteredPokemons;
+  }
+);
 
 export const { 
   toggleSavePokemon,

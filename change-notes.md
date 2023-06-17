@@ -8,4 +8,6 @@
 - react-persist to implement storage
   - only pokemons and status are whitelisted
 - performance and normalizing data
-  - 
+  - by using createEntityAdapter and getInitialState
+  - changed reducers and extraReducers to use built in CRUD actions.
+  - changed selector to use getSelectors
