@@ -31,7 +31,7 @@ export default function PokemonEditNameForm(props) {
           <form>
             <input
             type="text" 
-            placeholder='Nytt navn...'
+            placeholder={props.name}
             value={newName}
             onChange={(e) => setNewName(e.target.value)}
             onKeyDown={handleKeyDown}

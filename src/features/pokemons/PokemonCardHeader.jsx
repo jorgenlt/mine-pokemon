@@ -5,7 +5,7 @@ export default function PokemonCardHeader(props) {
     <header className='card--header'>
       <div className="card--title">
         <h1>{props.name}</h1>
-        {props.myPokemon && <PokemonEditNameForm id={props.id} />}
+        {props.myPokemon && <PokemonEditNameForm id={props.id} name={props.name} />}
       </div>
       <span className='card--hp'>{props.hp}</span>
     </header>

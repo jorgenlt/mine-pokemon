@@ -7,7 +7,9 @@ export default function PokemonCardFooter(props) {
 
   const handleOnClick = () => {
     dispatch(toggleSavePokemon({ id: props.id, changes: {myPokemon: !props.myPokemon} }));
-    dispatch(updateSearchQuery({ query: query }))
+    if (query) {
+      dispatch(updateSearchQuery({ query: query }))
+    }
   }
 
   return (

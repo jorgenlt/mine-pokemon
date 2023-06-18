@@ -1,4 +1,9 @@
-import { createSlice, createAsyncThunk, createSelector, createEntityAdapter } from '@reduxjs/toolkit';
+import { 
+  createSlice, 
+  createAsyncThunk, 
+  createSelector, 
+  createEntityAdapter 
+} from '@reduxjs/toolkit';
 import { TYPEDATA } from '../../common/utils/constants/TYPEDATA';
 
 // Normalizing state structure with createEntityAdapter
@@ -16,43 +21,46 @@ const initialState = pokemonsAdapter.getInitialState({
   sortBy: '',
 });
 
-export const fetchAllPokemons = createAsyncThunk('pokemons/fetchAllPokemons', async () => {
-  const limit = 200;
-  const url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}`;
-  
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error('Failed to get Pokemons');
-  }
-  const data = await response.json();
-
-  // Fetch additional information for each pokemon
-  const pokemonDataPromises = data.results.map(async (pokemon) => {
-    const response = await fetch(pokemon.url);
+export const fetchAllPokemons = createAsyncThunk(
+  'pokemons/fetchAllPokemons', 
+  async () => {
+    const limit = 200;
+    const url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}`;
+    
+    const response = await fetch(url);
     if (!response.ok) {
-      throw new Error(`Failed to get data for ${pokemon.name}`);
+      throw new Error('Failed to get Pokemons');
     }
-    const pokemonData = await response.json();
-    const pokemonType = pokemonData.types[0].type.name
+    const data = await response.json();
 
-    return {
-      name: pokemon.name,
-      url: pokemon.url,
-      image: pokemonData.sprites.other['dream_world']["front_default"],
-      hp: pokemonData.stats[0].base_stat,
-      abilities: pokemonData.abilities,
-      id: pokemonData.id,
-      type: pokemonType,
-      backgroundColor: TYPEDATA[pokemonType].background,
-      icon: TYPEDATA[pokemonType].icon,
-      myPokemon: false
-    };
-  });
+    // Fetch additional information for each pokemon
+    const pokemonDataPromises = data.results.map(async (pokemon) => {
+      const response = await fetch(pokemon.url);
+      if (!response.ok) {
+        throw new Error(`Failed to get data for ${pokemon.name}`);
+      }
+      const pokemonData = await response.json();
+      const pokemonType = pokemonData.types[0].type.name
 
-  const allPokemons = await Promise.all(pokemonDataPromises);
+      return {
+        name: pokemon.name,
+        url: pokemon.url,
+        image: pokemonData.sprites.other['dream_world']["front_default"],
+        hp: pokemonData.stats[0].base_stat,
+        abilities: pokemonData.abilities,
+        id: pokemonData.id,
+        type: pokemonType,
+        backgroundColor: TYPEDATA[pokemonType].background,
+        icon: TYPEDATA[pokemonType].icon,
+        myPokemon: false
+      };
+    });
 
-  return allPokemons;
-});
+    const allPokemons = await Promise.all(pokemonDataPromises);
+
+    return allPokemons;
+  }
+);
 
 const pokemonsSlice = createSlice({
   name: 'pokemons',
@@ -104,67 +112,53 @@ const filterPokemons = createSelector(
   state => state.sortBy,
   pokemonsAdapter.getSelectors().selectAll,
   (searchQuery, typeFilter, abilityFilter, sortBy, allPokemons) => {
-    let filteredPokemons = allPokemons;
+    const filteredPokemons = filterByName(searchQuery, allPokemons)
+      .filter(pokemon => filterByType(typeFilter, pokemon))
+      .filter(pokemon => filterByAbility(abilityFilter, pokemon))
+      .filter(pokemon => !pokemon.myPokemon);
 
-    if (searchQuery && typeFilter && abilityFilter) {
-      filteredPokemons = filteredPokemons.filter(pokemon =>
-        pokemon.name.toLowerCase().startsWith(searchQuery.toLowerCase()) &&
-        pokemon.type === typeFilter &&
-        pokemon.abilities.some(ability =>
-          ability.ability.name.toLowerCase() === abilityFilter.toLowerCase()
-        ) &&
-        !pokemon.myPokemon
-      );
-    } else if (searchQuery && typeFilter) {
-      filteredPokemons = filteredPokemons.filter(pokemon =>
-        pokemon.name.toLowerCase().startsWith(searchQuery.toLowerCase()) &&
-        pokemon.type === typeFilter &&
-        !pokemon.myPokemon
-      );
-    } else if (searchQuery && abilityFilter) {
-      filteredPokemons = filteredPokemons.filter(pokemon =>
-        pokemon.name.toLowerCase().startsWith(searchQuery.toLowerCase()) &&
-        pokemon.abilities.some(ability =>
-          ability.ability.name.toLowerCase() === abilityFilter.toLowerCase()
-        ) &&
-        !pokemon.myPokemon
-      );
-    } else if (typeFilter && abilityFilter) {
-      filteredPokemons = filteredPokemons.filter(pokemon =>
-        pokemon.type === typeFilter &&
-        pokemon.abilities.some(ability =>
-          ability.ability.name.toLowerCase() === abilityFilter.toLowerCase()
-        ) &&
-        !pokemon.myPokemon
-      );
-    } else if (typeFilter) {
-      filteredPokemons = filteredPokemons.filter(pokemon =>
-        pokemon.type === typeFilter &&
-        !pokemon.myPokemon
-      );
-    } else if (abilityFilter) {
-      filteredPokemons = filteredPokemons.filter(pokemon =>
-        pokemon.abilities.some(ability =>
-          ability.ability.name.toLowerCase() === abilityFilter.toLowerCase()
-        ) &&
-        !pokemon.myPokemon
-      );
-    } else {
-      filteredPokemons = filteredPokemons.filter(pokemon =>
-        pokemon.name.toLowerCase().startsWith(searchQuery.toLowerCase()) &&
-        !pokemon.myPokemon
-      );
-    }
-
-    if (sortBy === 'name') {
-      filteredPokemons.sort((a, b) => a.name.localeCompare(b.name));
-    } else if (sortBy === 'hp') {
-      filteredPokemons.sort((a, b) => b.hp - a.hp);
-    }
-
-    return filteredPokemons;
+    return sortPokemons(sortBy, filteredPokemons);
   }
 );
+
+const filterByName = (searchQuery, pokemons) => {
+  if (searchQuery) {
+    const lowercaseSearchQuery = searchQuery.toLowerCase();
+    return pokemons.filter(pokemon =>
+      pokemon.name.toLowerCase().startsWith(lowercaseSearchQuery)
+    );
+  }
+  return pokemons;
+};
+
+const filterByType = (typeFilter, pokemon) => {
+  if (typeFilter) {
+    return pokemon.type === typeFilter;
+  }
+  return true;
+};
+
+const filterByAbility = (abilityFilter, pokemon) => {
+  if (abilityFilter) {
+    const lowercaseAbilityFilter = abilityFilter.toLowerCase();
+    return pokemon.abilities.some(
+      ability => ability.ability.name.toLowerCase() === lowercaseAbilityFilter
+    );
+  }
+  return true;
+};
+
+const sortPokemons = (sortBy, pokemons) => {
+  switch (sortBy) {
+    case 'name':
+      return pokemons.sort((a, b) => a.name.localeCompare(b.name));
+    case 'hp':
+      return pokemons.sort((a, b) => b.hp - a.hp);
+    default:
+      return pokemons;
+  }
+};
+
 
 
 
@@ -180,7 +174,9 @@ export const {
 
 export default pokemonsSlice.reducer;
 
-const pokemonsSelectors = pokemonsAdapter.getSelectors(state => state.pokemons);
+const pokemonsSelectors = pokemonsAdapter.getSelectors(
+  state => state.pokemons
+);
 
 export const selectAllPokemons = createSelector(
   pokemonsSelectors.selectAll,

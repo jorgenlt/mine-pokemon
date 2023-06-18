@@ -48,7 +48,7 @@ export default function PokemonSearchForm() {
           onChange={handleOnChange}
         />
       </form>
-      <form>
+      <form className='search--advanced'>
         <select
           className="search--filter"
           value={typeFilter}
@@ -67,12 +67,12 @@ export default function PokemonSearchForm() {
         >
           {ABILITIES.map(ability => (
             <option key={ability} value={ability}>
-              {ability ? ability : 'Ferdighet'}
+              {ability ? ability : 'Evne'}
             </option>
           ))}
         </select>
-        <button type='button' onClick={handleSortByName}>Sorter på navn</button>
-        <button type='button' onClick={handleSortByHP}>Sorter på HP</button>
+        <button className='search--sort-by' type='button' onClick={handleSortByName}>Sorter på navn</button>
+        <button className='search--sort-by' type='button' onClick={handleSortByHP}>Sorter på HP</button>
       </form>
     </div>
   );

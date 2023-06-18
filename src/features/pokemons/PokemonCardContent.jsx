@@ -14,7 +14,7 @@ export default function PokemonCardContent(props) {
             <img src={props.image} alt="Pokemon"></img>
           </div>
           <div className='card--abilities'>
-            <h3>Ferdigheter</h3>
+            <h3>Evner</h3>
             <ul>
               {abilitiesList(props.abilities)}
             </ul>

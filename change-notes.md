@@ -11,3 +11,23 @@
   - by using createEntityAdapter and getInitialState
   - changed reducers and extraReducers to use built in CRUD actions.
   - changed selector to use getSelectors
+- added filters (type, ability) in addition to search by name.
+- added sort by name and sort by hp.
+
+---
+
+- Feilaktig fil kalt `helperFunctions.jsx` ble endret til en konstant `TYPEDATA` i `TYPEDATA.jsx` og flyttet til en ny mappe `components/utils/constants`.
+- Fjernet `console.log` i produksjonskoden.
+- Endret feilhåndteringen i api-kallene. Feil logges nå til konsollen som `console.error('Feil', feil)`, og brukeren blir varslet med en feilmelding hvis henting av Pokémon- eller kortdata mislykkes.
+- Implementering av `react-redux` / `redux-toolkit`
+  - Reorganisering av mappstruktur
+  - Deling av komponenter og navneendring
+  - Henting av api med `thunk`
+- Bruk av `react-persist` for å implementere lagring
+  - Bare pokémoner og status er inkludert i hvitelisten
+- Optimalisering og normalisering av data
+  - Ved å bruke `createEntityAdapter` og `getInitialState`
+  - Endret reduserere og ekstraReduserere for å bruke innebygde CRUD-handlinger.
+  - Endret selektør for å bruke `getSelectors`
+- Lagt til filtre (type, evne) i tillegg til søk etter navn.
+- Lagt til sortering etter navn og sortering etter hp.
