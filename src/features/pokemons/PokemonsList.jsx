@@ -13,7 +13,9 @@ export default function PokemonList() {
     status, 
     error, 
     filteredAllPokemons, 
-    searchQuery 
+    searchQuery,
+    typeFilter,
+    abilityFilter
   } = useSelector(state => state.pokemons);
 
   useEffect(() => {
@@ -31,18 +33,22 @@ export default function PokemonList() {
   } else if (status === 'failed') {
     content = <div>{error}</div>
   }
+
+  let filteredPokemons;
+
+  if (filteredAllPokemons.length > 0) {
+    filteredPokemons = filteredAllPokemons.map(pokemon => <PokemonCard key={pokemon.id} pokemon={pokemon} />)
+  } else {
+    if (searchQuery !== '' || typeFilter !== '' || abilityFilter !== '') {
+        filteredPokemons = <p>Ingen treff.</p>
+    } else {
+      filteredPokemons = content;
+    }
+  }
   
   return (
     <section className="pokemon-list">
-      {filteredAllPokemons.length > 0 ? (
-        filteredAllPokemons.map(pokemon => <PokemonCard key={pokemon.id} pokemon={pokemon} />)
-      ) : (
-        searchQuery !== '' ? (
-          <p>Finner ingen Pokemon med det navnet. Prøv å endre søket ditt.</p>
-        ) : (
-          content
-        )
-      )}
+      {filteredAllPokemons ? filteredPokemons : content}
     </section>
   )
 }
