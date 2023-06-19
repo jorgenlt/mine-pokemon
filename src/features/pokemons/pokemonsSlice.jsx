@@ -1,10 +1,10 @@
+import { TYPEDATA } from '../../common/utils/constants/TYPEDATA';
 import { 
   createSlice, 
   createAsyncThunk, 
   createSelector, 
   createEntityAdapter 
 } from '@reduxjs/toolkit';
-import { TYPEDATA } from '../../common/utils/constants/TYPEDATA';
 
 // Normalizing state structure with createEntityAdapter
 const pokemonsAdapter = createEntityAdapter({
@@ -68,8 +68,7 @@ const pokemonsSlice = createSlice({
   reducers: {
     toggleSavePokemon: pokemonsAdapter.updateOne,
     updateSearchQuery: (state, action) => {
-      const query = action.payload;
-      state.searchQuery = query;
+      state.searchQuery = action.payload;
       state.filteredAllPokemons = filterPokemons(state);
     },
     updateTypeFilter: (state, action) => {
@@ -123,9 +122,8 @@ const filterPokemons = createSelector(
 
 const filterByName = (searchQuery, pokemons) => {
   if (searchQuery) {
-    const lowercaseSearchQuery = searchQuery.toLowerCase();
     return pokemons.filter(pokemon =>
-      pokemon.name.toLowerCase().startsWith(lowercaseSearchQuery)
+      pokemon.name.startsWith(searchQuery.toLowerCase())
     );
   }
   return pokemons;
@@ -140,9 +138,8 @@ const filterByType = (typeFilter, pokemon) => {
 
 const filterByAbility = (abilityFilter, pokemon) => {
   if (abilityFilter) {
-    const lowercaseAbilityFilter = abilityFilter.toLowerCase();
     return pokemon.abilities.some(
-      ability => ability.ability.name.toLowerCase() === lowercaseAbilityFilter
+      ability => ability.ability.name === abilityFilter
     );
   }
   return true;
