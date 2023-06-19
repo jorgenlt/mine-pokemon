@@ -36,6 +36,12 @@ export default function PokemonSearchForm() {
     dispatch(updateSortBy('hp'));
   };
 
+  const handleOnKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+    }
+  };
+
   return (
     <div className="search--wrapper">
       <form className="search--form" action="">
@@ -47,6 +53,7 @@ export default function PokemonSearchForm() {
           value={query}
           type="text" 
           onChange={handleOnChange}
+          onKeyDown={handleOnKeyDown}
         />
       </form>
       <form className='search--advanced'>

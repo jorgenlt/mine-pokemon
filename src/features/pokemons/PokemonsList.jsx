@@ -36,7 +36,22 @@ export default function PokemonList() {
   let filteredPokemonsElements;
 
   if (filteredPokemons.length > 0) {
-    filteredPokemonsElements = filteredPokemons.map(pokemon => <PokemonCard key={pokemon.id} pokemon={pokemon} />)
+    filteredPokemonsElements = (
+      <div className='search--results'>
+        <div>
+          {
+            (searchQuery || typeFilter || abilityFilter) && 
+            <p>{filteredPokemons.length} Pokemón passer dine kriterier.</p>
+          }
+        </div>
+        <div className='search--pokemons-list'>
+          {
+            filteredPokemons.map(pokemon => 
+              <PokemonCard key={pokemon.id} pokemon={pokemon} />)
+          }
+        </div>
+      </div>
+    )
   } else {
     if (searchQuery !== '' || typeFilter !== '' || abilityFilter !== '') {
         filteredPokemonsElements = <p>Ingen treff.</p>
