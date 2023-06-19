@@ -43,11 +43,11 @@ export default function PokemonSearchForm() {
   };
 
   return (
-    <div className="search--wrapper">
+    <section className="search--wrapper">
       <form className="search--form" action="">
         <DebounceInput 
           className="search--input" 
-          placeholder="🐞 Find Pokemon in the list below or search here." 
+          placeholder="🐞 Finn Pokemon i listen under eller søk her" 
           minLength={0}
           debounceTimeout={400}
           value={query}
@@ -82,6 +82,6 @@ export default function PokemonSearchForm() {
         <button className='search--sort-by' type='button' onClick={handleSortByName}>Sorter på navn</button>
         <button className='search--sort-by' type='button' onClick={handleSortByHP}>Sorter på HP</button>
       </form>
-    </div>
+    </section>
   );
 }
