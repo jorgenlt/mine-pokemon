@@ -31,7 +31,10 @@ export default function PokemonCard(props) {
         hp={hp} 
         myPokemon={myPokemon}
       />
-      <PokemonCardContent image={image} abilities={abilities} />
+      <PokemonCardContent 
+        image={image} 
+        abilities={abilities} 
+      />
       <PokemonCardFooter 
         id={id} 
         type={type} 

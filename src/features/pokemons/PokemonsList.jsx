@@ -1,18 +1,17 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-
-import { selectAllPokemons, fetchAllPokemons } from './pokemonsSlice'
+import { selectAllPokemons, fetchPokemonsThunk } from './pokemonsSlice'
 import PokemonCard from './PokemonCard'
 import Loader from '../../components/Loader'
 
 export default function PokemonList() {
   const dispatch = useDispatch();
 
-  const allPokemons = useSelector(selectAllPokemons);
+  const pokemons = useSelector(selectAllPokemons);
   const { 
     status, 
     error, 
-    filteredAllPokemons, 
+    filteredPokemons, 
     searchQuery,
     typeFilter,
     abilityFilter
@@ -20,35 +19,35 @@ export default function PokemonList() {
 
   useEffect(() => {
     if (status === 'idle') {
-      dispatch(fetchAllPokemons());
+      dispatch(fetchPokemonsThunk());
     }
   },[status, dispatch])
 
-  let content;
+  let pokemonElements;
 
   if (status === 'loading') {
-    content = <Loader />
+    pokemonElements = <Loader />
   } else if (status === 'succeeded') {
-      content = allPokemons.map(pokemon => <PokemonCard key={pokemon.id} pokemon={pokemon} />)
+      pokemonElements = pokemons.map(pokemon => <PokemonCard key={pokemon.id} pokemon={pokemon} />)
   } else if (status === 'failed') {
-    content = <div>{error}</div>
+    pokemonElements = <div>{error}</div>
   }
 
-  let filteredPokemons;
+  let filteredPokemonsElements;
 
-  if (filteredAllPokemons.length > 0) {
-    filteredPokemons = filteredAllPokemons.map(pokemon => <PokemonCard key={pokemon.id} pokemon={pokemon} />)
+  if (filteredPokemons.length > 0) {
+    filteredPokemonsElements = filteredPokemons.map(pokemon => <PokemonCard key={pokemon.id} pokemon={pokemon} />)
   } else {
     if (searchQuery !== '' || typeFilter !== '' || abilityFilter !== '') {
-        filteredPokemons = <p>Ingen treff.</p>
+        filteredPokemonsElements = <p>Ingen treff.</p>
     } else {
-      filteredPokemons = content;
+      filteredPokemonsElements = pokemonElements;
     }
   }
   
   return (
     <section className="pokemon-list">
-      {filteredAllPokemons ? filteredPokemons : content}
+      {filteredPokemons ? filteredPokemonsElements : pokemonElements}
     </section>
   )
 }

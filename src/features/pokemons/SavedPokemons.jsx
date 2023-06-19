@@ -2,7 +2,6 @@ import { useSelector } from 'react-redux'
 import PokemonCard from './PokemonCard'
 import { selectSavedPokemons } from './pokemonsSlice'
 
-
 export default function SavedPokemons() {
   const savedPokemons = useSelector(selectSavedPokemons);
 

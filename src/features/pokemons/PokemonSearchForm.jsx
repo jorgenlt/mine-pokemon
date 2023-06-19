@@ -1,10 +1,12 @@
-import { DebounceInput } from 'react-debounce-input';
-import { useDispatch, useSelector } from 'react-redux';
-import { updateSearchQuery, updateTypeFilter, updateAbilityFilter } from './pokemonsSlice';
 import { TYPESLIST } from '../../common/utils/constants/TYPESLIST'
 import { ABILITIESLIST } from '../../common/utils/constants/ABILITIESLIST'
-
-// Import the new action creator
+import { DebounceInput } from 'react-debounce-input';
+import { useDispatch, useSelector } from 'react-redux';
+import { 
+  updateSearchQuery, 
+  updateTypeFilter, 
+  updateAbilityFilter 
+} from './pokemonsSlice';
 import { updateSortBy } from './pokemonsSlice';
 
 export default function PokemonSearchForm() {
@@ -27,11 +29,11 @@ export default function PokemonSearchForm() {
   };
 
   const handleSortByName = () => {
-    dispatch(updateSortBy('name')); // Dispatch the action to update the sortBy state
+    dispatch(updateSortBy('name'));
   };
 
   const handleSortByHP = () => {
-    dispatch(updateSortBy('hp')); // Dispatch the action to update the sortBy state
+    dispatch(updateSortBy('hp'));
   };
 
   return (
