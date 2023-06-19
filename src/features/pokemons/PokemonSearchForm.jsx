@@ -1,8 +1,8 @@
 import { DebounceInput } from 'react-debounce-input';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateSearchQuery, updateTypeFilter, updateAbilityFilter } from './pokemonsSlice';
-import { TYPES } from '../../common/utils/constants/TYPES'
-import { ABILITIES } from '../../common/utils/constants/ABILITIES'
+import { TYPESLIST } from '../../common/utils/constants/TYPESLIST'
+import { ABILITIESLIST } from '../../common/utils/constants/ABILITIESLIST'
 
 // Import the new action creator
 import { updateSortBy } from './pokemonsSlice';
@@ -11,8 +11,7 @@ export default function PokemonSearchForm() {
   const query = useSelector(state => state.searchQuery);
   const typeFilter = useSelector(state => state.typeFilter);
   const abilityFilter = useSelector(state => state.abilityFilter);
-  const sortBy = useSelector(state => state.sortBy); // Add the sortBy selector
-
+  
   const dispatch = useDispatch();
 
   const handleOnChange = e => {
@@ -54,9 +53,9 @@ export default function PokemonSearchForm() {
           value={typeFilter}
           onChange={handleTypeFilterChange}
         >
-          {TYPES.map(type => (
+          {TYPESLIST.map(type => (
             <option key={type} value={type}>
-              {type ? type.charAt(0).toUpperCase() + type.slice(1) : 'Type'}
+              {type ? type : 'Type'}
             </option>
           ))}
         </select>
@@ -65,7 +64,7 @@ export default function PokemonSearchForm() {
           value={abilityFilter}
           onChange={handleAbilityFilterChange}
         >
-          {ABILITIES.map(ability => (
+          {ABILITIESLIST.map(ability => (
             <option key={ability} value={ability}>
               {ability ? ability : 'Evne'}
             </option>

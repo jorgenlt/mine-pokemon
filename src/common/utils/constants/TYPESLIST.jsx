@@ -1,4 +1,4 @@
-export const TYPES = [
+export const TYPESLIST = [
   '',
   'normal',
   'fighting',

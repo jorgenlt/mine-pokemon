@@ -159,10 +159,6 @@ const sortPokemons = (sortBy, pokemons) => {
   }
 };
 
-
-
-
-
 export const { 
   toggleSavePokemon,
   updateSearchQuery,
@@ -187,3 +183,4 @@ export const selectSavedPokemons = createSelector(
   pokemonsSelectors.selectAll,
   pokemons => pokemons.filter(pokemon => pokemon.myPokemon)
 );
+
