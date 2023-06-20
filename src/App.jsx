@@ -22,7 +22,6 @@ export default function App() {
     <>
       <main>
         <Header />
-        {/* {error && <p>{error}</p>} */}
         <SavedPokemons />
         <PokemonSearch />
         <PokemonSearchResults />

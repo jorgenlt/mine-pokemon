@@ -3,12 +3,12 @@ import { toggleSavePokemon, updateSearchQuery } from './pokemonsSlice'
 
 export default function PokemonCardFooter(props) {
   const dispatch = useDispatch();
-  const query = useSelector(state => state.pokemons.searchQuery);
+  const {searchQuery} = useSelector(state => state.pokemons);
 
   const handleOnClick = () => {
     dispatch(toggleSavePokemon({ id: props.id, changes: {myPokemon: !props.myPokemon} }));
-    if (query) {
-      dispatch(updateSearchQuery(query));
+    if (searchQuery) {
+      dispatch(updateSearchQuery(searchQuery));
     }
   }
 

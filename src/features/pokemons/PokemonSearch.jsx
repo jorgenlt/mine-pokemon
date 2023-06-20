@@ -11,8 +11,7 @@ import {
 import { updateSortBy } from './pokemonsSlice';
 
 export default function PokemonSearch() {
-  const typeFilter = useSelector(state => state.typeFilter);
-  const abilityFilter = useSelector(state => state.abilityFilter);
+  const {typeFilter, abilityFilter} = useSelector(state => state.pokemons);
   const [input, setInput] = useState('');
   const [sortBy, setSortBy] = useState('');
   
@@ -58,7 +57,7 @@ export default function PokemonSearch() {
   };
 
   return (
-    <section className="search--wrapper">
+    <section className="search">
       <h2>Søkefilter</h2>
       <form className="search--form" action="">
         <DebounceInput 
@@ -96,14 +95,14 @@ export default function PokemonSearch() {
           ))}
         </select>
         <button 
-          className={sortBy === 'name' ? 'button--chosen' : 'button'}
+          className={sortBy === 'name' ? 'button--chosen' : 'button--sort'}
           type='button' 
           onClick={handleSortByName}
         >
           Sorter på navn
         </button>
         <button 
-          className={sortBy === 'hp' ? 'button--chosen' : 'button'}
+          className={sortBy === 'hp' ? 'button--chosen' : 'button--sort'}
           type='button' 
           onClick={handleSortByHP}
         >

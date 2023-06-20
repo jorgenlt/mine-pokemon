@@ -15,9 +15,9 @@ import storage from 'redux-persist/lib/storage';
 import pokemonsReducer from '../features/pokemons/pokemonsSlice'
 
 const persistConfig = {
-  key: 'root', // Key under which the state will be stored in the storage
+  key: 'root',
   version: 1,
-  storage, // Storage engine, such as localStorage or AsyncStorage
+  storage,
   whitelist: ['ids', 'entities', 'status', 'error']
 };
 
@@ -27,7 +27,6 @@ export const store = configureStore({
   reducer: {
     pokemons: persistedReducer,
   },
-  // Non-Serializable Data: ignore all the action types that are dispatched
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {

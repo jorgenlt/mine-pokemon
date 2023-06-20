@@ -77,6 +77,24 @@ hr {
   }
 }
 
+.button--sort {
+  font-family: "Roboto Mono", monospace;
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: 2px solid #101319;
+  background-color: $sec;
+  box-shadow: 4px 4px #101319;
+  font-weight: 600;
+  color: #101319;
+  cursor: pointer;
+  
+  &:active {
+    box-shadow: 0px 0px $black;
+    transform: translate(3px, 3px);
+    animation: opacity 1000ms infinite linear;
+  }
+}
+
 // animations
 @-webkit-keyframes rotate-center {
   0% {
@@ -88,6 +106,7 @@ hr {
     transform: rotate(360deg);
   }
 }
+
 @keyframes rotate-center {
   0% {
     -webkit-transform: rotate(0);
@@ -96,6 +115,18 @@ hr {
   100% {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
+  }
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
   }
 }
 

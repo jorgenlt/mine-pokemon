@@ -19,6 +19,10 @@ export default function PokemonList() {
     }
   },[status, dispatch])
 
+  const handleRetry = () => {
+    dispatch(fetchPokemonsThunk())
+  }
+
   let pokemonElements;
 
   if (status === 'loading') {
@@ -26,7 +30,17 @@ export default function PokemonList() {
   } else if (status === 'succeeded') {
       pokemonElements = pokemons.map(pokemon => <PokemonCard key={pokemon.id} pokemon={pokemon} />)
   } else if (status === 'failed') {
-    pokemonElements = <div>{error}</div>
+    pokemonElements = (
+      <div>
+        <p>{error}</p>
+        <button
+          className='button'
+          onClick={handleRetry}
+        >
+          Try again
+        </button>
+      </div>
+    )
   }
   
   return (

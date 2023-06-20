@@ -68,7 +68,10 @@ const pokemonsSlice = createSlice({
       })
       .addCase(fetchPokemonsThunk.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = action.error.message; 
+        state.error = `
+          The fetching of Pokémon failed with the following 
+          error message: "${action.error.message}"
+        `; 
       });
   },
 });

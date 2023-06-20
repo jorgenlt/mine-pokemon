@@ -26,9 +26,15 @@ export const filterByAbility = (abilityFilter, pokemon) => {
 export const sortPokemons = (sortBy, pokemons) => {
   switch (sortBy) {
     case 'name':
-      return pokemons.sort((a, b) => a.name.localeCompare(b.name));
+      return pokemons.slice().sort((a, b) => {
+        const nameA = a.name.toLowerCase();
+        const nameB = b.name.toLowerCase();
+        if (nameA < nameB) return -1;
+        if (nameA > nameB) return 1;
+        return 0;
+      });
     case 'hp':
-      return pokemons.sort((a, b) => b.hp - a.hp);
+      return pokemons.slice().sort((a, b) => b.hp - a.hp);
     default:
       return pokemons;
   }
