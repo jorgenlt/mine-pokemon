@@ -1,8 +1,17 @@
 .footer {
-  min-height: 200px;
+  height: 400px;
   width: 100%;
-  background-color: $pri;
+  // background-color: $pri;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  a {
+    text-decoration: none;
+    color: $black;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }

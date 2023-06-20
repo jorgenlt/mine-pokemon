@@ -61,23 +61,6 @@
 .search--advanced {
   display: flex;
   gap: 16px;
-  
-  button {
-    font-family: "Roboto Mono", monospace;
-    padding: 8px 12px;
-    border-radius: 5px;
-    border: 2px solid #101319;
-    background-color: $sec;
-    box-shadow: 4px 4px #101319;
-    font-weight: 600;
-    color: #101319;
-    cursor: pointer;
-  }
-  
-  button:active {
-    box-shadow: 0px 0px $black;
-    transform: translate(3px, 3px);
-  }
 }
 
 .search--filter {
@@ -109,6 +92,10 @@
 .search--results {
   p {
     margin: 0px 0px 30px 0px;
+    text-align: center;
+  }
+
+  h2 {
     text-align: center;
   }
 }

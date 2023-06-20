@@ -13,6 +13,7 @@ export default function PokemonEditNameForm(props) {
   const handleOnClick = () => {
     dispatch(updatePokemonName({ id: props.id, changes: {name: newName} }));
     setEditNameOpen(!editNameOpen);
+    setNewName('');
   }
 
   const handleKeyDown = (event) => {
@@ -36,7 +37,13 @@ export default function PokemonEditNameForm(props) {
             onChange={(e) => setNewName(e.target.value)}
             onKeyDown={handleKeyDown}
             />
-            <button type='button' onClick={handleOnClick} >Lagre</button>
+            <button
+              type='button' 
+              className='button' 
+              onClick={handleOnClick} 
+            >
+              Lagre
+            </button>
           </form>
         </div>
       }

@@ -10,11 +10,7 @@ export default function PokemonList() {
   const pokemons = useSelector(selectAllPokemons);
   const { 
     status, 
-    error, 
-    filteredPokemons, 
-    searchQuery,
-    typeFilter,
-    abilityFilter
+    error,
   } = useSelector(state => state.pokemons);
 
   useEffect(() => {
@@ -32,37 +28,13 @@ export default function PokemonList() {
   } else if (status === 'failed') {
     pokemonElements = <div>{error}</div>
   }
-
-  let filteredPokemonsElements;
-
-  if (filteredPokemons.length > 0) {
-    filteredPokemonsElements = (
-      <div className='search--results'>
-        <div>
-          {
-            (searchQuery || typeFilter || abilityFilter) && 
-            <p>{filteredPokemons.length} Pokemón passer dine kriterier.</p>
-          }
-        </div>
-        <div className='search--pokemons-list'>
-          {
-            filteredPokemons.map(pokemon => 
-              <PokemonCard key={pokemon.id} pokemon={pokemon} />)
-          }
-        </div>
-      </div>
-    )
-  } else {
-    if (searchQuery !== '' || typeFilter !== '' || abilityFilter !== '') {
-        filteredPokemonsElements = <p>Ingen treff.</p>
-    } else {
-      filteredPokemonsElements = pokemonElements;
-    }
-  }
   
   return (
-    <section className="pokemon-list">
-      {filteredPokemons ? filteredPokemonsElements : pokemonElements}
+    <section className='all-pokemons'>
+      <h2>Alle Pokémon</h2>
+      <div className="pokemon-list">
+        {pokemonElements}
+      </div>
     </section>
   )
 }

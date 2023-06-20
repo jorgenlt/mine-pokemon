@@ -1,3 +1,9 @@
+.all-pokemons {
+  h2 {
+    text-align: center;
+  }
+}
+
 .pokemon-list {
   width: 80vw;
   margin: 0px 20px 20px 20px;
@@ -343,13 +349,6 @@
   gap: 30px;
   flex-direction: column;
   align-items: center;
-  
-  h2 {
-    font-family: 'Chokokutai', cursive;
-    font-size: 30px;
-    text-shadow: 2px 2px 0px $sec;
-    margin-bottom: 0px;
-  }
 }
 
 .saved-pokemons--hide {

@@ -4,10 +4,11 @@ import AOS from 'aos'
 import 'aos/dist/aos.css'
 
 import Header from './components/Header'
-import PokemonSearchForm from './features/pokemons/PokemonSearchForm'
+import PokemonSearch from './features/pokemons/PokemonSearch'
 import PokemonsList from './features/pokemons/PokemonsList'
 import SavedPokemons from './features/pokemons/SavedPokemons'
 import Footer from './components/Footer'
+import PokemonSearchResults from './features/pokemons/PokemonSearchResults'
 
 export default function App() {
 
@@ -22,10 +23,9 @@ export default function App() {
       <main>
         <Header />
         {/* {error && <p>{error}</p>} */}
-        <hr />
         <SavedPokemons />
-        <hr />
-        <PokemonSearchForm />
+        <PokemonSearch />
+        <PokemonSearchResults />
         <PokemonsList />
         <Footer />
       </main>

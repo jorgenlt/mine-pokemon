@@ -2,6 +2,7 @@ import { TYPESLIST } from '../../common/utils/constants/TYPESLIST'
 import { ABILITIESLIST } from '../../common/utils/constants/ABILITIESLIST'
 import { DebounceInput } from 'react-debounce-input';
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react'
 import { 
   updateSearchQuery, 
   updateTypeFilter, 
@@ -9,15 +10,17 @@ import {
 } from './pokemonsSlice';
 import { updateSortBy } from './pokemonsSlice';
 
-export default function PokemonSearchForm() {
-  const query = useSelector(state => state.searchQuery);
+export default function PokemonSearch() {
   const typeFilter = useSelector(state => state.typeFilter);
   const abilityFilter = useSelector(state => state.abilityFilter);
+  const [input, setInput] = useState('');
+  const [sortBy, setSortBy] = useState('');
   
   const dispatch = useDispatch();
 
   const handleOnChange = e => {
     dispatch(updateSearchQuery(e.target.value));
+    setInput(e.target.value);
   };
 
   const handleTypeFilterChange = e => {
@@ -30,11 +33,23 @@ export default function PokemonSearchForm() {
 
   const handleSortByName = () => {
     dispatch(updateSortBy('name'));
+    setSortBy('name');
   };
 
   const handleSortByHP = () => {
     dispatch(updateSortBy('hp'));
+    setSortBy('hp');
   };
+
+  const handleResetFilters = () => {
+    dispatch(updateSearchQuery(''));
+    dispatch(updateTypeFilter(''));
+    dispatch(updateAbilityFilter(''));
+    dispatch(updateSortBy(''));
+    dispatch(updateSortBy(''));
+    setInput('');
+    setSortBy('');
+  }
 
   const handleOnKeyDown = (event) => {
     if (event.key === 'Enter') {
@@ -44,13 +59,14 @@ export default function PokemonSearchForm() {
 
   return (
     <section className="search--wrapper">
+      <h2>Søkefilter</h2>
       <form className="search--form" action="">
         <DebounceInput 
           className="search--input" 
           placeholder="🐞 Finn Pokemon i listen under eller søk her" 
           minLength={0}
           debounceTimeout={400}
-          value={query}
+          value={input}
           type="text" 
           onChange={handleOnChange}
           onKeyDown={handleOnKeyDown}
@@ -79,8 +95,27 @@ export default function PokemonSearchForm() {
             </option>
           ))}
         </select>
-        <button className='search--sort-by' type='button' onClick={handleSortByName}>Sorter på navn</button>
-        <button className='search--sort-by' type='button' onClick={handleSortByHP}>Sorter på HP</button>
+        <button 
+          className={sortBy === 'name' ? 'button--chosen' : 'button'}
+          type='button' 
+          onClick={handleSortByName}
+        >
+          Sorter på navn
+        </button>
+        <button 
+          className={sortBy === 'hp' ? 'button--chosen' : 'button'}
+          type='button' 
+          onClick={handleSortByHP}
+        >
+          Sorter på HP
+        </button>
+        <button 
+          className='button' 
+          type='button' 
+          onClick={handleResetFilters}
+        >
+          Reset
+        </button>
       </form>
     </section>
   );
