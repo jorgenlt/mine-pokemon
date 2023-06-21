@@ -1,9 +1,7 @@
 body {
   margin: 0px;
-  background: rgb(255,227,92);
-  background: linear-gradient(0deg, rgba(255,227,92,1) 35%, rgba(255,15,123,1) 100%);
-  background-attachment: fixed;
-  font-family: 'Roboto Mono', monospace;
+  background-color: lighten($sec, 27);
+  font-family: $body-font;
 }
 
 main {
@@ -14,37 +12,16 @@ main {
   align-items: center;
 }
 
+h1, h2, h3, h4 {
+  font-family: $h-font;
+}
+
 h2 {
-  font-family: 'Chokokutai', cursive;
-  font-size: 30px;
-  text-shadow: 2px 2px 0px $sec;
-  margin-bottom: 30px;
-}
-
-hr {
-  height: 2px;
-  width: 60vw;
-  background: linear-gradient(
-  90deg, hsla(344, 98%, 59%, 1) 8%, 
-  #ffe35c 23%, 
-  hsla(350, 97%, 62%, 1) 41%, 
-  #ffe35c 63%, 
-  hsla(344, 98%, 59%, 1) 89%)
-  ;
-  border-style: none;
-}
-
-.suspense-loading {
-  width: 100px;
-  margin: 80px;
-  opacity: 0.3;
-  
-  -webkit-animation: rotate-center 1500ms linear infinite both;
-  animation: rotate-center 1500ms linear infinite both;
+  font-size: 40px;
+  color: $black;
 }
 
 .button {
-  font-family: "Roboto Mono", monospace;
   padding: 8px 12px;
   border-radius: 5px;
   border: 2px solid #101319;
@@ -61,11 +38,10 @@ hr {
 }
 
 .button--chosen {
-  font-family: "Roboto Mono", monospace;
   padding: 8px 12px;
   border-radius: 5px;
   border: 2px solid #101319;
-  background-color: $pri;
+  background-color: lighten($pri, 25);
   box-shadow: 4px 4px #101319;
   font-weight: 600;
   color: #101319;
@@ -78,7 +54,6 @@ hr {
 }
 
 .button--sort {
-  font-family: "Roboto Mono", monospace;
   padding: 8px 12px;
   border-radius: 5px;
   border: 2px solid #101319;
@@ -96,28 +71,6 @@ hr {
 }
 
 // animations
-@-webkit-keyframes rotate-center {
-  0% {
-    -webkit-transform: rotate(0);
-    transform: rotate(0);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes rotate-center {
-  0% {
-    -webkit-transform: rotate(0);
-    transform: rotate(0);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-
 @keyframes opacity {
   0% {
     opacity: 1;
@@ -130,9 +83,4 @@ hr {
   }
 }
 
-// responsiveness
-@media only screen and (max-width: 700px) {
-  hr {
-    width: 90vw;
-  }
-}
+

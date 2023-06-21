@@ -1,7 +1,7 @@
 export default function Header() {
     return (
         <header className="header">
-            <h1>Mine Pokémon</h1>
+            <img className="logo" src="/logo.png"></img>
         </header>
     )
 }

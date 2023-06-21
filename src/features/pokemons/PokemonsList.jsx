@@ -45,7 +45,7 @@ export default function PokemonList() {
   
   return (
     <section className='all-pokemons'>
-      <h2>Alle Pokémon</h2>
+      <h2>Pokémon</h2>
       <div className="pokemon-list">
         {pokemonElements}
       </div>
