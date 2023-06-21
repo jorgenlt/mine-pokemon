@@ -8,14 +8,24 @@ export default function PokemonEditNameForm(props) {
 
   const dispatch = useDispatch();
 
+  /**
+   * Sets the local state to show/hide the edit name form.
+   */
   const toggleEditNameForm = () => setEditNameOpen(prev => !prev);
 
+  /**
+   * Dispatches action for updating the Pokemon's name.
+   */
   const handleOnClick = () => {
     dispatch(updatePokemonName({ id: props.id, changes: {name: newName} }));
     setEditNameOpen(!editNameOpen);
     setNewName('');
   }
 
+  /**
+   * Handles when user press Enter instead of "Save".
+   * Prevents the default action of submitting the form, causing a refresh.
+   */
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       event.preventDefault();

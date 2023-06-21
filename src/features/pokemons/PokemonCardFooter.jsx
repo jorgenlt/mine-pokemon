@@ -5,6 +5,9 @@ export default function PokemonCardFooter(props) {
   const dispatch = useDispatch();
   const {searchQuery} = useSelector(state => state.pokemons);
 
+  /**
+   * Dispatches the action to save/delete a Pokemon when the user click on the add/delete icon.
+   */
   const handleOnClick = () => {
     dispatch(toggleSavePokemon({ id: props.id, changes: {myPokemon: !props.myPokemon} }));
     if (searchQuery) {

@@ -1,5 +1,9 @@
 export default function PokemonCardContent(props) {
-
+  /**
+   * 
+   * @param {Object} abilities - Containg data on the Pokemon's abilities.
+   * @returns {Array} - Containing JSX elements with the Pokemon's abilities.
+   */
   const abilitiesList = (abilities) => {
     return (
       abilities.map(element => <li key={element.ability.name}>{element.ability.name}</li>)
