@@ -17,7 +17,7 @@ h1, h2, h3, h4 {
 }
 
 h2 {
-  font-size: 40px;
+  font-size: 32px;
   color: $black;
 }
 
@@ -28,6 +28,7 @@ h2 {
   background-color: $sec;
   box-shadow: 4px 4px #101319;
   font-weight: 600;
+  white-space: nowrap;
   color: #101319;
   cursor: pointer;
   
@@ -56,6 +57,7 @@ h2 {
 .button--sort {
   padding: 8px 12px;
   border-radius: 5px;
+  white-space: nowrap;
   border: 2px solid #101319;
   background-color: $sec;
   box-shadow: 4px 4px #101319;
@@ -83,4 +85,10 @@ h2 {
   }
 }
 
+// responsiveness
+@media only screen and (max-width: 700px) {
+  h2 {
+    font-size: 20px;
+  }
+}
 

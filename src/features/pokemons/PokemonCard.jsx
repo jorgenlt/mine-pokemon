@@ -20,7 +20,7 @@ export default function PokemonCard(props) {
     <div 
       className="card" 
       data-aos="zoom-out"
-      data-aos-offset="100"
+      data-aos-offset="50"
       data-aos-delay="50"
       data-aos-duration="400"
       style={{background: backgroundColor}}

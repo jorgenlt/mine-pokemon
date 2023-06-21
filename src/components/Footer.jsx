@@ -6,7 +6,7 @@ export default function Footer() {
         rel="noreferrer" 
         target="_blank"
       >
-        See app on GitHub
+        See source code on GitHub
       </a>
     </footer>
   )

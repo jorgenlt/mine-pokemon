@@ -59,6 +59,8 @@
 
 .search--advanced {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 16px;
   margin-bottom: 30px;
 }
@@ -67,7 +69,6 @@
   font-family: $body-font;
   text-transform: capitalize;
   width: 100px;
-  padding: 5px 10px !important;
   display: flex;
   border-radius: 5px;
   border: 2px solid $black;
@@ -111,7 +112,18 @@
 
 @media only screen and (max-width: 700px) {
   .search--input {
-    width: 80vw;
+    width: 86vw;
+    height: 30px;
     font-size: 11px;
+  }
+
+  .searh--filter {
+    font-size: 14px;
+    padding: 0px 0px;
+    width: 80px;
+  }
+
+  .search--pokemons-list {
+    width: 100vw;
   }
 }
