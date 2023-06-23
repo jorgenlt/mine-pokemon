@@ -7,13 +7,17 @@ export default function SavedPokemons() {
   const [showMyCards, setShowMyCards] = useState(true);
   const savedPokemons = useSelector(selectSavedPokemons);
 
+  /**
+   * Renders the saved Pokemon cards.
+   * @returns {JSX.Element[]} The array of rendered Pokemon cards.
+   */
   const savedPokemonsElements = () => {
     return savedPokemons.map(pokemon => <PokemonCard key={pokemon.id} pokemon={pokemon} />);
   }
 
   return (
     <section className='saved-pokemons'>
-        <h2>Mine Pokémon kort</h2>
+        <h2>Mine Pokémonkort</h2>
         {
           (showMyCards && savedPokemons.length > 0) &&
           <div className="saved-pokemons--cards">

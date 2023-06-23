@@ -8,6 +8,13 @@ export default function Footer() {
       >
         See source code on GitHub
       </a>
+      <a 
+        href="../../../docs/index.html" 
+        rel="noreferrer" 
+        target="_blank"
+      >
+        Documentation
+      </a>
     </footer>
   )
 }

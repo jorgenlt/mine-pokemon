@@ -13,12 +13,18 @@ export default function PokemonList() {
     error,
   } = useSelector(state => state.pokemons);
 
+  /**
+   * Fetches the list of Pokemon on component mount.
+   */
   useEffect(() => {
     if (status === 'idle') {
       dispatch(fetchPokemonsThunk());
     }
   },[status, dispatch])
 
+  /**
+   * Handles the retry action when fetching Pokemon fails.
+   */
   const handleRetry = () => {
     dispatch(fetchPokemonsThunk())
   }

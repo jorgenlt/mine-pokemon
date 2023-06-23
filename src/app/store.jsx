@@ -14,6 +14,9 @@ import storage from 'redux-persist/lib/storage';
 
 import pokemonsReducer from '../features/pokemons/pokemonsSlice'
 
+/**
+ * Configuration object for redux-persist.
+ */
 const persistConfig = {
   key: 'root',
   version: 1,
@@ -23,6 +26,9 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, pokemonsReducer);
 
+/**
+ * The Redux store.
+ */
 export const store = configureStore({
   reducer: {
     pokemons: persistedReducer,
@@ -35,5 +41,8 @@ export const store = configureStore({
     }),
 });
 
+/**
+ * The Redux persistor for persisting store state.
+ */
 export const persistor = persistStore(store);
 

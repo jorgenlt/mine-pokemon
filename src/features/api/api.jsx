@@ -1,4 +1,4 @@
-import { TYPEDATA } from '../../common/utils/constants/TYPEDATA'
+import { TYPE_DATA } from '../../common/utils/constants/TYPE_DATA'
 
 /**
  * Fetches the Pokemon data from the API.
@@ -49,8 +49,8 @@ export const fetchPokemons = async () => {
       abilities: pokemonData.abilities,
       id: pokemonData.id,
       type: pokemonType,
-      backgroundColor: TYPEDATA[pokemonType].background,
-      icon: TYPEDATA[pokemonType].icon,
+      backgroundColor: TYPE_DATA[pokemonType].background,
+      icon: TYPE_DATA[pokemonType].icon,
       myPokemon: false
     };
   });

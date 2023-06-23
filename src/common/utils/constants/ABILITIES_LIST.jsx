@@ -1,4 +1,4 @@
-export const ABILITIESLIST = [
+export const ABILITIES_LIST = [
   '',
   'adaptability',
   'aerilate',

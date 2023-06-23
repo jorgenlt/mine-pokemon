@@ -16,6 +16,10 @@ export default function PokemonSearchResults() {
   let filteredPokemonsElements;
 
   if (filteredPokemons.length > 0 && searchExists) {
+    /**
+     * Renders the filtered Pokemon card if the search exists and returns search results.
+     * @returns {JSX.Element[]} The array of rendered Pokemon cards.
+     */
     filteredPokemonsElements = (
       <div>
         <div>
@@ -34,6 +38,10 @@ export default function PokemonSearchResults() {
     )
   } 
   
+  /**
+   * It the search exists, but returns no results, the user is notified.
+   * @returns {JSX.Element}
+   */
   if (searchExists && filteredPokemons.length === 0) {
       filteredPokemonsElements = <p>Ingen treff.</p>
   }

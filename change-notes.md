@@ -1,4 +1,4 @@
-- misleading file named helperFunctions.jsx was changed to a constant TYPEDATA in TYPEDATA.jsx and moved to a new folder components/utils/constants.
+- misleading file named helperFunctions.jsx was changed to a constant TYPE_DATA in TYPE_DATA.jsx and moved to a new folder components/utils/constants.
 - removed console.log in production code.
 - changed error handleing in the api calls. Errors are now logged to the console as console.error('Error', error) and the user is notified with an error message if the fetching of pokemons or card data failes.
 - implementing react-redux / redux-toolkit
@@ -17,7 +17,7 @@
 
 ---
 
-- `helperFunctions.jsx` ble endret til en konstant `TYPEDATA` i `TYPEDATA.jsx` og flyttet til en ny mappe `components/utils/constants`.
+- `helperFunctions.jsx` ble endret til en konstant `TYPE_DATA` i `TYPE_DATA.jsx` og flyttet til en ny mappe `components/utils/constants`.
 - Fjernet `console.log` i produksjonskoden.
 - Endret feilhåndteringen i api-kallene. Feil logges nå til konsollen som `console.error('Feil', feil)`, og brukeren blir varslet med en feilmelding hvis henting av Pokémon- eller kortdata mislykkes.
 - Implementering av `react-redux` / `redux-toolkit`
@@ -34,4 +34,5 @@
 - Lagt til filtre (type, evne) i tillegg til søk etter navn.
 - Lagt til sortering etter navn og sortering etter hp.
 - Diverse forbedringer i brukergrensesnittet.
+- Dokumentert kode med JSdoc. Har ikke fått til å inkludere dokumentasjon fra React-komponentene i den ferdige dokumentasjonen. Tips?
 
