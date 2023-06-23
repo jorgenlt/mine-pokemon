@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: features/pokemons/PokemonCardContent.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,47 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: features/pokemons/PokemonCardContent.jsx</h1>
 
     
 
 
 
     
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>export default function PokemonCardContent(props) {
+  /**
+   * 
+   * @param {Object} abilities - Containg data on the Pokemon's abilities.
+   * @returns {Array} - Containing JSX elements with the Pokemon's abilities.
+   */
+  const ABILITIES_LIST = (abilities) => {
+    return (
+      abilities.map(element => &lt;li key={element.ability.name}>{element.ability.name}&lt;/li>)
+    )
+  }
+  
+  return (
+    &lt;>
+      {props.abilities &amp;&amp; (
+        &lt;>
+          &lt;div className='card--image'>
+            &lt;img src={props.image} alt="Pokemon">&lt;/img>
+          &lt;/div>
+          &lt;div className='card--abilities'>
+            &lt;h3>Evner&lt;/h3>
+            &lt;ul>
+              {ABILITIES_LIST(props.abilities)}
+            &lt;/ul>
+          &lt;/div>
+        &lt;/>
+      )}
+    &lt;/>
+  )
+}</code></pre>
+        </article>
+    </section>
 
 
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: features/pokemons/PokemonsList.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,78 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: features/pokemons/PokemonsList.jsx</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { selectAllPokemons, fetchPokemonsThunk } from './pokemonsSlice'
+import PokemonCard from './PokemonCard'
+import Loader from '../../components/Loader'
 
+export default function PokemonList() {
+  const dispatch = useDispatch();
 
-    <h3> </h3>
+  const pokemons = useSelector(selectAllPokemons);
+  const { 
+    status, 
+    error,
+  } = useSelector(state => state.pokemons);
 
+  /**
+   * Fetches the list of Pokemon on component mount.
+   */
+  useEffect(() => {
+    if (status === 'idle') {
+      dispatch(fetchPokemonsThunk());
+    }
+  },[status, dispatch])
 
+  /**
+   * Handles the retry action when fetching Pokemon fails.
+   */
+  const handleRetry = () => {
+    dispatch(fetchPokemonsThunk())
+  }
 
+  let pokemonElements;
 
-
-
-
-
-
-
-    
-
-
-
-
-
+  if (status === 'loading') {
+    pokemonElements = &lt;Loader />
+  } else if (status === 'succeeded') {
+      pokemonElements = pokemons.map(pokemon => &lt;PokemonCard key={pokemon.id} pokemon={pokemon} />)
+  } else if (status === 'failed') {
+    pokemonElements = (
+      &lt;div>
+        &lt;p>{error}&lt;/p>
+        &lt;button
+          className='button'
+          onClick={handleRetry}
+        >
+          Try again
+        &lt;/button>
+      &lt;/div>
+    )
+  }
+  
+  return (
+    &lt;section className='all-pokemons'>
+      &lt;h2>Pokémon&lt;/h2>
+      &lt;div className="pokemon-list">
+        {pokemonElements}
+      &lt;/div>
+    &lt;/section>
+  )
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

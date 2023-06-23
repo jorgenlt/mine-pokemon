@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: features/pokemons/SavedPokemons.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,61 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: features/pokemons/SavedPokemons.jsx</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useState } from 'react'
+import { useSelector } from 'react-redux'
+import PokemonCard from './PokemonCard'
+import { selectSavedPokemons } from './pokemonsSlice'
 
+export default function SavedPokemons() {
+  const [showMyCards, setShowMyCards] = useState(true);
+  const savedPokemons = useSelector(selectSavedPokemons);
 
-    <h3> </h3>
+  /**
+   * Renders the saved Pokemon cards.
+   * @returns {JSX.Element[]} The array of rendered Pokemon cards.
+   */
+  const savedPokemonsElements = () => {
+    return savedPokemons.map(pokemon => &lt;PokemonCard key={pokemon.id} pokemon={pokemon} />);
+  }
 
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+  return (
+    &lt;section className='saved-pokemons'>
+        &lt;h2>Mine Pokémonkort&lt;/h2>
+        {
+          (showMyCards &amp;&amp; savedPokemons.length > 0) &amp;&amp;
+          &lt;div className="saved-pokemons--cards">
+            {savedPokemonsElements()}
+          &lt;/div>
+        }
+        {
+          savedPokemons.length === 0 ? (
+          &lt;div className='saved-pokemons--no-cards'>
+            &lt;p>Du har ingen lagrede kort.&lt;/p>
+            &lt;p>Du kan finne kort i listen under eller ved å endre søkefilteret.&lt;/p>
+          &lt;/div>
+          ) : (
+          &lt;button 
+            className="saved-pokemons--hide button" 
+            onClick={() => setShowMyCards(prev => !prev)}
+          >
+            {showMyCards ? 'Skjul kort' : 'Vis kort'}
+          &lt;/button>
+          )
+        }
+    &lt;/section>
+  )
+}</code></pre>
+        </article>
+    </section>
 
 
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: app/store.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,66 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: app/store.jsx</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { configureStore } from '@reduxjs/toolkit'
 
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist'
+import storage from 'redux-persist/lib/storage';
 
-    <h3> </h3>
+import pokemonsReducer from '../features/pokemons/pokemonsSlice'
 
+/**
+ * Configuration object for redux-persist.
+ */
+const persistConfig = {
+  key: 'root',
+  version: 1,
+  storage,
+  whitelist: ['ids', 'entities', 'status', 'error']
+};
 
+const persistedReducer = persistReducer(persistConfig, pokemonsReducer);
 
+/**
+ * The Redux store.
+ */
+export const store = configureStore({
+  reducer: {
+    pokemons: persistedReducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+});
 
+/**
+ * The Redux persistor for persisting store state.
+ */
+export const persistor = persistStore(store);
 
-
-
-
-
-
-    
-
-
-
-
-
+</code></pre>
+        </article>
+    </section>
 
 
 

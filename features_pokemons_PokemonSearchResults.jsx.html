@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: features/pokemons/PokemonSearchResults.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,72 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: features/pokemons/PokemonSearchResults.jsx</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useSelector } from 'react-redux'
 
+import PokemonCard from './PokemonCard'
 
-    <h3> </h3>
+export default function PokemonSearchResults() {
+  const {
+    filteredPokemons, 
+    searchQuery,
+    typeFilter,
+    abilityFilter,
+    sortBy
+  } = useSelector(state => state.pokemons);
 
+  const searchExists = Boolean(searchQuery || typeFilter || abilityFilter || sortBy);
 
+  let filteredPokemonsElements;
 
+  if (filteredPokemons.length > 0 &amp;&amp; searchExists) {
+    /**
+     * Renders the filtered Pokemon card if the search exists and returns search results.
+     * @returns {JSX.Element[]} The array of rendered Pokemon cards.
+     */
+    filteredPokemonsElements = (
+      &lt;div>
+        &lt;div>
+          {
+            searchExists &amp;&amp; 
+            &lt;p>{filteredPokemons.length} Pokémon passer dine kriterier.&lt;/p>
+          }
+        &lt;/div>
+        &lt;div className='search--pokemons-list'>
+          {
+            filteredPokemons.map(pokemon => 
+              &lt;PokemonCard key={pokemon.id} pokemon={pokemon} />)
+          }
+        &lt;/div>
+      &lt;/div>
+    )
+  } 
+  
+  /**
+   * It the search exists, but returns no results, the user is notified.
+   * @returns {JSX.Element}
+   */
+  if (searchExists &amp;&amp; filteredPokemons.length === 0) {
+      filteredPokemonsElements = &lt;p>Ingen treff.&lt;/p>
+  }
 
-
-
-
-
-
-
-    
-
-
-
-
-
+  return (
+    &lt;section className='search--results'>
+      {searchExists &amp;&amp; &lt;h2>Søkeresultater&lt;/h2>}
+      {filteredPokemonsElements}
+    &lt;/section>
+  )
+}</code></pre>
+        </article>
+    </section>
 
 
 

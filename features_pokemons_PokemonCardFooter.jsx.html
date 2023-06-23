@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: features/pokemons/PokemonCardFooter.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,50 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: features/pokemons/PokemonCardFooter.jsx</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useDispatch, useSelector } from 'react-redux'
+import { toggleSavePokemon, updateSearchQuery } from './pokemonsSlice'
 
+export default function PokemonCardFooter(props) {
+  const dispatch = useDispatch();
+  const {searchQuery} = useSelector(state => state.pokemons);
 
-    <h3> </h3>
+  /**
+   * Dispatches the action to save/delete a Pokemon when the user click on the add/delete icon.
+   */
+  const handleOnClick = () => {
+    dispatch(toggleSavePokemon({ id: props.id, changes: {myPokemon: !props.myPokemon} }));
+    if (searchQuery) {
+      dispatch(updateSearchQuery(searchQuery));
+    }
+  }
 
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+  return (
+    &lt;footer>
+      &lt;div className='card--type'>
+        &lt;div className={`icon ${props.type}`}>
+          &lt;img src={props.icon} alt='Pokemon type icon' width={100}>&lt;/img>
+        &lt;/div>
+      &lt;/div>
+      &lt;div
+      className='card--btn' 
+      onClick={handleOnClick}
+      >
+        &lt;i className={`fa-solid fa-${props.myPokemon ? 'trash' : 'plus'}`}>&lt;/i>
+      &lt;/div>
+    &lt;/footer>
+  )
+}</code></pre>
+        </article>
+    </section>
 
 
 
