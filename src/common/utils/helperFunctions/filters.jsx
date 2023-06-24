@@ -51,10 +51,8 @@ export const sortPokemons = (sortBy, pokemons) => {
   switch (sortBy) {
     case 'name':
       return pokemons.slice().sort((a, b) => {
-        const nameA = a.name.toLowerCase();
-        const nameB = b.name.toLowerCase();
-        if (nameA < nameB) return -1;
-        if (nameA > nameB) return 1;
+        if (a.name < b.name) return -1;
+        if (a.name > b.name) return 1;
         return 0;
       });
     case 'hp':
