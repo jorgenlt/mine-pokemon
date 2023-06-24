@@ -10,7 +10,7 @@ import {
   filterByType,
   filterByAbility,
   sortPokemons
-} from '../../common/utils/helperFunctions/filters'
+} from '../../common/utils/helper-functions/filters'
 
 const pokemonsAdapter = createEntityAdapter({
   selectId: pokemon => pokemon.id,
