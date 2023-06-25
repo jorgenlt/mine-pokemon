@@ -16,6 +16,7 @@ import pokemonsReducer from '../features/pokemons/pokemonsSlice'
 
 /**
  * Configuration object for redux-persist.
+ * Only objects on the whitelist are stored.
  * @const persistConfig
  */
 const persistConfig = {

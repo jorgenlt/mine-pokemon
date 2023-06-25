@@ -12,10 +12,19 @@ import {
   sortPokemons
 } from '../../common/utils/helper-functions/filters'
 
+/**
+ * Entity adapter
+ * @const pokemonsAdapter
+ * 
+ */
 const pokemonsAdapter = createEntityAdapter({
   selectId: pokemon => pokemon.id,
 });
 
+/**
+ * Initial state
+ * @const initialState
+ */
 const initialState = pokemonsAdapter.getInitialState({
   status: 'idle',
   error: null,

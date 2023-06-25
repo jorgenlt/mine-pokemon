@@ -25,11 +25,11 @@ export default function PokemonEditNameForm(props) {
   }
 
   /**
-   * Handles when user press Enter instead of "Save".
+   * Handles when the user presses Enter instead of "Save" button.
    * Prevents the default action of submitting the form, causing a refresh.
-   * @func handleKeyDown
+   * @func handleKeyDownNameForm
    */
-  const handleKeyDown = (event) => {
+  const handleKeyDownNameForm = (event) => {
     if (event.key === 'Enter') {
       event.preventDefault();
       handleSubmitNewName();
@@ -48,7 +48,7 @@ export default function PokemonEditNameForm(props) {
             placeholder={props.name}
             value={newName}
             onChange={(e) => setNewName(e.target.value)}
-            onKeyDown={handleKeyDown}
+            onKeyDown={handleKeyDownNameForm}
             />
             <button
               type='button' 

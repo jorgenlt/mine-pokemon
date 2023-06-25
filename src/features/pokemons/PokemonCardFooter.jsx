@@ -6,7 +6,7 @@ export default function PokemonCardFooter(props) {
   const {searchQuery} = useSelector(state => state.pokemons);
 
   /**
-   * Dispatches the action to save/delete a Pokemon when the user click on the add/delete icon.
+   * Dispatches the action to save/delete a Pokemon when the user clicks on the save/delete icon.
    * @func handleSavePokemon
    */
   const handleSavePokemon = () => {

@@ -79,9 +79,9 @@ export default function PokemonSearch() {
 
   /**
    * Prevents the default submitting of the form if the user presses Enter. 
-   * @func handleOnKeyDown
+   * @func handleOnKeyDownSearchForm
    */
-  const handleOnKeyDown = (event) => {
+  const handleOnKeyDownSearchForm = (event) => {
     if (event.key === 'Enter') {
       event.preventDefault();
     }
@@ -99,7 +99,7 @@ export default function PokemonSearch() {
           value={input}
           type="text" 
           onChange={handleQueryChange}
-          onKeyDown={handleOnKeyDown}
+          onKeyDown={handleOnKeyDownSearchForm}
         />
       </form>
       <form className='search--advanced'>
