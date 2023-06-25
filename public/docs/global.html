@@ -98,323 +98,13 @@
 
         
             
-<h4 class="name" id="fetchPokemons"><span class="type-signature">(constant) </span>fetchPokemons<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    Fetches the Pokemon data from the API.
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="features_api_api.jsx.html">features/api/api.jsx</a>, <a href="features_api_api.jsx.html#line8">line 8</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="fetchPokemonsThunk"><span class="type-signature">(constant) </span>fetchPokemonsThunk<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    Fetches the pokemon from the API.
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="features_pokemons_pokemonsSlice.jsx.html">features/pokemons/pokemonsSlice.jsx</a>, <a href="features_pokemons_pokemonsSlice.jsx.html#line36">line 36</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="filterByAbility"><span class="type-signature">(constant) </span>filterByAbility<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    Filters Pokemons by ability based on the ability filter.
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_utils_helperFunctions_filters.jsx.html">common/utils/helperFunctions/filters.jsx</a>, <a href="common_utils_helperFunctions_filters.jsx.html#line35">line 35</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="filterByName"><span class="type-signature">(constant) </span>filterByName<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    Filters Pokemons by name based on the search query.
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_utils_helperFunctions_filters.jsx.html">common/utils/helperFunctions/filters.jsx</a>, <a href="common_utils_helperFunctions_filters.jsx.html#line7">line 7</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="filterByType"><span class="type-signature">(constant) </span>filterByType<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    Filters Pokemons by type based on the type filter.
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_utils_helperFunctions_filters.jsx.html">common/utils/helperFunctions/filters.jsx</a>, <a href="common_utils_helperFunctions_filters.jsx.html#line22">line 22</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
 <h4 class="name" id="filterPokemons"><span class="type-signature">(constant) </span>filterPokemons<span class="type-signature"></span></h4>
 
 
 
 
 <div class="description">
-    Filters the Pokemon based on search query and filters.
+    Selector: Filters the Pokemon based on search query and filters.
 </div>
 
 
@@ -452,7 +142,70 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="features_pokemons_pokemonsSlice.jsx.html">features/pokemons/pokemonsSlice.jsx</a>, <a href="features_pokemons_pokemonsSlice.jsx.html#line121">line 121</a>
+        <a href="features_pokemons_pokemonsSlice.jsx.html">features/pokemons/pokemonsSlice.jsx</a>, <a href="features_pokemons_pokemonsSlice.jsx.html#line129">line 129</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="filteredPokemonsElements"><span class="type-signature"></span>filteredPokemonsElements<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Renders the filtered Pokemon cards if the search exists and returns search results.
+It the search exists, but returns no results, the user is notified.
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="features_pokemons_PokemonSearchResults.jsx.html">features/pokemons/PokemonSearchResults.jsx</a>, <a href="features_pokemons_PokemonSearchResults.jsx.html#line20">line 20</a>
     </li></ul></dd>
     
 
@@ -514,7 +267,69 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="app_store.jsx.html">app/store.jsx</a>, <a href="app_store.jsx.html#line20">line 20</a>
+        <a href="app_store.jsx.html">app/store.jsx</a>, <a href="app_store.jsx.html#line17">line 17</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="persistedReducer"><span class="type-signature">(constant) </span>persistedReducer<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Persisted reducer
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="app_store.jsx.html">app/store.jsx</a>, <a href="app_store.jsx.html#line28">line 28</a>
     </li></ul></dd>
     
 
@@ -576,7 +391,69 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="app_store.jsx.html">app/store.jsx</a>, <a href="app_store.jsx.html#line47">line 47</a>
+        <a href="app_store.jsx.html">app/store.jsx</a>, <a href="app_store.jsx.html#line50">line 50</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="pokemonsElements"><span class="type-signature"></span>pokemonsElements<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Renders the Pokemon cards.
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="features_pokemons_PokemonsList.jsx.html">features/pokemons/PokemonsList.jsx</a>, <a href="features_pokemons_PokemonsList.jsx.html#line33">line 33</a>
     </li></ul></dd>
     
 
@@ -638,7 +515,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="features_pokemons_pokemonsSlice.jsx.html">features/pokemons/pokemonsSlice.jsx</a>, <a href="features_pokemons_pokemonsSlice.jsx.html#line154">line 154</a>
+        <a href="features_pokemons_pokemonsSlice.jsx.html">features/pokemons/pokemonsSlice.jsx</a>, <a href="features_pokemons_pokemonsSlice.jsx.html#line163">line 163</a>
     </li></ul></dd>
     
 
@@ -656,13 +533,13 @@
 
         
             
-<h4 class="name" id="pokemonsSlice"><span class="type-signature">(constant) </span>pokemonsSlice<span class="type-signature"></span></h4>
+<h4 class="name" id="searchExists"><span class="type-signature">(constant) </span>searchExists<span class="type-signature"></span></h4>
 
 
 
 
 <div class="description">
-    Slice containing the reducers and actions.
+    To check if a search exists
 </div>
 
 
@@ -700,193 +577,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="features_pokemons_pokemonsSlice.jsx.html">features/pokemons/pokemonsSlice.jsx</a>, <a href="features_pokemons_pokemonsSlice.jsx.html#line44">line 44</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="selectAllPokemons"><span class="type-signature">(constant) </span>selectAllPokemons<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    Selects all Pokemon that are not saved by the user.
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="features_pokemons_pokemonsSlice.jsx.html">features/pokemons/pokemonsSlice.jsx</a>, <a href="features_pokemons_pokemonsSlice.jsx.html#line161">line 161</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="selectSavedPokemons"><span class="type-signature">(constant) </span>selectSavedPokemons<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    Selects all Pokemon that are saved by the user.
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="features_pokemons_pokemonsSlice.jsx.html">features/pokemons/pokemonsSlice.jsx</a>, <a href="features_pokemons_pokemonsSlice.jsx.html#line169">line 169</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="sortPokemons"><span class="type-signature">(constant) </span>sortPokemons<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    Sorts Pokemons based on the given sort criteria.
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="common_utils_helperFunctions_filters.jsx.html">common/utils/helperFunctions/filters.jsx</a>, <a href="common_utils_helperFunctions_filters.jsx.html#line50">line 50</a>
+        <a href="features_pokemons_PokemonSearchResults.jsx.html">features/pokemons/PokemonSearchResults.jsx</a>, <a href="features_pokemons_PokemonSearchResults.jsx.html#line14">line 14</a>
     </li></ul></dd>
     
 
@@ -948,7 +639,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="app_store.jsx.html">app/store.jsx</a>, <a href="app_store.jsx.html#line32">line 32</a>
+        <a href="app_store.jsx.html">app/store.jsx</a>, <a href="app_store.jsx.html#line34">line 34</a>
     </li></ul></dd>
     
 
@@ -969,6 +660,165 @@
 
     
         <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="abilitiesElements"><span class="type-signature"></span>abilitiesElements<span class="signature">(abilities)</span><span class="type-signature"> &rarr; {Array}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Creates the JSX elements of the Pokemon's abilities
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>abilities</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Containg data on the Pokemon's abilities.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="features_pokemons_PokemonCardContent.jsx.html">features/pokemons/PokemonCardContent.jsx</a>, <a href="features_pokemons_PokemonCardContent.jsx.html#line2">line 2</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - Containing JSX elements with the Pokemon's abilities.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
 
         
             
@@ -1028,7 +878,3447 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="features_pokemons_pokemonsSlice.jsx.html">features/pokemons/pokemonsSlice.jsx</a>, <a href="features_pokemons_pokemonsSlice.jsx.html#line99">line 99</a>
+        <a href="features_pokemons_pokemonsSlice.jsx.html">features/pokemons/pokemonsSlice.jsx</a>, <a href="features_pokemons_pokemonsSlice.jsx.html#line110">line 110</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="fetchPokemons"><span class="type-signature">(async) </span>fetchPokemons<span class="signature">()</span><span class="type-signature"> &rarr; {Promise:<a href="global.html"></a>.&lt;Array:<a href="global.html"></a>.&lt;Object:<a href="global.html"></a>>>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Fetches the Pokemon data from the API.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="features_api_api.jsx.html">features/api/api.jsx</a>, <a href="features_api_api.jsx.html#line3">line 3</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        If there is an error fetching the data.
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The array of Pokemon data.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise:<a href="global.html"></a>.&lt;Array:<a href="global.html"></a>.&lt;Object:<a href="global.html"></a>>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="fetchPokemonsThunk"><span class="type-signature"></span>fetchPokemonsThunk<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Fetches the Pokemon with a thunk function
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="features_pokemons_pokemonsSlice.jsx.html">features/pokemons/pokemonsSlice.jsx</a>, <a href="features_pokemons_pokemonsSlice.jsx.html#line33">line 33</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="filterByAbility"><span class="type-signature"></span>filterByAbility<span class="signature">(abilityFilter, pokemon)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Filters Pokemons by ability based on the ability filter.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>abilityFilter</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The ability filter string.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>pokemon</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The Pokemon object to filter.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="common_utils_helper-functions_filters.jsx.html">common/utils/helper-functions/filters.jsx</a>, <a href="common_utils_helper-functions_filters.jsx.html#line31">line 31</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Whether the Pokemon has the ability or not.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="filterByQuery"><span class="type-signature"></span>filterByQuery<span class="signature">(searchQuery, pokemons)</span><span class="type-signature"> &rarr; {Array}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Filters Pokemons by name based on the search query.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>searchQuery</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The search query string.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>pokemons</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The array of Pokemons to filter.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="common_utils_helper-functions_filters.jsx.html">common/utils/helper-functions/filters.jsx</a>, <a href="common_utils_helper-functions_filters.jsx.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The filtered array of Pokemons.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="filterByType"><span class="type-signature"></span>filterByType<span class="signature">(typeFilter, pokemon)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Filters Pokemons by type based on the type filter.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>typeFilter</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The type filter string.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>pokemon</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The Pokemon object to filter.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="common_utils_helper-functions_filters.jsx.html">common/utils/helper-functions/filters.jsx</a>, <a href="common_utils_helper-functions_filters.jsx.html#line17">line 17</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Whether the Pokemon matches the type filter or not.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="handleAbilityFilterChange"><span class="type-signature"></span>handleAbilityFilterChange<span class="signature">(event)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Dispatches the action to update ability filter and performs the filtering by ability.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>event</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The event to get the value from the selected ability.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="features_pokemons_PokemonSearch.jsx.html">features/pokemons/PokemonSearch.jsx</a>, <a href="features_pokemons_PokemonSearch.jsx.html#line39">line 39</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="handleKeyDown"><span class="type-signature"></span>handleKeyDown<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Handles when user press Enter instead of "Save".
+Prevents the default action of submitting the form, causing a refresh.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="features_pokemons_PokemonEditNameForm.jsx.html">features/pokemons/PokemonEditNameForm.jsx</a>, <a href="features_pokemons_PokemonEditNameForm.jsx.html#line27">line 27</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="handleOnKeyDown"><span class="type-signature"></span>handleOnKeyDown<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Prevents the default submitting of the form if the user presses Enter.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="features_pokemons_PokemonSearch.jsx.html">features/pokemons/PokemonSearch.jsx</a>, <a href="features_pokemons_PokemonSearch.jsx.html#line80">line 80</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="handleQueryChange"><span class="type-signature"></span>handleQueryChange<span class="signature">(event)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Dispatches the action to update the search query and performs the search.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>event</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The event to get the value in the form.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="features_pokemons_PokemonSearch.jsx.html">features/pokemons/PokemonSearch.jsx</a>, <a href="features_pokemons_PokemonSearch.jsx.html#line20">line 20</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="handleResetFilters"><span class="type-signature"></span>handleResetFilters<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Dispatches actions to reset all the filters.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="features_pokemons_PokemonSearch.jsx.html">features/pokemons/PokemonSearch.jsx</a>, <a href="features_pokemons_PokemonSearch.jsx.html#line66">line 66</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="handleRetry"><span class="type-signature"></span>handleRetry<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Handles the retry action when fetching Pokemon fails.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="features_pokemons_PokemonsList.jsx.html">features/pokemons/PokemonsList.jsx</a>, <a href="features_pokemons_PokemonsList.jsx.html#line25">line 25</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="handleSavePokemon"><span class="type-signature"></span>handleSavePokemon<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Dispatches the action to save/delete a Pokemon when the user click on the add/delete icon.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="features_pokemons_PokemonCardFooter.jsx.html">features/pokemons/PokemonCardFooter.jsx</a>, <a href="features_pokemons_PokemonCardFooter.jsx.html#line8">line 8</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="handleSortByHP"><span class="type-signature"></span>handleSortByHP<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Dispatches the action to sort by HP(high to low).
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="features_pokemons_PokemonSearch.jsx.html">features/pokemons/PokemonSearch.jsx</a>, <a href="features_pokemons_PokemonSearch.jsx.html#line57">line 57</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="handleSortByName"><span class="type-signature"></span>handleSortByName<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Dispatches the action to sort alphabetically.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="features_pokemons_PokemonSearch.jsx.html">features/pokemons/PokemonSearch.jsx</a>, <a href="features_pokemons_PokemonSearch.jsx.html#line48">line 48</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="handleSubmitNewName"><span class="type-signature"></span>handleSubmitNewName<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Dispatches action for updating the Pokemon's name.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="features_pokemons_PokemonEditNameForm.jsx.html">features/pokemons/PokemonEditNameForm.jsx</a>, <a href="features_pokemons_PokemonEditNameForm.jsx.html#line17">line 17</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="handleTypeFilterChange"><span class="type-signature"></span>handleTypeFilterChange<span class="signature">(event)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Dispatches the action to update type filter and performs the filtering by type.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>event</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The event to get the value from the selected type.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="features_pokemons_PokemonSearch.jsx.html">features/pokemons/PokemonSearch.jsx</a>, <a href="features_pokemons_PokemonSearch.jsx.html#line30">line 30</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="pokemonSlice"><span class="type-signature"></span>pokemonSlice<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Slice containing the reducers and actions.
+Generates action creators and action types.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="features_pokemons_pokemonsSlice.jsx.html">features/pokemons/pokemonsSlice.jsx</a>, <a href="features_pokemons_pokemonsSlice.jsx.html#line42">line 42</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="savedPokemonsElements"><span class="type-signature"></span>savedPokemonsElements<span class="signature">()</span><span class="type-signature"> &rarr; {Array:<a href="global.html"></a>.&lt;JSX.Element:<a href="global.html"></a>>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Renders the saved Pokemon cards.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="features_pokemons_SavedPokemons.jsx.html">features/pokemons/SavedPokemons.jsx</a>, <a href="features_pokemons_SavedPokemons.jsx.html#line10">line 10</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The array of rendered Pokemon cards.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array:<a href="global.html"></a>.&lt;JSX.Element:<a href="global.html"></a>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="selectAllPokemons"><span class="type-signature"></span>selectAllPokemons<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Selector: Selects all Pokemon that are not saved by the user.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="features_pokemons_pokemonsSlice.jsx.html">features/pokemons/pokemonsSlice.jsx</a>, <a href="features_pokemons_pokemonsSlice.jsx.html#line171">line 171</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="selectAllPokemons"><span class="type-signature"></span>selectAllPokemons<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Selector: Selects all Pokemon that are saved by the user.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="features_pokemons_pokemonsSlice.jsx.html">features/pokemons/pokemonsSlice.jsx</a>, <a href="features_pokemons_pokemonsSlice.jsx.html#line180">line 180</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="sortPokemons"><span class="type-signature"></span>sortPokemons<span class="signature">(sortBy, pokemons)</span><span class="type-signature"> &rarr; {Array}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Sorts Pokemons based on the given sort criteria.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>sortBy</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The sort criteria (e.g., 'name', 'hp').</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>pokemons</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The array of Pokemons to sort.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="common_utils_helper-functions_filters.jsx.html">common/utils/helper-functions/filters.jsx</a>, <a href="common_utils_helper-functions_filters.jsx.html#line47">line 47</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The sorted array of Pokemons.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="toggleEditNameForm"><span class="type-signature"></span>toggleEditNameForm<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Sets the local state to show/hide the edit name form.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="features_pokemons_PokemonEditNameForm.jsx.html">features/pokemons/PokemonEditNameForm.jsx</a>, <a href="features_pokemons_PokemonEditNameForm.jsx.html#line11">line 11</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="toggleSavePokemon"><span class="type-signature"></span>toggleSavePokemon<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Reducer: Toggles the save state for pokemons (myPokemon)
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="features_pokemons_pokemonsSlice.jsx.html">features/pokemons/pokemonsSlice.jsx</a>, <a href="features_pokemons_pokemonsSlice.jsx.html#line51">line 51</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="updateAbilityFilter"><span class="type-signature"></span>updateAbilityFilter<span class="signature">(state, action)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Reducer: Updates the ability filter and filters Pokemon by chosen ability.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Current state.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>action</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Action containing the ability to filter by, e.g. "Run-Away"</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="features_pokemons_pokemonsSlice.jsx.html">features/pokemons/pokemonsSlice.jsx</a>, <a href="features_pokemons_pokemonsSlice.jsx.html#line78">line 78</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="updatePokemonName"><span class="type-signature"></span>updatePokemonName<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Reducer: Updates the name of a saved pokemon.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="features_pokemons_pokemonsSlice.jsx.html">features/pokemons/pokemonsSlice.jsx</a>, <a href="features_pokemons_pokemonsSlice.jsx.html#line89">line 89</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="updateSearchQuery"><span class="type-signature"></span>updateSearchQuery<span class="signature">(state, action)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Reducer: Updates the search query and filters the Pokemon based on the query.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Current state.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>action</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Action containing the search query.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="features_pokemons_pokemonsSlice.jsx.html">features/pokemons/pokemonsSlice.jsx</a>, <a href="features_pokemons_pokemonsSlice.jsx.html#line57">line 57</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="updateSortBy"><span class="type-signature"></span>updateSortBy<span class="signature">(state, action)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Reducer: Updates the sort by in state and sorts either alphabetically or by HP.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Current state.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>action</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Action containing either "name" or "hp".</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="features_pokemons_pokemonsSlice.jsx.html">features/pokemons/pokemonsSlice.jsx</a>, <a href="features_pokemons_pokemonsSlice.jsx.html#line95">line 95</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="updateTypeFilter"><span class="type-signature"></span>updateTypeFilter<span class="signature">(state, action)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Reducer: Updates the type filter and filters Pokemon based on chosen type.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Current state.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>action</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Action containing the Pokemon type, e.g. "Grass".</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="features_pokemons_pokemonsSlice.jsx.html">features/pokemons/pokemonsSlice.jsx</a>, <a href="features_pokemons_pokemonsSlice.jsx.html#line67">line 67</a>
     </li></ul></dd>
     
 
@@ -1375,7 +4665,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="features_api_api.jsx.html">features/api/api.jsx</a>, <a href="features_api_api.jsx.html#line18">line 18</a>
+        <a href="features_api_api.jsx.html">features/api/api.jsx</a>, <a href="features_api_api.jsx.html#line20">line 20</a>
     </li></ul></dd>
     
 
@@ -1405,13 +4695,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html"></a></li><li><a href="global.html#extraReducers">extraReducers</a></li><li><a href="global.html#fetchPokemons">fetchPokemons</a></li><li><a href="global.html#fetchPokemonsThunk">fetchPokemonsThunk</a></li><li><a href="global.html#filterByAbility">filterByAbility</a></li><li><a href="global.html#filterByName">filterByName</a></li><li><a href="global.html#filterByType">filterByType</a></li><li><a href="global.html#filterPokemons">filterPokemons</a></li><li><a href="global.html#persistConfig">persistConfig</a></li><li><a href="global.html#persistor">persistor</a></li><li><a href="global.html#pokemonsSelectors">pokemonsSelectors</a></li><li><a href="global.html#pokemonsSlice">pokemonsSlice</a></li><li><a href="global.html#selectAllPokemons">selectAllPokemons</a></li><li><a href="global.html#selectSavedPokemons">selectSavedPokemons</a></li><li><a href="global.html#sortPokemons">sortPokemons</a></li><li><a href="global.html#store">store</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html"></a></li><li><a href="global.html#abilitiesElements">abilitiesElements</a></li><li><a href="global.html#extraReducers">extraReducers</a></li><li><a href="global.html#fetchPokemons">fetchPokemons</a></li><li><a href="global.html#fetchPokemonsThunk">fetchPokemonsThunk</a></li><li><a href="global.html#filterByAbility">filterByAbility</a></li><li><a href="global.html#filterByQuery">filterByQuery</a></li><li><a href="global.html#filterByType">filterByType</a></li><li><a href="global.html#filterPokemons">filterPokemons</a></li><li><a href="global.html#filteredPokemonsElements">filteredPokemonsElements</a></li><li><a href="global.html#handleAbilityFilterChange">handleAbilityFilterChange</a></li><li><a href="global.html#handleKeyDown">handleKeyDown</a></li><li><a href="global.html#handleOnKeyDown">handleOnKeyDown</a></li><li><a href="global.html#handleQueryChange">handleQueryChange</a></li><li><a href="global.html#handleResetFilters">handleResetFilters</a></li><li><a href="global.html#handleRetry">handleRetry</a></li><li><a href="global.html#handleSavePokemon">handleSavePokemon</a></li><li><a href="global.html#handleSortByHP">handleSortByHP</a></li><li><a href="global.html#handleSortByName">handleSortByName</a></li><li><a href="global.html#handleSubmitNewName">handleSubmitNewName</a></li><li><a href="global.html#handleTypeFilterChange">handleTypeFilterChange</a></li><li><a href="global.html#persistConfig">persistConfig</a></li><li><a href="global.html#persistedReducer">persistedReducer</a></li><li><a href="global.html#persistor">persistor</a></li><li><a href="global.html#pokemonSlice">pokemonSlice</a></li><li><a href="global.html#pokemonsElements">pokemonsElements</a></li><li><a href="global.html#pokemonsSelectors">pokemonsSelectors</a></li><li><a href="global.html#savedPokemonsElements">savedPokemonsElements</a></li><li><a href="global.html#searchExists">searchExists</a></li><li><a href="global.html#selectAllPokemons">selectAllPokemons</a></li><li><a href="global.html#sortPokemons">sortPokemons</a></li><li><a href="global.html#store">store</a></li><li><a href="global.html#toggleEditNameForm">toggleEditNameForm</a></li><li><a href="global.html#toggleSavePokemon">toggleSavePokemon</a></li><li><a href="global.html#updateAbilityFilter">updateAbilityFilter</a></li><li><a href="global.html#updatePokemonName">updatePokemonName</a></li><li><a href="global.html#updateSearchQuery">updateSearchQuery</a></li><li><a href="global.html#updateSortBy">updateSortBy</a></li><li><a href="global.html#updateTypeFilter">updateTypeFilter</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Jun 23 2023 19:06:28 GMT+0200 (Central European Summer Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Jun 25 2023 09:08:56 GMT+0200 (Central European Summer Time)
 </footer>
 
 <script> prettyPrint(); </script>

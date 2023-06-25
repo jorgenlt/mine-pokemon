@@ -34,11 +34,11 @@
 } from '@reduxjs/toolkit';
 import { fetchPokemons } from '../api/api'
 import {
-  filterByName,
+  filterByQuery,
   filterByType,
   filterByAbility,
   sortPokemons
-} from '../../common/utils/helperFunctions/filters'
+} from '../../common/utils/helper-functions/filters'
 
 const pokemonsAdapter = createEntityAdapter({
   selectId: pokemon => pokemon.id,
@@ -59,7 +59,8 @@ const initialState = pokemonsAdapter.getInitialState({
  */
 
 /**
- * Fetches the pokemon from the API.
+ * Fetches the Pokemon with a thunk function
+ * @func fetchPokemonsThunk 
  */
 export const fetchPokemonsThunk = createAsyncThunk(
   'pokemons/fetchPokemons',
@@ -68,17 +69,22 @@ export const fetchPokemonsThunk = createAsyncThunk(
 
 /**
  * Slice containing the reducers and actions.
+ * Generates action creators and action types.
+ * @function pokemonSlice
  */
 const pokemonsSlice = createSlice({
   name: 'pokemons',
   initialState,
   reducers: {
     /**
-     * Toggles the save state for pokemons (myPokemon)
+     * Reducer: Toggles the save state for pokemons (myPokemon)
+     * @func toggleSavePokemon
+     * @param {Object}
      */
     toggleSavePokemon: pokemonsAdapter.updateOne,
     /**
-     * Updates the search query and filters the Pokemon based on the query.
+     * Reducer: Updates the search query and filters the Pokemon based on the query.
+     * @func updateSearchQuery
      * @param {Object} state - Current state.
      * @param {Object} action - Action containing the search query.
      */
@@ -87,7 +93,8 @@ const pokemonsSlice = createSlice({
       state.filteredPokemons = filterPokemons(state);
     },
     /**
-     * Updates the type filter and filters Pokemon based on chosen type.
+     * Reducer: Updates the type filter and filters Pokemon based on chosen type.
+     * @func updateTypeFilter
      * @param {Object} state - Current state.
      * @param {Object} action - Action containing the Pokemon type, e.g. "Grass".
      */
@@ -97,7 +104,8 @@ const pokemonsSlice = createSlice({
       state.filteredPokemons = filterPokemons(state);
     },
     /**
-     * Updates the ability filter and filters Pokemon by chosen ability.
+     * Reducer: Updates the ability filter and filters Pokemon by chosen ability.
+     * @func updateAbilityFilter
      * @param {Object} state - Current state.
      * @param {Object} action - Action containing the ability to filter by, e.g. "Run-Away"
      */
@@ -107,11 +115,14 @@ const pokemonsSlice = createSlice({
       state.filteredPokemons = filterPokemons(state);
     },
     /**
-     * Updates the name of a saved pokemon.
+     * Reducer: Updates the name of a saved pokemon.
+     * @func updatePokemonName
+     * @param {Object}
      */
     updatePokemonName: pokemonsAdapter.updateOne,
     /**
-     * Updates the sort by in state and sorts either alphabetically or by HP.
+     * Reducer: Updates the sort by in state and sorts either alphabetically or by HP.
+     * @func updateSortBy
      * @param {Object} state - Current state.
      * @param {Object} action - Action containing either "name" or "hp".
      */
@@ -144,7 +155,8 @@ const pokemonsSlice = createSlice({
 });
 
 /**
- * Filters the Pokemon based on search query and filters.
+ * Selector: Filters the Pokemon based on search query and filters.
+ * @const filterPokemons
  */
 const filterPokemons = createSelector(
   state => state.searchQuery,
@@ -153,7 +165,7 @@ const filterPokemons = createSelector(
   state => state.sortBy,
   pokemonsAdapter.getSelectors().selectAll,
   (searchQuery, typeFilter, abilityFilter, sortBy, allPokemons) => {
-    const filteredPokemons = filterByName(searchQuery, allPokemons)
+    const filteredPokemons = filterByQuery(searchQuery, allPokemons)
       .filter(pokemon => filterByType(typeFilter, pokemon))
       .filter(pokemon => filterByAbility(abilityFilter, pokemon))
       .filter(pokemon => !pokemon.myPokemon);
@@ -177,14 +189,16 @@ export const {
 export default pokemonsSlice.reducer;
 
 /**
- * Creates a selector object for working with the entity data, e.g. selectEntities. 
+ * Creates a selector object for working with the entity data, e.g. selectEntities.
+ * @const pokemonsSelectors
  */
 const pokemonsSelectors = pokemonsAdapter.getSelectors(
   state => state.pokemons
 );
 
 /**
- * Selects all Pokemon that are not saved by the user.
+ * Selector: Selects all Pokemon that are not saved by the user.
+ * @func selectAllPokemons
  */
 export const selectAllPokemons = createSelector(
   pokemonsSelectors.selectAll,
@@ -192,7 +206,8 @@ export const selectAllPokemons = createSelector(
 );
 
 /**
- * Selects all Pokemon that are saved by the user.
+ * Selector: Selects all Pokemon that are saved by the user.
+ * @func selectAllPokemons
  */
 export const selectSavedPokemons = createSelector(
   pokemonsSelectors.selectAll,
@@ -209,13 +224,13 @@ export const selectSavedPokemons = createSelector(
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html"></a></li><li><a href="global.html#extraReducers">extraReducers</a></li><li><a href="global.html#fetchPokemons">fetchPokemons</a></li><li><a href="global.html#fetchPokemonsThunk">fetchPokemonsThunk</a></li><li><a href="global.html#filterByAbility">filterByAbility</a></li><li><a href="global.html#filterByName">filterByName</a></li><li><a href="global.html#filterByType">filterByType</a></li><li><a href="global.html#filterPokemons">filterPokemons</a></li><li><a href="global.html#persistConfig">persistConfig</a></li><li><a href="global.html#persistor">persistor</a></li><li><a href="global.html#pokemonsSelectors">pokemonsSelectors</a></li><li><a href="global.html#pokemonsSlice">pokemonsSlice</a></li><li><a href="global.html#selectAllPokemons">selectAllPokemons</a></li><li><a href="global.html#selectSavedPokemons">selectSavedPokemons</a></li><li><a href="global.html#sortPokemons">sortPokemons</a></li><li><a href="global.html#store">store</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html"></a></li><li><a href="global.html#abilitiesElements">abilitiesElements</a></li><li><a href="global.html#extraReducers">extraReducers</a></li><li><a href="global.html#fetchPokemons">fetchPokemons</a></li><li><a href="global.html#fetchPokemonsThunk">fetchPokemonsThunk</a></li><li><a href="global.html#filterByAbility">filterByAbility</a></li><li><a href="global.html#filterByQuery">filterByQuery</a></li><li><a href="global.html#filterByType">filterByType</a></li><li><a href="global.html#filterPokemons">filterPokemons</a></li><li><a href="global.html#filteredPokemonsElements">filteredPokemonsElements</a></li><li><a href="global.html#handleAbilityFilterChange">handleAbilityFilterChange</a></li><li><a href="global.html#handleKeyDown">handleKeyDown</a></li><li><a href="global.html#handleOnKeyDown">handleOnKeyDown</a></li><li><a href="global.html#handleQueryChange">handleQueryChange</a></li><li><a href="global.html#handleResetFilters">handleResetFilters</a></li><li><a href="global.html#handleRetry">handleRetry</a></li><li><a href="global.html#handleSavePokemon">handleSavePokemon</a></li><li><a href="global.html#handleSortByHP">handleSortByHP</a></li><li><a href="global.html#handleSortByName">handleSortByName</a></li><li><a href="global.html#handleSubmitNewName">handleSubmitNewName</a></li><li><a href="global.html#handleTypeFilterChange">handleTypeFilterChange</a></li><li><a href="global.html#persistConfig">persistConfig</a></li><li><a href="global.html#persistedReducer">persistedReducer</a></li><li><a href="global.html#persistor">persistor</a></li><li><a href="global.html#pokemonSlice">pokemonSlice</a></li><li><a href="global.html#pokemonsElements">pokemonsElements</a></li><li><a href="global.html#pokemonsSelectors">pokemonsSelectors</a></li><li><a href="global.html#savedPokemonsElements">savedPokemonsElements</a></li><li><a href="global.html#searchExists">searchExists</a></li><li><a href="global.html#selectAllPokemons">selectAllPokemons</a></li><li><a href="global.html#sortPokemons">sortPokemons</a></li><li><a href="global.html#store">store</a></li><li><a href="global.html#toggleEditNameForm">toggleEditNameForm</a></li><li><a href="global.html#toggleSavePokemon">toggleSavePokemon</a></li><li><a href="global.html#updateAbilityFilter">updateAbilityFilter</a></li><li><a href="global.html#updatePokemonName">updatePokemonName</a></li><li><a href="global.html#updateSearchQuery">updateSearchQuery</a></li><li><a href="global.html#updateSortBy">updateSortBy</a></li><li><a href="global.html#updateTypeFilter">updateTypeFilter</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Jun 23 2023 19:06:28 GMT+0200 (Central European Summer Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Jun 25 2023 09:08:56 GMT+0200 (Central European Summer Time)
 </footer>
 
 <script> prettyPrint(); </script>

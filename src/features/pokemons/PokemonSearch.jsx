@@ -19,31 +19,35 @@ export default function PokemonSearch() {
 
   /**
    * Dispatches the action to update the search query and performs the search.
-   * @param {Object} e - The event to get the value in the form.
+   * @func handleQueryChange
+   * @param {Object} event - The event to get the value in the form.
    */
-  const handleOnChange = e => {
-    dispatch(updateSearchQuery(e.target.value));
-    setInput(e.target.value);
+  const handleQueryChange = event => {
+    dispatch(updateSearchQuery(event.target.value));
+    setInput(event.target.value);
   };
 
   /**
-   * Dispatches the action to update type filter and performs the filtering by type. 
-   * @param {Object} e - The event to get the value from the selected type. 
+   * Dispatches the action to update type filter and performs the filtering by type.
+   * @func handleTypeFilterChange 
+   * @param {Object} event - The event to get the value from the selected type. 
    */
-  const handleTypeFilterChange = e => {
-    dispatch(updateTypeFilter(e.target.value));
+  const handleTypeFilterChange = event => {
+    dispatch(updateTypeFilter(event.target.value));
   };
 
   /**
-   * Dispatches the action to update ability filter and performs the filtering by ability. 
-   * @param {Object} e - The event to get the value from the selected ability. 
+   * Dispatches the action to update ability filter and performs the filtering by ability.
+   * @func handleAbilityFilterChange
+   * @param {Object} event - The event to get the value from the selected ability. 
    */
-  const handleAbilityFilterChange = e => {
-    dispatch(updateAbilityFilter(e.target.value));
+  const handleAbilityFilterChange = event => {
+    dispatch(updateAbilityFilter(event.target.value));
   };
 
   /**
    * Dispatches the action to sort alphabetically.
+   * @func handleSortByName
    */
   const handleSortByName = () => {
     dispatch(updateSortBy('name'));
@@ -52,6 +56,7 @@ export default function PokemonSearch() {
 
   /**
    * Dispatches the action to sort by HP(high to low).
+   * @func handleSortByHP
    */
   const handleSortByHP = () => {
     dispatch(updateSortBy('hp'));
@@ -60,6 +65,7 @@ export default function PokemonSearch() {
 
   /**
    * Dispatches actions to reset all the filters.
+   * @func handleResetFilters
    */
   const handleResetFilters = () => {
     dispatch(updateSearchQuery(''));
@@ -73,6 +79,7 @@ export default function PokemonSearch() {
 
   /**
    * Prevents the default submitting of the form if the user presses Enter. 
+   * @func handleOnKeyDown
    */
   const handleOnKeyDown = (event) => {
     if (event.key === 'Enter') {
@@ -91,7 +98,7 @@ export default function PokemonSearch() {
           debounceTimeout={400}
           value={input}
           type="text" 
-          onChange={handleOnChange}
+          onChange={handleQueryChange}
           onKeyDown={handleOnKeyDown}
         />
       </form>

@@ -1,10 +1,11 @@
 /**
  * Filters Pokemons by name based on the search query.
+ * @func filterByQuery
  * @param {string} searchQuery - The search query string.
  * @param {Array} pokemons - The array of Pokemons to filter.
  * @returns {Array} The filtered array of Pokemons.
  */
-export const filterByName = (searchQuery, pokemons) => {
+export const filterByQuery = (searchQuery, pokemons) => {
   if (searchQuery) {
     return pokemons.filter(pokemon =>
       pokemon.name.startsWith(searchQuery.toLowerCase())
@@ -15,6 +16,7 @@ export const filterByName = (searchQuery, pokemons) => {
 
 /**
  * Filters Pokemons by type based on the type filter.
+ * @func filterByType
  * @param {string} typeFilter - The type filter string.
  * @param {Object} pokemon - The Pokemon object to filter.
  * @returns {boolean} Whether the Pokemon matches the type filter or not.
@@ -28,6 +30,7 @@ export const filterByType = (typeFilter, pokemon) => {
 
 /**
  * Filters Pokemons by ability based on the ability filter.
+ * @func filterByAbility
  * @param {string} abilityFilter - The ability filter string.
  * @param {Object} pokemon - The Pokemon object to filter.
  * @returns {boolean} Whether the Pokemon has the ability or not.
@@ -43,6 +46,7 @@ export const filterByAbility = (abilityFilter, pokemon) => {
 
 /**
  * Sorts Pokemons based on the given sort criteria.
+ * @func sortPokemons
  * @param {string} sortBy - The sort criteria (e.g., 'name', 'hp').
  * @param {Array} pokemons - The array of Pokemons to sort.
  * @returns {Array} The sorted array of Pokemons.

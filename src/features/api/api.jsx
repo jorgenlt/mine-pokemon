@@ -2,6 +2,8 @@ import { TYPE_DATA } from '../../common/utils/constants/TYPE_DATA'
 
 /**
  * Fetches the Pokemon data from the API.
+ * @async
+ * @func fetchPokemons
  * @returns {Promise<Object[]>} The array of Pokemon data.
  * @throws {Error} If there is an error fetching the data.
  */

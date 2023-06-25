@@ -7,8 +7,9 @@ export default function PokemonCardFooter(props) {
 
   /**
    * Dispatches the action to save/delete a Pokemon when the user click on the add/delete icon.
+   * @func handleSavePokemon
    */
-  const handleOnClick = () => {
+  const handleSavePokemon = () => {
     dispatch(toggleSavePokemon({ id: props.id, changes: {myPokemon: !props.myPokemon} }));
     if (searchQuery) {
       dispatch(updateSearchQuery(searchQuery));
@@ -24,7 +25,7 @@ export default function PokemonCardFooter(props) {
       </div>
       <div
       className='card--btn' 
-      onClick={handleOnClick}
+      onClick={handleSavePokemon}
       >
         <i className={`fa-solid fa-${props.myPokemon ? 'trash' : 'plus'}`}></i>
       </div>

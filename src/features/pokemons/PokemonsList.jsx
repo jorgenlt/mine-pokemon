@@ -24,11 +24,17 @@ export default function PokemonList() {
 
   /**
    * Handles the retry action when fetching Pokemon fails.
+   * @func handleRetry
    */
   const handleRetry = () => {
     dispatch(fetchPokemonsThunk())
   }
 
+  /**
+   * Renders the Pokemon cards.
+   * @member pokemonsElements
+   * @returns {JSX.Element[]} The array of rendered Pokemon cards.
+   */
   let pokemonElements;
 
   if (status === 'loading') {

@@ -10,13 +10,15 @@ export default function PokemonEditNameForm(props) {
 
   /**
    * Sets the local state to show/hide the edit name form.
+   * @func toggleEditNameForm
    */
   const toggleEditNameForm = () => setEditNameOpen(prev => !prev);
 
   /**
    * Dispatches action for updating the Pokemon's name.
+   * @func handleSubmitNewName
    */
-  const handleOnClick = () => {
+  const handleSubmitNewName = () => {
     dispatch(updatePokemonName({ id: props.id, changes: {name: newName} }));
     setEditNameOpen(!editNameOpen);
     setNewName('');
@@ -25,11 +27,12 @@ export default function PokemonEditNameForm(props) {
   /**
    * Handles when user press Enter instead of "Save".
    * Prevents the default action of submitting the form, causing a refresh.
+   * @func handleKeyDown
    */
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       event.preventDefault();
-      handleOnClick();
+      handleSubmitNewName();
     }
   };
 
@@ -50,7 +53,7 @@ export default function PokemonEditNameForm(props) {
             <button
               type='button' 
               className='button' 
-              onClick={handleOnClick} 
+              onClick={handleSubmitNewName} 
             >
               Lagre
             </button>

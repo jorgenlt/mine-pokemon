@@ -11,15 +11,21 @@ export default function PokemonSearchResults() {
     sortBy
   } = useSelector(state => state.pokemons);
 
+  /**
+   * To check if a search exists
+   * @const searchExists
+   */
   const searchExists = Boolean(searchQuery || typeFilter || abilityFilter || sortBy);
 
+  /**
+   * Renders the filtered Pokemon cards if the search exists and returns search results.
+   * It the search exists, but returns no results, the user is notified.
+   * @member filteredPokemonsElements
+   * @returns {JSX.Element[]} The array of rendered Pokemon cards.
+   */
   let filteredPokemonsElements;
 
   if (filteredPokemons.length > 0 && searchExists) {
-    /**
-     * Renders the filtered Pokemon card if the search exists and returns search results.
-     * @returns {JSX.Element[]} The array of rendered Pokemon cards.
-     */
     filteredPokemonsElements = (
       <div>
         <div>
@@ -37,11 +43,7 @@ export default function PokemonSearchResults() {
       </div>
     )
   } 
-  
-  /**
-   * It the search exists, but returns no results, the user is notified.
-   * @returns {JSX.Element}
-   */
+
   if (searchExists && filteredPokemons.length === 0) {
       filteredPokemonsElements = <p>Ingen treff.</p>
   }

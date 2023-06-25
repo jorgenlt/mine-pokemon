@@ -47,31 +47,35 @@ export default function PokemonSearch() {
 
   /**
    * Dispatches the action to update the search query and performs the search.
-   * @param {Object} e - The event to get the value in the form.
+   * @func handleQueryChange
+   * @param {Object} event - The event to get the value in the form.
    */
-  const handleOnChange = e => {
-    dispatch(updateSearchQuery(e.target.value));
-    setInput(e.target.value);
+  const handleQueryChange = event => {
+    dispatch(updateSearchQuery(event.target.value));
+    setInput(event.target.value);
   };
 
   /**
-   * Dispatches the action to update type filter and performs the filtering by type. 
-   * @param {Object} e - The event to get the value from the selected type. 
+   * Dispatches the action to update type filter and performs the filtering by type.
+   * @func handleTypeFilterChange 
+   * @param {Object} event - The event to get the value from the selected type. 
    */
-  const handleTypeFilterChange = e => {
-    dispatch(updateTypeFilter(e.target.value));
+  const handleTypeFilterChange = event => {
+    dispatch(updateTypeFilter(event.target.value));
   };
 
   /**
-   * Dispatches the action to update ability filter and performs the filtering by ability. 
-   * @param {Object} e - The event to get the value from the selected ability. 
+   * Dispatches the action to update ability filter and performs the filtering by ability.
+   * @func handleAbilityFilterChange
+   * @param {Object} event - The event to get the value from the selected ability. 
    */
-  const handleAbilityFilterChange = e => {
-    dispatch(updateAbilityFilter(e.target.value));
+  const handleAbilityFilterChange = event => {
+    dispatch(updateAbilityFilter(event.target.value));
   };
 
   /**
    * Dispatches the action to sort alphabetically.
+   * @func handleSortByName
    */
   const handleSortByName = () => {
     dispatch(updateSortBy('name'));
@@ -80,6 +84,7 @@ export default function PokemonSearch() {
 
   /**
    * Dispatches the action to sort by HP(high to low).
+   * @func handleSortByHP
    */
   const handleSortByHP = () => {
     dispatch(updateSortBy('hp'));
@@ -88,6 +93,7 @@ export default function PokemonSearch() {
 
   /**
    * Dispatches actions to reset all the filters.
+   * @func handleResetFilters
    */
   const handleResetFilters = () => {
     dispatch(updateSearchQuery(''));
@@ -101,6 +107,7 @@ export default function PokemonSearch() {
 
   /**
    * Prevents the default submitting of the form if the user presses Enter. 
+   * @func handleOnKeyDown
    */
   const handleOnKeyDown = (event) => {
     if (event.key === 'Enter') {
@@ -119,7 +126,7 @@ export default function PokemonSearch() {
           debounceTimeout={400}
           value={input}
           type="text" 
-          onChange={handleOnChange}
+          onChange={handleQueryChange}
           onKeyDown={handleOnKeyDown}
         />
       &lt;/form>
@@ -181,13 +188,13 @@ export default function PokemonSearch() {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html"></a></li><li><a href="global.html#extraReducers">extraReducers</a></li><li><a href="global.html#fetchPokemons">fetchPokemons</a></li><li><a href="global.html#fetchPokemonsThunk">fetchPokemonsThunk</a></li><li><a href="global.html#filterByAbility">filterByAbility</a></li><li><a href="global.html#filterByName">filterByName</a></li><li><a href="global.html#filterByType">filterByType</a></li><li><a href="global.html#filterPokemons">filterPokemons</a></li><li><a href="global.html#persistConfig">persistConfig</a></li><li><a href="global.html#persistor">persistor</a></li><li><a href="global.html#pokemonsSelectors">pokemonsSelectors</a></li><li><a href="global.html#pokemonsSlice">pokemonsSlice</a></li><li><a href="global.html#selectAllPokemons">selectAllPokemons</a></li><li><a href="global.html#selectSavedPokemons">selectSavedPokemons</a></li><li><a href="global.html#sortPokemons">sortPokemons</a></li><li><a href="global.html#store">store</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html"></a></li><li><a href="global.html#abilitiesElements">abilitiesElements</a></li><li><a href="global.html#extraReducers">extraReducers</a></li><li><a href="global.html#fetchPokemons">fetchPokemons</a></li><li><a href="global.html#fetchPokemonsThunk">fetchPokemonsThunk</a></li><li><a href="global.html#filterByAbility">filterByAbility</a></li><li><a href="global.html#filterByQuery">filterByQuery</a></li><li><a href="global.html#filterByType">filterByType</a></li><li><a href="global.html#filterPokemons">filterPokemons</a></li><li><a href="global.html#filteredPokemonsElements">filteredPokemonsElements</a></li><li><a href="global.html#handleAbilityFilterChange">handleAbilityFilterChange</a></li><li><a href="global.html#handleKeyDown">handleKeyDown</a></li><li><a href="global.html#handleOnKeyDown">handleOnKeyDown</a></li><li><a href="global.html#handleQueryChange">handleQueryChange</a></li><li><a href="global.html#handleResetFilters">handleResetFilters</a></li><li><a href="global.html#handleRetry">handleRetry</a></li><li><a href="global.html#handleSavePokemon">handleSavePokemon</a></li><li><a href="global.html#handleSortByHP">handleSortByHP</a></li><li><a href="global.html#handleSortByName">handleSortByName</a></li><li><a href="global.html#handleSubmitNewName">handleSubmitNewName</a></li><li><a href="global.html#handleTypeFilterChange">handleTypeFilterChange</a></li><li><a href="global.html#persistConfig">persistConfig</a></li><li><a href="global.html#persistedReducer">persistedReducer</a></li><li><a href="global.html#persistor">persistor</a></li><li><a href="global.html#pokemonSlice">pokemonSlice</a></li><li><a href="global.html#pokemonsElements">pokemonsElements</a></li><li><a href="global.html#pokemonsSelectors">pokemonsSelectors</a></li><li><a href="global.html#savedPokemonsElements">savedPokemonsElements</a></li><li><a href="global.html#searchExists">searchExists</a></li><li><a href="global.html#selectAllPokemons">selectAllPokemons</a></li><li><a href="global.html#sortPokemons">sortPokemons</a></li><li><a href="global.html#store">store</a></li><li><a href="global.html#toggleEditNameForm">toggleEditNameForm</a></li><li><a href="global.html#toggleSavePokemon">toggleSavePokemon</a></li><li><a href="global.html#updateAbilityFilter">updateAbilityFilter</a></li><li><a href="global.html#updatePokemonName">updatePokemonName</a></li><li><a href="global.html#updateSearchQuery">updateSearchQuery</a></li><li><a href="global.html#updateSortBy">updateSortBy</a></li><li><a href="global.html#updateTypeFilter">updateTypeFilter</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Jun 23 2023 19:06:28 GMT+0200 (Central European Summer Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Jun 25 2023 09:08:56 GMT+0200 (Central European Summer Time)
 </footer>
 
 <script> prettyPrint(); </script>

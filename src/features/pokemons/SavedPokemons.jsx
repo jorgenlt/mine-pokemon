@@ -9,6 +9,7 @@ export default function SavedPokemons() {
 
   /**
    * Renders the saved Pokemon cards.
+   * @func savedPokemonsElements
    * @returns {JSX.Element[]} The array of rendered Pokemon cards.
    */
   const savedPokemonsElements = () => {

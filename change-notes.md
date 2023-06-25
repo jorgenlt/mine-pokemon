@@ -34,5 +34,5 @@
 - Lagt til filtre (type, evne) i tillegg til søk etter navn.
 - Lagt til sortering etter navn og sortering etter hp.
 - Diverse forbedringer i brukergrensesnittet.
-- Dokumentert kode med JSdoc. Har ikke fått til å inkludere dokumentasjon fra React-komponentene i den ferdige dokumentasjonen. Tips?
+- Dokumentert kode med JSdoc.
 

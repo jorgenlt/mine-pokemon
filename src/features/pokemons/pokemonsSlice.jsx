@@ -6,7 +6,7 @@ import {
 } from '@reduxjs/toolkit';
 import { fetchPokemons } from '../api/api'
 import {
-  filterByName,
+  filterByQuery,
   filterByType,
   filterByAbility,
   sortPokemons
@@ -31,7 +31,8 @@ const initialState = pokemonsAdapter.getInitialState({
  */
 
 /**
- * Fetches the pokemon from the API.
+ * Fetches the Pokemon with a thunk function
+ * @func fetchPokemonsThunk 
  */
 export const fetchPokemonsThunk = createAsyncThunk(
   'pokemons/fetchPokemons',
@@ -40,17 +41,22 @@ export const fetchPokemonsThunk = createAsyncThunk(
 
 /**
  * Slice containing the reducers and actions.
+ * Generates action creators and action types.
+ * @function pokemonSlice
  */
 const pokemonsSlice = createSlice({
   name: 'pokemons',
   initialState,
   reducers: {
     /**
-     * Toggles the save state for pokemons (myPokemon)
+     * Reducer: Toggles the save state for pokemons (myPokemon)
+     * @func toggleSavePokemon
+     * @param {Object}
      */
     toggleSavePokemon: pokemonsAdapter.updateOne,
     /**
-     * Updates the search query and filters the Pokemon based on the query.
+     * Reducer: Updates the search query and filters the Pokemon based on the query.
+     * @func updateSearchQuery
      * @param {Object} state - Current state.
      * @param {Object} action - Action containing the search query.
      */
@@ -59,7 +65,8 @@ const pokemonsSlice = createSlice({
       state.filteredPokemons = filterPokemons(state);
     },
     /**
-     * Updates the type filter and filters Pokemon based on chosen type.
+     * Reducer: Updates the type filter and filters Pokemon based on chosen type.
+     * @func updateTypeFilter
      * @param {Object} state - Current state.
      * @param {Object} action - Action containing the Pokemon type, e.g. "Grass".
      */
@@ -69,7 +76,8 @@ const pokemonsSlice = createSlice({
       state.filteredPokemons = filterPokemons(state);
     },
     /**
-     * Updates the ability filter and filters Pokemon by chosen ability.
+     * Reducer: Updates the ability filter and filters Pokemon by chosen ability.
+     * @func updateAbilityFilter
      * @param {Object} state - Current state.
      * @param {Object} action - Action containing the ability to filter by, e.g. "Run-Away"
      */
@@ -79,11 +87,14 @@ const pokemonsSlice = createSlice({
       state.filteredPokemons = filterPokemons(state);
     },
     /**
-     * Updates the name of a saved pokemon.
+     * Reducer: Updates the name of a saved pokemon.
+     * @func updatePokemonName
+     * @param {Object}
      */
     updatePokemonName: pokemonsAdapter.updateOne,
     /**
-     * Updates the sort by in state and sorts either alphabetically or by HP.
+     * Reducer: Updates the sort by in state and sorts either alphabetically or by HP.
+     * @func updateSortBy
      * @param {Object} state - Current state.
      * @param {Object} action - Action containing either "name" or "hp".
      */
@@ -116,7 +127,8 @@ const pokemonsSlice = createSlice({
 });
 
 /**
- * Filters the Pokemon based on search query and filters.
+ * Selector: Filters the Pokemon based on search query and filters.
+ * @const filterPokemons
  */
 const filterPokemons = createSelector(
   state => state.searchQuery,
@@ -125,7 +137,7 @@ const filterPokemons = createSelector(
   state => state.sortBy,
   pokemonsAdapter.getSelectors().selectAll,
   (searchQuery, typeFilter, abilityFilter, sortBy, allPokemons) => {
-    const filteredPokemons = filterByName(searchQuery, allPokemons)
+    const filteredPokemons = filterByQuery(searchQuery, allPokemons)
       .filter(pokemon => filterByType(typeFilter, pokemon))
       .filter(pokemon => filterByAbility(abilityFilter, pokemon))
       .filter(pokemon => !pokemon.myPokemon);
@@ -149,14 +161,16 @@ export const {
 export default pokemonsSlice.reducer;
 
 /**
- * Creates a selector object for working with the entity data, e.g. selectEntities. 
+ * Creates a selector object for working with the entity data, e.g. selectEntities.
+ * @const pokemonsSelectors
  */
 const pokemonsSelectors = pokemonsAdapter.getSelectors(
   state => state.pokemons
 );
 
 /**
- * Selects all Pokemon that are not saved by the user.
+ * Selector: Selects all Pokemon that are not saved by the user.
+ * @func selectAllPokemons
  */
 export const selectAllPokemons = createSelector(
   pokemonsSelectors.selectAll,
@@ -164,7 +178,8 @@ export const selectAllPokemons = createSelector(
 );
 
 /**
- * Selects all Pokemon that are saved by the user.
+ * Selector: Selects all Pokemon that are saved by the user.
+ * @func selectAllPokemons
  */
 export const selectSavedPokemons = createSelector(
   pokemonsSelectors.selectAll,
