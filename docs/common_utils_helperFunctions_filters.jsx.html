@@ -32,7 +32,7 @@
  * @param {Array} pokemons - The array of Pokemons to filter.
  * @returns {Array} The filtered array of Pokemons.
  */
-export const filterByName = (searchQuery, pokemons) => {
+export const filterByQuery = (searchQuery, pokemons) => {
   if (searchQuery) {
     return pokemons.filter(pokemon =>
       pokemon.name.startsWith(searchQuery.toLowerCase())
@@ -101,7 +101,7 @@ export const sortPokemons = (sortBy, pokemons) => {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html"></a></li><li><a href="global.html#extraReducers">extraReducers</a></li><li><a href="global.html#fetchPokemons">fetchPokemons</a></li><li><a href="global.html#fetchPokemonsThunk">fetchPokemonsThunk</a></li><li><a href="global.html#filterByAbility">filterByAbility</a></li><li><a href="global.html#filterByName">filterByName</a></li><li><a href="global.html#filterByType">filterByType</a></li><li><a href="global.html#filterPokemons">filterPokemons</a></li><li><a href="global.html#persistConfig">persistConfig</a></li><li><a href="global.html#persistor">persistor</a></li><li><a href="global.html#pokemonsSelectors">pokemonsSelectors</a></li><li><a href="global.html#pokemonsSlice">pokemonsSlice</a></li><li><a href="global.html#selectAllPokemons">selectAllPokemons</a></li><li><a href="global.html#selectSavedPokemons">selectSavedPokemons</a></li><li><a href="global.html#sortPokemons">sortPokemons</a></li><li><a href="global.html#store">store</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html"></a></li><li><a href="global.html#extraReducers">extraReducers</a></li><li><a href="global.html#fetchPokemons">fetchPokemons</a></li><li><a href="global.html#fetchPokemonsThunk">fetchPokemonsThunk</a></li><li><a href="global.html#filterByAbility">filterByAbility</a></li><li><a href="global.html#filterByQuery">filterByQuery</a></li><li><a href="global.html#filterByType">filterByType</a></li><li><a href="global.html#filterPokemons">filterPokemons</a></li><li><a href="global.html#persistConfig">persistConfig</a></li><li><a href="global.html#persistor">persistor</a></li><li><a href="global.html#pokemonsSelectors">pokemonsSelectors</a></li><li><a href="global.html#pokemonsSlice">pokemonsSlice</a></li><li><a href="global.html#selectAllPokemons">selectAllPokemons</a></li><li><a href="global.html#selectSavedPokemons">selectSavedPokemons</a></li><li><a href="global.html#sortPokemons">sortPokemons</a></li><li><a href="global.html#store">store</a></li></ul>
 </nav>
 
 <br class="clear">
