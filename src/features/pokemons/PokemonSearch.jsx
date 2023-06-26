@@ -89,11 +89,11 @@ export default function PokemonSearch() {
 
   return (
     <section className="search">
-      <h2>Søkefilter</h2>
+      <h2>Search filters</h2>
       <form className="search--form" action="">
         <DebounceInput 
           className="search--input" 
-          placeholder="🐞 Finn Pokemon i listen under eller søk her" 
+          placeholder="🐞 Type to search for a Pokémon." 
           minLength={0}
           debounceTimeout={400}
           value={input}
@@ -121,7 +121,7 @@ export default function PokemonSearch() {
         >
           {ABILITIES_LIST.map(ability => (
             <option key={ability} value={ability}>
-              {ability ? ability : 'Evne'}
+              {ability ? ability : 'Ability'}
             </option>
           ))}
         </select>
@@ -130,21 +130,21 @@ export default function PokemonSearch() {
           type='button' 
           onClick={handleSortByName}
         >
-          Sorter på navn
+          Sort by name
         </button>
         <button 
           className={sortBy === 'hp' ? 'button--chosen' : 'button--sort'}
           type='button' 
           onClick={handleSortByHP}
         >
-          Sorter på HP
+          Sorter by HP
         </button>
         <button 
           className='button' 
           type='button' 
           onClick={handleResetFilters}
         >
-          Reset
+          Reset filters
         </button>
       </form>
     </section>

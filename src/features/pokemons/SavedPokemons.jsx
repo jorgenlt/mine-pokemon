@@ -18,7 +18,7 @@ export default function SavedPokemons() {
 
   return (
     <section className='saved-pokemons'>
-        <h2>Mine Pokémonkort</h2>
+        <h2>My Pokémon cards</h2>
         {
           (showMyCards && savedPokemons.length > 0) &&
           <div className="saved-pokemons--cards">
@@ -28,15 +28,15 @@ export default function SavedPokemons() {
         {
           savedPokemons.length === 0 ? (
           <div className='saved-pokemons--no-cards'>
-            <p>Du har ingen lagrede kort.</p>
-            <p>Du kan finne kort i listen under eller ved å endre søkefilteret.</p>
+            <p>You have no saved cards.</p>
+            <p>Find a Pokémon in the list or make a search.</p>
           </div>
           ) : (
           <button 
             className="saved-pokemons--hide button" 
             onClick={() => setShowMyCards(prev => !prev)}
           >
-            {showMyCards ? 'Skjul kort' : 'Vis kort'}
+            {showMyCards ? 'Hide cards' : 'Show cards'}
           </button>
           )
         }
