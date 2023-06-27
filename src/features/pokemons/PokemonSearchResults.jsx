@@ -31,7 +31,7 @@ export default function PokemonSearchResults() {
         <div>
           {
             searchExists && 
-            <p>{filteredPokemons.length} Pokémon passer dine kriterier.</p>
+            <p>{filteredPokemons.length} Pokémon matches your search.</p>
           }
         </div>
         <div className='search--pokemons-list'>
@@ -45,12 +45,12 @@ export default function PokemonSearchResults() {
   } 
 
   if (searchExists && filteredPokemons.length === 0) {
-      filteredPokemonsElements = <p>Ingen treff.</p>
+      filteredPokemonsElements = <p>No Pokémon matches your search.</p>
   }
 
   return (
     <section className='search--results'>
-      {searchExists && <h2>Søkeresultater</h2>}
+      {searchExists && <h2>Search Results</h2>}
       {filteredPokemonsElements}
     </section>
   )
