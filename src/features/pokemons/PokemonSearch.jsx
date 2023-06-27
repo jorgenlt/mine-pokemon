@@ -137,7 +137,7 @@ export default function PokemonSearch() {
           type='button' 
           onClick={handleSortByHP}
         >
-          Sorter by HP
+          Sort by HP
         </button>
         <button 
           className='button' 
