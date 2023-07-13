@@ -2,15 +2,16 @@
 
 <div>
   <p>A web application to browse, search, store and edit Pokémon from the <a href="https://pokeapi.co/" target="_blank">PokéAPI</a>.</p>
+  </br>
   <p>Visit site: <a href="https://pokemon.jorgenlt.me" target="_blank">pokemon.jorgenlt.me</a></p>
   <p><a href="https://pokemon.jorgenlt.me/docs/index.html" target="_blank">Documentation</a></p>
   <p><a href="https://github.com/jorgenlt/mine-pokemon" target="_blank">View on GitHub</a></p>
+  <p>The app is live at <a href="https://pokemon.jorgenlt.me" target="_blank">pokemon.jorgenlt.me</a></p>
+  </br>
 </div>
 
 
-<img src="https://jorgenlt.me/images/my-pokemon-desktop2.png" alt="My Pokémon on desktop." />
-
-<img src="https://jorgenlt.me/images/my-pokemon-mobile.png" alt="My Pokémon on mobile." />
+<img src="https://jorgenlt.me/images/my-pokemon-desktop2.png" alt="My Pokémon on desktop." height='500px'/><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><img src="https://jorgenlt.me/images/my-pokemon-mobile.png" alt="My Pokémon on mobile." height="500px" />
 
 
 <h2>Features</h2>
@@ -34,29 +35,17 @@ with <a href="https://jsdoc.app/index.html" target="_blank">JSdoc</a>.
 
 
 
-<h1>Installation</h1>
+<h2>Installation</h2>
 
 1. Install the required dependencies using npm: 
   
     `npm install`
 
-<br/>
-
-<h1>Usage</h1>
+<h2>Usage</h2>
 
 1. Start the application by running the following command: 
   
     `npm run dev`
-
-<br/><br/>
-___
-
-Mine Pokemon is developed using React and Vite.js. The application is supported by AOS (Animation On Scroll), react-debounce-input, and SASS.
-
-To handle the large volume of data, lazy loading is implemented, making the loading process more manageable. The search feature utilizes react-debounce-input to introduce delays, preventing lag and unnecessary API calls.
-
-The app is live at [pokemon.jorgenlt.me](https://pokemon.jorgenlt.me).
-
 
 <h2>Technical challenges</h2>
 
