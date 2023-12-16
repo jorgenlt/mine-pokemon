@@ -3,10 +3,10 @@
 <div>
   <p>A web application to browse, search, store and edit Pokémon from the <a href="https://pokeapi.co/" target="_blank">PokéAPI</a>.</p>
   </br>
-  <p>Visit site: <a href="https://pokemon.jorgenlt.me" target="_blank">pokemon.jorgenlt.me</a></p>
+  <p>Visit site: <a href="https://pokemon.jorgenlt.no" target="_blank">pokemon.jorgenlt.no</a></p>
   <p><a href="https://pokemon.jorgenlt.me/docs/index.html" target="_blank">Documentation</a></p>
   <p><a href="https://github.com/jorgenlt/mine-pokemon" target="_blank">View on GitHub</a></p>
-  <p>The app is live at <a href="https://pokemon.jorgenlt.me" target="_blank">pokemon.jorgenlt.me</a></p>
+  <p>The app is live at <a href="https://pokemon.jorgenlt.no" target="_blank">pokemon.jorgenlt.no</a></p>
   </br>
 </div>
 
