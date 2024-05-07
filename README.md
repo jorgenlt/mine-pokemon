@@ -11,7 +11,7 @@
 </div>
 
 
-<img src="https://jorgenlt.me/images/my-pokemon-desktop2.png" alt="My Pokémon on desktop." height='500px'/><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><img src="https://jorgenlt.me/images/my-pokemon-mobile.png" alt="My Pokémon on mobile." height="500px" />
+<img src="https://jorgenlt.no/images/my-pokemon-desktop2.png" alt="My Pokémon on desktop." height='500px'/><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><img src="https://jorgenlt.no/images/my-pokemon-mobile.png" alt="My Pokémon on mobile." height="500px" />
 
 
 <h2>Features</h2>
