@@ -54,7 +54,7 @@ with <a href="https://jsdoc.app/index.html" target="_blank">JSdoc</a>.
 <p>Setting up the Redux with Redux Toolkit to mangage the app.</p>
 
 ```.js
-// src/features/pokemons/pokemonsSlice.jsx
+// src/features/pokemons/pokemonsSlice.js
 
 import { 
   createSlice, 
@@ -257,7 +257,7 @@ export const selectSavedPokemons = createSelector(
 <h3>The store</h3>
 
 ```.js
-// src/app/store.jsx
+// src/app/store.js
 
 import { configureStore } from '@reduxjs/toolkit'
 
@@ -319,7 +319,7 @@ export const persistor = persistStore(store);
 <h3>Fetching data from PokeAPI</h3>
 
 ```.js
-// src/features/api/api.jsx
+// src/features/api/api.js
 
 import { TYPE_DATA } from '../../common/utils/constants/TYPE_DATA'
 
@@ -390,23 +390,23 @@ export const fetchPokemons = async () => {
 
 ```.bash
 ├── app
-│   └── store.jsx
+│   └── store.js
 ├── App.jsx
 ├── common
 │   └── utils
 │       ├── constants
-│       │   ├── ABILITIES_LIST.jsx
-│       │   ├── TYPE_DATA.jsx
-│       │   └── TYPES_LIST.jsx
+│       │   ├── ABILITIES_LIST.js
+│       │   ├── TYPE_DATA.js
+│       │   └── TYPES_LIST.js
 │       └── helper-functions
-│           └── filters.jsx
+│           └── filters.js
 ├── components
 │   ├── Footer.jsx
 │   ├── Header.jsx
 │   └── Loader.jsx
 ├── features
 │   ├── api
-│   │   └── api.jsx
+│   │   └── api.js
 │   └── pokemons
 │       ├── PokemonCardContent.jsx
 │       ├── PokemonCardFooter.jsx
@@ -416,7 +416,7 @@ export const fetchPokemons = async () => {
 │       ├── PokemonSearch.jsx
 │       ├── PokemonSearchResults.jsx
 │       ├── PokemonsList.jsx
-│       ├── pokemonsSlice.jsx
+│       ├── pokemonsSlice.js
 │       └── SavedPokemons.jsx
 ├── main.jsx
 └── styles
