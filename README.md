@@ -5,7 +5,6 @@
   </br>
   <p>Visit site: <a href="https://pokemon.jorgenlt.no" target="_blank">pokemon.jorgenlt.no</a></p>
   <p><a href="https://pokemon.jorgenlt.no/docs/index.html" target="_blank">Documentation</a></p>
-  <p>The app is live at <a href="https://pokemon.jorgenlt.no" target="_blank">pokemon.jorgenlt.no</a></p>
   </br>
 </div>
 
