@@ -4,7 +4,7 @@
   <p>A web application to browse, search, store and edit Pokémon from the <a href="https://pokeapi.co/" target="_blank">PokéAPI</a>.</p>
   </br>
   <p>Visit site: <a href="https://pokemon.jorgenlt.no" target="_blank">pokemon.jorgenlt.no</a></p>
-  <p><a href="https://pokemon.jorgenlt.me/docs/index.html" target="_blank">Documentation</a></p>
+  <p><a href="https://pokemon.jorgenlt.no/docs/index.html" target="_blank">Documentation</a></p>
   <p><a href="https://github.com/jorgenlt/mine-pokemon" target="_blank">View on GitHub</a></p>
   <p>The app is live at <a href="https://pokemon.jorgenlt.no" target="_blank">pokemon.jorgenlt.no</a></p>
   </br>
@@ -29,7 +29,7 @@ The app combines <a href="https://redux-toolkit.js.org/" target="_blank">Redux T
 and selectors to manage the state, handle asynchronous actions, and provide efficient access 
 to the Pokemon data. It also utilizes an entity adapter to manage the normalized data structure. 
 Data is stored in local storage using <a href="https://redux-toolkit.js.org/rtk-query/usage/persistence-and-rehydration" target="_blank">Redux Persist</a>.
-The <a href="https://pokemon.jorgenlt.me/docs/index.html" target="_blank">documentation site</a> is generated 
+The <a href="https://pokemon.jorgenlt.no/docs/index.html" target="_blank">documentation site</a> is generated 
 with <a href="https://jsdoc.app/index.html" target="_blank">JSdoc</a>.
 </p>
 
